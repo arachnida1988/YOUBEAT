@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <ANNOTATION_DOCUMENT AUTHOR="Mikhail Buryakov" DATE="2012-11-20T07:49:32+04:00" 
 FORMAT="2.6" VERSION="2.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv2.6.xsd" >
+  
   <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
     <MEDIA_DESCRIPTOR MEDIA_URL="001z.mp3" MIME_TYPE="audio/mpeg"/>
   </HEADER>
+
    
   <TIME_ORDER>
     <TIME_SLOT TIME_SLOT_ID="TS0" TIME_VALUE="0"/>
@@ -2779,7 +2781,7 @@ xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv2.6.xsd" >
       </REF_ANNOTATION>
     </ANNOTATION>
   </TIER>
-  <TIER DEFAULT_LOCALE="ru" LINGUISTIC_TYPE_REF="WProp" PARENT_REF="Words" TIER_ID="Stop">
+  <TIER DEFAULT_LOCALE="r" LINGUISTIC_TYPE_REF="WProp" PARENT_REF="Words" TIER_ID="Stop">
     <ANNOTATION>
       <REF_ANNOTATION ANNOTATION_ID="STOP172" ANNOTATION_REF="WORD172">
         <ANNOTATION_VALUE>Asp-E</ANNOTATION_VALUE>
@@ -2865,4 +2867,4 @@ xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv2.6.xsd" >
   <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="EDUProp" TIME_ALIGNABLE="false"/>
   <LINGUISTIC_TYPE CONSTRAINTS="Symbolic_Association" GRAPHIC_REFERENCES="false" LINGUISTIC_TYPE_ID="WProp" TIME_ALIGNABLE="false"/>
   <LINGUISTIC_TYPE CONSTRAINTS="Included_In" GRAPHIC_REFERENCES="true" LINGUISTIC_TYPE_ID="Pause" TIME_ALIGNABLE="true"/>
-</ANNOTATION_DOCUMENT>
+  </ANNOTATION_DOCUMENT> -->
