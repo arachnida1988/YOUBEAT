@@ -8,19 +8,24 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function() {
+		var num=0;
 		$("#mp3add").click(function() {
-			$("#frm").append('<input type="file" name="mp3">');
+			var max = $("#filenum").val();
+			for(var i=0;i<max;i++){
+				num++;
+				$("#frm").append(num+' : <input type="file" name="mp3"><br>');
+			}
 		})
 	});
 </script>
 </head>
 <body>
 	<form action="mp3Write" id="frm" method="post" enctype="multipart/form-data">
-		AlbumName : <input type="text" name="albumname"><br>
+		AlbumName : <input type="text" name="albumname"><input type="submit" value="등록"><br>
 		Artist : <input type="text" name="artist"><br>
-		Mp3File : <input type="file" name="mp3"> <br>
-		<input type="submit" value="등록">
+		Mp3File : <br><!-- 1 : <input type="file" name="mp3"> <br> -->
 	</form>
-	<input type="button" id="mp3add" value="파일추가">
+	<div style="width: 100px; height: 200px;"></div>
+	<input type="text" id="filenum"><input type="button" id="mp3add" value="파일추가">
 </body>
 </html>
