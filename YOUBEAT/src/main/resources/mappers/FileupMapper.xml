@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="FileupMapper">
+	<insert id="fileupWrite" parameterType="com.you.fileup.FileupDTO">
+		insert into fileup values(fileup_seq.nextval, #{foriginalname}, 
+		#{ffilename}, #{fsection}, #{fsubsection})
+	</insert>
+	
+	<!-- 일반 리스트 뽑기 -->
+	<select id="fileupList" resultType="com.you.fileup.FileupDTO">
+		select * from fileup 
+	</select>
+	<!-- mp3리스트 -->
+	<select id="fileupMP3" resultType="com.you.fileup.FileupDTO">
+		select * from fileup where fsection='album' and fsubsection='artist'
+	</select>
+	
+	<!-- tracks album 이미지 하나씩뽑기 -->
+	<select id="fileupOne" parameterType="com.you.fileup.FileupDTO" resultType="com.you.fileup.FileupDTO">
+		select * from fileup where fsection = #{fsection} and fsubsection = #{fsubsection}
+	</select>
+	
+	<select id="fileupArtistList" parameterType="com.you.fileup.FileupDTO" 
+		resultType="com.you.fileup.FileupDTO">
+		select * from fileup where fsection='artist' and fsubsection=#{fsubsection}
+	</select>
+</mapper>

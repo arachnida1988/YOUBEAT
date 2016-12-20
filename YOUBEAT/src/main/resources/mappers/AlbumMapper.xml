@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AlbumMapper">
+	<!-- 앨범 정보 등록 -->
+	<insert id="albumInsert" parameterType="com.you.album.AlbumDTO">
+		<![CDATA[
+			insert into album values
+			(album_seq.nextval, #{atitle}, #{aartist}, 0, 0, #{adate})
+		]]>		
+	</insert>
+
+	<!-- 최근 등록된 앨범 번호 가져오기 - 번호가 가장 큰것 - 등록할때만 사용하는 것! -->
+	<!-- 음악을 등록하기 위해  앨범의 PK값 가져오기-->
+	<select id="albumMaxNum" resultType="int">
+		<![CDATA[
+			select max(anum) from album 
+		]]>
+	</select>
+	
+	<!-- 앨범 리스트 -->
+	<select id="albumList" parameterType="com.you.util.PageMaker" 
+		resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from album order by anum desc
+		]]>	
+	</select>
+	<!-- tracks 모든 앨범 리스트 -->
+	<select id="allAlbumList" resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from album
+		]]>
+	</select>
+	
+	<!-- TotalCount 앨범의 총 갯수 -->
+	<select id="albumTotalCount" resultType="int">
+		<![CDATA[
+			select count(anum) from album
+		]]>	
+	</select>
+	
+	<!-- View -->
+	<select id="albumView" parameterType="int" resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from album where anum=#{anum}
+		]]>		
+	</select>
+	
+	<!-- 변경 -->
+	<update id="albumUpdate" parameterType="com.you.album.AlbumDTO">
+		<![CDATA[
+			update album
+		]]>
+		<trim prefix="set">
+			<if test="atitle != null">
+				<![CDATA[		
+					atitle=#{atitle},
+				]]>	
+			</if>
+			<if test="aartist != null">
+				<![CDATA[		
+					aartist=#{aartist},
+				]]>	
+			</if>
+			<if test="adate != 0">
+				<![CDATA[		
+					adate=#{adate}
+				]]>	
+			</if>
+		</trim>
+		<![CDATA[
+			where anum=#{anum}
+		]]>	
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="albumDelete" parameterType="int">
+		<![CDATA[
+			delete album where anum=#{anum}
+		]]>			
+	</delete>
+	
+	<!-- 여기서 부터 복사 -->
+	<!-- 아티스트의 가장 높은 판매율인 앨범 가져오기 -->
+	<select id="getAlbumOfArtist" parameterType="String" 
+			resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from album where acounts=(select max(acounts) from album where aartist=#{aartist})
+		]]>
+	</select>
+	
+	<!-- 아티스트를 이용해서 가장 최근 날짜를 가져오기 -->
+	<select id="getRecentAlbumDate" parameterType="String" resultType="String">
+		<![CDATA[
+			select max(adate) from album where aartist=#{aartist}
+		]]>
+	</select>
+	<!-- 날짜로 앨범정보를 가져오는 함수 -->
+	<select id="getAlbumInfo_date" parameterType="com.you.album.AlbumDTO"
+		resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from album where adate=#{adate} and aartist=#{aartist} and rownum=1
+		]]>
+	</select>
+	<!-- 복사 끝 -->
+</mapper>

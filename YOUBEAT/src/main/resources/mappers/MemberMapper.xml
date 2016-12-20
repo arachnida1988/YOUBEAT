@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<!-- Join -->
+	<insert id="memberJoin" parameterType="com.you.member.MemberDTO">
+		<![CDATA[
+			insert into member values
+			(#{memid}, #{mempw}, #{memname}, #{mememail}, #{memmailcheck}, #{memrating})
+		]]>		
+	</insert>
+	
+	<!-- ID Check -->
+	<select id="memberIdCheck" parameterType="String" resultType="String">
+		<![CDATA[
+			select memid from member where memid=#{memid}
+		]]>	
+	</select>
+	
+	<!-- Login -->
+	<select id="memberLogin" parameterType="com.you.member.MemberDTO" 
+		resultType="com.you.member.MemberDTO">
+		<![CDATA[
+			select * from member where memid=#{memid} and mempw=#{mempw}
+		]]>		
+	</select>
+	
+	<!-- GetPassword -->
+	<select id="memberGetPassword" parameterType="com.you.member.MemberDTO" 
+		resultType="com.you.member.MemberDTO">
+		<![CDATA[
+			select * from member where memid=#{memid} and mememail=#{mememail}
+		]]>		
+	</select>	
+
+	<!-- Delete -->
+	<delete id="memberDelete" parameterType="com.you.member.MemberDTO">
+		<![CDATA[
+			delete member where memid=#{memid} and mempw=#{mempw}
+		]]>		
+	</delete>
+
+	<!-- Update -->	
+	<update id="memberUpdate" parameterType="com.you.member.MemberDTO">
+		<![CDATA[
+			update member
+		]]>
+		<trim prefix="set">
+			<if test="memname != null">
+				<![CDATA[		
+					memname=#{memname},
+				]]>	
+			</if>
+			<if test="mememail != null">
+				<![CDATA[		
+					mememail=#{mememail},
+				]]>	
+			</if>		
+		</trim>					
+		<![CDATA[	
+			memmailcheck=#{memmailcheck} where memid=#{memid}
+		]]>		
+	</update>
+	
+	<!-- ID찾기 -->
+	<select id="memberIdSendtoEmail" parameterType="String" resultType="String">
+		<![CDATA[
+			select memid from member where mememail=#{mememail}
+		]]>			
+	</select>
+	
+	<!-- PW 변경 -->
+	<update id="memberUpdatePassword" parameterType="com.you.member.MemberDTO">
+		<![CDATA[
+			update member
+		]]>
+		<trim prefix="set">
+			<if test="mempw != null">
+				<![CDATA[		
+					mempw=#{mempw}
+				]]>	
+			</if>		
+		</trim>					
+		<![CDATA[	
+			where memid=#{memid} and mememail=#{mememail}
+		]]>				
+	</update>	
+</mapper>

@@ -1,0 +1,97 @@
+@CHARSET "UTF-8";
+#body{
+	width: 100%;
+	background-color: gray;
+}
+#title{
+	width: 80%;
+	height: 80px;
+	margin: 0 auto;
+	border: red 1px solid;
+}
+#menu_1{
+	width: 80%;
+	height: 40px;
+	margin: 0 auto;
+	border: red 1px solid;
+
+}
+#type_form{
+	width: 20%;
+	height:80px;
+	position:fixed;
+	display: none;
+	background-color: gray;
+	color: white;
+}
+#date_form{
+	width: 35%;
+	height:50px;
+	position:fixed;
+	display: none;
+	background-color: gray;
+	color: white;
+}
+#genre_form{
+	width: 25%;
+	height:100px;
+	position:fixed;
+	display: none;
+	background-color: gray;
+	color: white;
+	overflow: auto;
+}
+#sub_form{
+	width: 25%;
+	height:100px;
+	position:fixed;
+	display: none;
+	background-color: gray;
+	color: white;
+	overflow: auto;
+}
+#artists_form{
+	width: 25%;
+	height:100px;
+	position:fixed;
+	display: none;
+	background-color: gray;
+	color: white;
+	overflow: auto;
+}
+.menus{
+	float: left;
+	margin-right: 20px;	
+	border: red 1px solid;
+}
+.pageing{
+	float: left;
+	margin-left: 30%;
+	border: red 1px solid;
+}
+.jump{
+	float: right;
+	border: red 1px solid;
+}
+.menu_2{
+	width: 80%;
+	height: 30px;
+	margin: 0 auto;
+	border: red 1px solid;
+	margin-top: 20px;
+}
+.musicT{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 40px; 
+}
+.musicT tr td{
+	border-bottom: 1px solid black;
+
+}
+
+.tableRefer{ 
+	background-color: black;
+	color: white;
+}

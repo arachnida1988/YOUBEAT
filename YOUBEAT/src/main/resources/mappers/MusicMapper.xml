@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MusicMapper">
+	<!-- 음악 정보 등록 -->
+	<insert id="musicInsert" parameterType="com.you.music.MusicDTO">
+		<![CDATA[
+			insert into music values
+			(music_seq.nextval, #{anum}, #{mtitle}, #{mgenre},
+			#{mdate}, #{mprice}, 0, 0)
+		]]>		
+	</insert>
+	
+	<!-- 리스트 -->
+	<select id="musicList" parameterType="com.you.util.PageMaker" resultType="com.you.music.MusicDTO">
+		<![CDATA[
+			select * from (select rownum r, t.* from (select * from music)t) where r between #{startRowNum} and #{lastLowNum}
+		]]>		
+	</select>
+	
+	<!-- 음악의 총 갯수 가져오기 -->
+	<select id="musicTotalCount" resultType="int">
+		<![CDATA[
+			select count(mnum) from music
+		]]>		
+	</select>
+	
+	<!-- View -->
+	<select id="musicView" parameterType="int" resultType="com.you.music.MusicDTO">
+		<![CDATA[
+			
+		]]>		
+	</select>
+	
+	<!-- 변경 -->
+	<update id="musicUpdate" parameterType="com.you.music.MusicDTO">
+		<![CDATA[
+			
+		]]>		
+	</update> 
+		
+	<!-- 앨범 삭제시 같이 삭제되는 SQL -->
+	<delete id="musicsDelete" parameterType="int">
+		<![CDATA[
+			delete music where anum=#{anum}
+		]]>		
+	</delete>
+	
+	<!-- 음악 하나만 삭제되는 SQL -->
+	<delete id="musicDelete" parameterType="int">
+		<![CDATA[
+			delete music where mnum=#{mnum}
+		]]>			
+	</delete>
+	
+	<!-- getGenreAndPriceOfMusic -->
+	<!-- 앨범의 번호로 음악 장르, 음악별로 더해진 총가격(=앨범 가격) 가져오기 -->
+	<select id="getGenreAndPriceOfMusic" parameterType="int" resultType="int">
+		<![CDATA[
+			select sum(mprice) from music where anum=#{anum}
+		]]>	
+	</select>
+</mapper>

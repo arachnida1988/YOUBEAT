@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+	<!-- write -->
+	<insert id="boardWrite" parameterType="com.you.board.BoardDTO">
+		<![CDATA[
+			
+		]]>
+	</insert>
+	
+	<!-- Update -->
+	<update id="boardUpdate" parameterType="com.you.board.BoardDTO">
+		<![CDATA[
+
+		]]>
+	</update>
+	
+	<!-- ParentBoard update -->
+	<update id="boardParentUpdate" parameterType="java.util.HashMap">
+		<![CDATA[
+		
+		]]>
+	</update>	
+	
+	<!-- reply -->
+	<insert id="boardReply" parameterType="com.you.board.BoardDTO">
+		<![CDATA[
+
+		]]>
+	</insert>
+	
+	<!-- delete -->
+	<delete id="boardDelete" parameterType="int">
+		<![CDATA[
+
+		]]>
+	</delete>		
+
+	<!-- List -->
+	<select id="boardList" parameterType="com.you.util.PageMaker" 
+			resultType="com.you.board.BoardDTO">
+		<![CDATA[
+
+		]]>
+	</select>
+	
+	<!-- totalCount -->
+	<select id="boardTotalCount" parameterType="java.util.HashMap" resultType="int">
+		<![CDATA[
+		
+		]]>
+	</select>
+	
+	<!-- View -->
+	<select id="boardView" parameterType="int" resultType="com.you.board.BoardDTO">
+		<![CDATA[
+
+		]]>
+	</select>
+	
+	<!-- plus counts -->
+	<update id="boardPlusCounts" parameterType="int">
+		<![CDATA[
+			
+		]]>
+	</update>
+</mapper>

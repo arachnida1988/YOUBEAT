@@ -1,0 +1,108 @@
+@CHARSET "UTF-8";
+body {
+	background-color: #2c2c2c;
+}
+a {
+	text-decoration: none;
+}
+#main_session{
+	width:65%;
+	height:370px;
+	margin: 0 auto;
+	background-color: #2c2c2c;
+	border: 2px solid green;
+	padding: 100px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	
+}
+/* loginíƒ€ì´í‹€ */
+.title1{
+	padding-top: 14px;
+	padding-bottom: 14px;
+	color: white;
+	background: #404040;
+	padding-left: 5px;
+}
+.title1_1{
+	font-size:13px;
+	color: white;
+	padding-left: 5px;
+}
+.title2{
+	margin-top:30px;
+	width: 50%;
+	height: 60%;
+	color: white;
+	border-right: 1px solid #2d2d2d;
+	background-color: #595959;
+	font-size: 27px;
+	padding-bottom: 10px;
+}
+.title2_2{
+	padding-left: 11px;
+	padding-right: 20px;
+}
+.title2 input{
+	width: 85%;
+	height:20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin: a auto;
+}
+.create_btn{
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+}
+.new_users{
+	font-size: 27px;
+	color: white;
+	float: left;
+	padding-bottom: 10px;
+}
+#find_id_btn{
+	float: right;
+	font-size: 13px;
+	margin-right:  5px;
+	padding-top: 10px;
+	text-decoration: none;
+	color: white;
+}
+#find_pw_btn{
+	float: right;
+	font-size: 13px;
+	margin-right: 30px;
+	padding-top: 10px;
+	text-decoration: none;
+	color: white;
+}
+#login_btn{
+	width: 20%;
+	float:left;
+	margin-top: 10px;
+}
+.rememberID_Parent{
+	margin-top:13%;
+	width:100%;
+	
+}
+.rememberID_Parent2{
+	width: 50px;
+	float: left;
+}
+.rememberID_1 checkbox{
+	width:10px;
+	float:left;
+}
+.rememberID_1 input{
+	width: 5px;
+	float:left;
+}
+.rememberID_2{
+	font-size: 11px;
+	float:left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}

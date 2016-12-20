@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Mp3Mapper">
+	<insert id="mp3Write" parameterType="com.you.mp3.Mp3DTO">
+		insert into mp3 values(mp3_seq.nextval,#{moriginalname},#{mfilename},#{albumname},#{artist},#{title})
+	</insert>
+	
+	<select id="mp3List" resultType="com.you.mp3.Mp3DTO">
+		select * from mp3
+	</select>
+</mapper>

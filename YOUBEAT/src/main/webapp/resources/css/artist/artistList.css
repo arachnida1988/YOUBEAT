@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+h1 {
+	color: white;
+}
+
+#artist_div {
+	width: 100%;
+	height: 1200px;
+	background-color: gray;
+}
+
+#artist_main_div {
+	width: 93%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.btn1 {
+	height: 30px;
+	background-color: gray;
+	border: 0px solid gray;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	outline: gray;
+}

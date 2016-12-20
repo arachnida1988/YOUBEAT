@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ArtistMapper">
+	<!-- 아티스트 리스트 기본형 -->
+	<select id="artistList" resultType="com.you.artist.ArtistDTO">
+		<![CDATA[
+			select * from artist
+		]]>
+	</select>
+	<!-- 복사 붙여 넣기 -->
+	<!-- 아티스트 등록  -->
+	<insert id="artistInsert" parameterType="com.you.artist.ArtistDTO">
+		<![CDATA[
+			insert into artist values
+			(arartist=#{arartist}, arcountry=#{arcountry}, ardate=#{ardate},
+			argenre=#{argenre}, arcontents=#{arcontents})
+		]]>
+	</insert>
+	<!-- 아티스트 리스트 페이징 처리형 -->
+	<select id="artistfeaturedPage" parameterType="com.you.util.PageMaker"
+		resultType="com.you.artist.ArtistDTO">
+		<![CDATA[
+			select * from 
+			(select rownum r, ar.* from 
+			(select * from artist)ar) 
+			where r between #{startRowNum} and #{lastRowNum}
+		]]>
+	</select>
+	<!-- 아티스트에 존재하는 모든Count값 -->
+	<select id="artistTotalCount" resultType="int">
+		<![CDATA[
+			select count(rownum) from artist
+		]]>
+	</select>
+	
+	<!-- ARTIST VIEW -->
+	<select id="artistView" parameterType="String" 
+		resultType="com.you.artist.ArtistDTO">
+		<![CDATA[
+			select * from artist where arartist=#{arartist}
+		]]>
+	</select>
+	<!-- 복사 붙여넣기 -->
+</mapper>
