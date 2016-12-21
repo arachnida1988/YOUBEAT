@@ -1,4 +1,4 @@
-package com.you.beat;
+/*package com.you.beat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,3 +81,4 @@ public class YoubeatController {
 		return this.streamingService.artistMusicCharts(arartist, curPage, model);
 	}
 }
+*/

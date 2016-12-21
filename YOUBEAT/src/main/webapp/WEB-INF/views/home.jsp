@@ -29,6 +29,6 @@
 	
 	<a href="header/youbeat">youbeat</a>
 	<a href="header/tracks">tracks</a>
-	<a href="mainSlide/mainSlideTest">MainSlide</a>
+	<a href="header/mainSlideTest">MainSlide</a>
 </body>
 </html>

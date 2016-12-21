@@ -9,7 +9,8 @@
 	width: 90%;
 }	
 td{
- 	border: 1px red solid;
+ 	padding: 0px;
+ 	padding-top: 0px;
 }
 .side{
 	width: 30%; 
@@ -43,7 +44,7 @@ td{
 	position: relative;
 }
 .price{
-	border: red 1px solid;
+	
 	width: 20%;
 	display: none;
 	position: absolute;
@@ -65,5 +66,5 @@ td{
 	width: 100%;
 	display: none;
 	bottom: 0px;
-	border: 1px red solid;
+	
 }

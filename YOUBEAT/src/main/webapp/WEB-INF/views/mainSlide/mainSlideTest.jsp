@@ -4,15 +4,15 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
-  		<link href="/beat/resources/css/template/main.css?ver=1" rel="stylesheet" type="text/css">
+  		<link href="/beat/resources/css/template/main.css" rel="stylesheet" type="text/css">
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>Final Project first-team "YOUBEAT"</title>
-		<meta name="description" content="Draggable Dual-View Slideshow: A Slideshow with two views and content area" />
-		<meta name="keywords" content="draggable, slideshow, fullscreen, carousel, views, zoomed, 3d transform, perspective, dragdealer" />
+		<!-- <meta name="description" content="Draggable Dual-View Slideshow: A Slideshow with two views and content area" /> -->
+		<!-- <meta name="keywords" content="draggable, slideshow, fullscreen, carousel, views, zoomed, 3d transform, perspective, dragdealer" /> -->
 		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="../favicon.ico">
+		<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
 		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:900,400|Lato:300,400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="/beat/resources/css/mainSlide/normalize.css?ver=1" />
 		<link rel="stylesheet" type="text/css" href="/beat/resources/css/mainSlide/demo.css?ver=1" />
@@ -69,24 +69,24 @@ $(document).ready(function(){
 });
 </script>
  </head>
- 
+
 <div class="container">
 			<div class="codrops-top clearfix"><!-- 상단 왼쪽/오른쪽 링크 -->
 				<!-- <a class="codrops-icon codrops-icon-prev" href="http://tympanus.net/Development/HoverEffectIdeas/"><span>Previous Demo</span></a>
 				<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://tympanus.net/codrops/?p=19332"><span>Back to the Codrops Article</span></a></span> -->
 			</div>
-			<header id="header" class="codrops-header">
+			<!-- <header id="header" class="codrops-header">
 				<h1>Draggable Dual-View Slideshow</h1>
 				<span class="message">This mobile version does not have the slideshow switch</span>
 				<button class="slider-switch">Switch view</button>
-			</header>
+			</header> -->
 			<div id="overlay" class="overlay">
 				<div class="info">
-					<h2>Demo interactions</h2>
+					<!-- <h2>Demo interactions</h2>
 					<span class="info-drag">Drag Sliders</span>
 					<span class="info-keys">Use Arrows</span>
 					<span class="info-switch">Switch view</span>
-					<button>Got it!</button>	
+					<button>Got it!</button>	 -->
 				</div>
 			</div>
 	<div id="slideshow" class="dragslider">
@@ -173,12 +173,11 @@ $(document).ready(function(){
 		<!-- /img-dragger-->
 		<!-- Content section -->
 		<section class="pages">
-		<div class="content" data-content="content-1" style="background-color: black;">
+		<div class="content" data-content="content-1" style="background-color: gray;">
 		<!-- 여기서부터 메인 -->
-		<div>
+	<div>
 		<c:import url="../template/header.jsp"></c:import>
 	</div>
-		
 		<table id="t">
 	<tr>
 		<td>
@@ -1095,8 +1094,11 @@ $(document).ready(function(){
 		</td>
 	</tr>
 </table>
-		
-		</div>
+	<div>
+		<c:import url="../template/futer.jsp"></c:import>
+	</div>
+				
+			</div>
 					
 					<div class="content" data-content="content-2">
 						<h2>Round Table <span>King Arthur's creative team techniques</span></h2>

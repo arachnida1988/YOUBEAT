@@ -82,9 +82,9 @@ $(document).ready(function(){
 <div id="header">
 	<div id="logo"><a href="youbeat">LOGO</a></div>
 	<div id="genre"><a href="">GENRES</a></div>
-	<div id="track"><a href="music">TRACKS</a></div>
-	<div id="album"><a href="">ALBUMS</a></div>
-	<div id="artist"><a href="">ARTISTS</a></div>
+	<div id="track"><a href="tracks">TRACKS</a></div>
+	<div id="album"><a href="album">ALBUMS</a></div>
+	<div id="artist"><a href="artist">ARTISTS</a></div>
 	<div id="scform">
 		<button id="scbtn" style="height: 30px; font-size: 10px;">search<img alt="" src="" ></button>
 		<input type="text" id="sc" name="sc" height="50px" size="30" style="height: 23px;">
