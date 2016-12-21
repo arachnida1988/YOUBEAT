@@ -21,7 +21,7 @@ import com.you.util.PageMaker;
 
 @Repository
 public class StreamingDAO {
-	
+
 	@Autowired
 	private ArtistDAO artistDAO;
 	@Autowired
@@ -32,7 +32,7 @@ public class StreamingDAO {
 	private FileupDAO fileupDAO;
 	@Autowired
 	private Mp3DAO mp3dao;
-	
+
 	//아티스트 리스트 기본형 모두뽑기
 	public List<ArtistDTO> artistList(){
 		List<ArtistDTO> ar = new ArrayList<ArtistDTO>();
@@ -44,7 +44,7 @@ public class StreamingDAO {
 		}
 		return ar;
 	}
-	
+
 	//tracks 뮤직리스트  뽑기
 	public List<MusicDTO> musicList(int curPage, int perPage,Model model){
 		List<MusicDTO> ar = new ArrayList<MusicDTO>();
@@ -69,7 +69,7 @@ public class StreamingDAO {
 		model.addAttribute("pageMaker", pageMaker);
 		return ar;
 	}
-	
+
 	//album리스트 모두뽑기
 	public List<AlbumDTO> albumList(){
 		List<AlbumDTO> ar = new ArrayList<AlbumDTO>();
@@ -81,7 +81,7 @@ public class StreamingDAO {
 		}
 		return ar;
 	}
-	
+
 	//album리스트를 가지고 파일1:1매칭 뽑기
 	public List<FileupDTO> fileupAlbumList(List<AlbumDTO> albumList){
 		List<FileupDTO> ar=null;
@@ -93,7 +93,7 @@ public class StreamingDAO {
 		}
 		return ar;
 	}
-	
+
 	//mp3모든리스트 가져오기
 	public List<Mp3DTO> mp3List(){
 		List<Mp3DTO> ar = new ArrayList<Mp3DTO>();
@@ -105,7 +105,7 @@ public class StreamingDAO {
 		}
 		return ar;
 	}
-	
+
 	// 복사
 	// 아티스트 리스트 페이징 처리형태 뽑기
 	public List<ArtistDTO> artistfeaturedPage(PageMaker pageMaker) {
@@ -117,7 +117,7 @@ public class StreamingDAO {
 		}
 		return pageingList;
 	}
-	
+
 	// 아티스트 DB에 존재하는 모든 데이터의 COUNT값 가져오기
 	public int artistTotalCount() {
 		int totalCount = 0;
@@ -128,7 +128,7 @@ public class StreamingDAO {
 		}
 		return totalCount;
 	}
-	
+
 	// 아티스트 관련되어있는 File 가져오기 (사진)
 	public List<FileupDTO> fileupArtistList(List<ArtistDTO> artistList) {
 		List<FileupDTO> artistFileList = null;
@@ -139,7 +139,7 @@ public class StreamingDAO {
 		}
 		return artistFileList;
 	}
-	
+
 	// 아티스트의 가장 높은 판매율인 앨범 가져오기
 	public AlbumDTO getAlbumOfArtist(String aartist) {
 		AlbumDTO albumDTO = null;
@@ -150,7 +150,7 @@ public class StreamingDAO {
 		}
 		return albumDTO;
 	}
-	
+
 	// 아티스트 정보
 	public ArtistDTO artistView(String arartist) {
 		ArtistDTO artistDTO = null;
@@ -161,7 +161,7 @@ public class StreamingDAO {
 		}
 		return artistDTO;
 	}
-	
+
 	// 아티스트를 이용해서 가장 최근 날짜를 가져오기
 	public String getRecentAlbumDate(String aartist) {
 		String recentDate = "";
@@ -172,7 +172,7 @@ public class StreamingDAO {
 		}
 		return recentDate;
 	}
-	
+
 	// 날짜로 앨범정보를 가져오는 함수
 	public AlbumDTO getAlbumInfo_date(String adate, String aartist) {
 		AlbumDTO albumDTO = null;
@@ -183,7 +183,7 @@ public class StreamingDAO {
 		}
 		return albumDTO;
 	}
-	
+
 	// 앨범의 번호로 음악별로 더해진 총가격(=앨범 가격) 가져오기
 	public int getGenreAndPriceOfMusic(int anum) {
 		int aprice = 0;
@@ -193,5 +193,81 @@ public class StreamingDAO {
 			e.printStackTrace();
 		}
 		return aprice;
+	}
+	// 앨범의 번호로 음악 장르 가져오기
+	public String getGenreAndPriceOfMusic2(int anum) {
+		String mgenre = "";
+		try {
+			mgenre = this.musicDAO.getGenreAndPriceOfMusic2(anum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mgenre;
+	}
+
+	// 중복제거된 모든 장르 리스트 가져오기
+	public List<String> getTotalGenreList() {
+		List<String> genreList = null;
+		try {
+			genreList = this.musicDAO.getTotalGenreList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return genreList;
+	}
+
+	// 장르별로 존재하는 음악수 가져오기
+	public int getGenreCount(String mgenre) {
+		int genreCount = 0;
+		try {
+			genreCount = this.musicDAO.getGenreCount(mgenre);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return genreCount;
+	}
+
+	//  Map으로 앨범 리스트 가져오기 -> page수가 1 ~ n 만큼 정해져 있다.
+	public List<AlbumDTO> getAlbumList_map(String aartist, PageMaker pageMaker) {
+		List<AlbumDTO> albumList = null;
+		try {
+			albumList = this.albumDAO.getAlbumList_map(aartist, pageMaker);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return albumList;
+	}
+
+	// 아티스트 이름으로 모든 앨범 리스트 가져오기
+	public List<AlbumDTO> getAlbumList_name(String aartist) {
+		List<AlbumDTO> albumList = null;
+		try {
+			albumList = this.albumDAO.getAlbumList_name(aartist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return albumList;
+	}
+
+	// 앨범의 번호로 음악리스트 가져오기 (1개앨범씩 가져오기)
+	public List<MusicDTO> getMusicList_anum(int anum) {
+		List<MusicDTO> musicList = null;
+		try {
+			musicList = this.musicDAO.getMusicList_anum(anum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return musicList;
+	}
+
+	// 앨범의 번호로 앨범의 정보를 가져오기
+	public AlbumDTO albumView(int anum) {
+		AlbumDTO albumDTO = null;
+		try {
+			albumDTO = this.albumDAO.albumView(anum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return albumDTO;
 	}
 }

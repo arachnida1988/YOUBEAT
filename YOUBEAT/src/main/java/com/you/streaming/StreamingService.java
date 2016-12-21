@@ -17,10 +17,10 @@ import com.you.util.PageMaker;
 
 @Service
 public class StreamingService {
-	
+
 	@Autowired
 	private StreamingDAO streamingDAO;
-	
+
 	//tracks part list 불러오기
 	public void tracksList(int curPage, int perPage, Model model){
 		List<MusicDTO> music = streamingDAO.musicList(curPage, perPage, model);
@@ -28,7 +28,7 @@ public class StreamingService {
 		List<ArtistDTO> artist = streamingDAO.artistList();
 		List<AlbumDTO> album = streamingDAO.albumList();
 		List<FileupDTO> files = streamingDAO.fileupAlbumList(album);
-		
+
 		//music == 나머지 모든 리스트 매칭 작업
 		List<Mp3DTO> mp3Complete = new ArrayList<Mp3DTO>();
 		List<ArtistDTO> artistComplete = new ArrayList<ArtistDTO>();
@@ -57,7 +57,7 @@ public class StreamingService {
 		System.out.println("음악리스트 사이즈 : "+music.size());
 		System.out.println("매칭된 mp3 파일리스트 사이즈 : "+mp3Complete.size());	
 	}
-	
+
 	// *****************************************************
 	// Artist List - 아티스트 페이지 - 추천 페이지
 	@Transactional
@@ -86,7 +86,7 @@ public class StreamingService {
 				}
 			}
 		}
-		
+
 		// 정렬된 앨범 판매량과 기존의 앨범 List와 매칭 시켜 10순위 까지의 앨범을 List에 ADD
 		// test는 8개로 진행
 		List<AlbumDTO> featuredAlbums = new ArrayList<AlbumDTO>();
@@ -96,8 +96,8 @@ public class StreamingService {
 					featuredAlbums.add(getMaxAlbumOfArtist.get(j));
 				}
 			}
- 		}
-		
+		}
+
 		// 1. 매칭된 10개의 아티스트 사진 불러오기 위해서
 		List<ArtistDTO> featuredArtists = new ArrayList<ArtistDTO>();
 		// 2. 매칭된 음악 정보 불러오기
@@ -112,9 +112,9 @@ public class StreamingService {
 		}
 		// 이미지 불러오기
 		List<FileupDTO> featuredImgs = this.streamingDAO.fileupArtistList(featuredArtists);
-		
+
 		// *********** FEATURED 부분 끝 ***********
-		
+
 		// *********** NEW ARTISTS 부분 시작 *********** 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCurPage(curPage);
@@ -139,7 +139,7 @@ public class StreamingService {
 		// 아티스트의 앨범 이미지 가져오기
 		List<FileupDTO> newAlbumFileList = this.streamingDAO.fileupAlbumList(newAlbumList);
 		// *********** NEW ARTISTS 부분 끝 *********** 
-		
+
 		// ************ 장르별로 음악DTO 가져오는 부분 ***************
 		// ************ 장르별로 음악DTO 가져오는 부분  끝***************
 		model.addAttribute("featuredAlbums", featuredAlbums);
@@ -152,7 +152,7 @@ public class StreamingService {
 		model.addAttribute("newAlbumFileList", newAlbumFileList);
 		return "artist/featuredPage";
 	}
-	
+
 	// 아티스트 페이지의 하단리스트 AJAX 처리를 위함
 	@Transactional
 	public String artistNewCharts(int curPage, int perPage, Model model) {
@@ -187,5 +187,181 @@ public class StreamingService {
 		model.addAttribute("newAlbumList", newAlbumList);
 		model.addAttribute("newAlbumFileList", newAlbumFileList);
 		return "artist/newChartsPage";
+	}
+	// ArtistView - 아티스트 정보, 음악 정보(판매량이 많은 순서대로) 가져오기
+	public String artistView(String arartist, Model model) {
+		// 1. 아티스트 정보 가져오기
+		ArtistDTO artistDTO = this.streamingDAO.artistView(arartist);
+		// 코드 재사용성을 위해
+		List<ArtistDTO> artist = new ArrayList<>();
+		artist.add(artistDTO);
+		// 2. 아티스트 이미지 가져오기 -> 1개의 이미지를 가져오지만 코드 재사용을 위해 List를 쓰겠음 
+		List<FileupDTO> artistImgs = this.streamingDAO.fileupArtistList(artist);
+		// 2-1 > FileupDTO 꺼내서 model 처리
+		FileupDTO artistImg = artistImgs.get(0);
+		// 3. 앨범 리스트 페이지 만들기
+		PageMaker albumPage = new PageMaker();
+		albumPage.setCurPage(1);
+		albumPage.setPerPage(4);
+		albumPage.makeRow();
+		List<AlbumDTO> albumList = this.streamingDAO.getAlbumList_map(arartist, albumPage);
+		// 페이지 만들기
+		albumPage.makePage(albumList.size());
+		// 4. 음악 차트 페이지 만들기
+		PageMaker musicPage = new PageMaker();
+		musicPage.setCurPage(1);
+		musicPage.setPerPage(6);
+		musicPage.makeRow();
+		// 아티스트의 모든 앨범 가져오기
+		List<AlbumDTO> albums = this.streamingDAO.getAlbumList_name(arartist);
+		// 5. 모든 음악 정보 가져오기
+		// 모든앨범의 모든 음악을 저장하기 위한 List
+		List<MusicDTO> allMusic = new ArrayList<>();
+		for(AlbumDTO a : albums) {
+			// 앨범 번호로 관련된 음악들 가져오기
+			List<MusicDTO> mList = this.streamingDAO.getMusicList_anum(a.getAnum());
+			for(MusicDTO m : mList) {
+				// 음악 리스트를 개별로 담아두기
+				allMusic.add(m);
+			}	
+		}
+		// 페이지 만들기 - sub
+		musicPage.makePage(allMusic.size());
+		// 
+		// 5-2 > 판매율이 높은 음악 리스트 10개를 가져오기 - music으로 접근해야함
+		// 임시적으로 정렬을 위한 배열
+		int [] tempArr = new int[allMusic.size()];
+		for(int i=0; i<allMusic.size(); i++) {
+			tempArr[i] = allMusic.get(i).getMcounts();
+		}
+		// 정렬하기
+		for(int i=0; i<tempArr.length; i++) {
+			for(int j=0; j<tempArr.length; j++) {
+				if(tempArr[i] > tempArr[j]) {
+					int temp = tempArr[i];
+					tempArr[i] = tempArr[j];
+					tempArr[j] = temp;
+				}
+			}
+		}
+		// top 10 음악
+		List<MusicDTO> tenMusic = new ArrayList<>();
+		for(int i=0; i<tempArr.length; i++) {
+			// 모든 음악이 10개 미만일때 ex 사이즈가 5이고 배열길이도 5이면 break;
+			if(tenMusic.size() == tempArr.length) {
+				break;
+			}
+			for(int j=0; j<allMusic.size(); j++) {
+				// 10개 순위 꽉참. 모든 숫자가 0인경우(단 한개도 판매가 되지 않은 경우) 
+				// 아무렇게 막들어가서 10개 넘어가기 때문에
+				if(tenMusic.size() == 10) {
+					break;
+				} else {
+					if(tempArr[i] == allMusic.get(j).getMcounts()) {
+						tenMusic.add(allMusic.get(j));
+					} 					
+				}
+			}
+		}
+
+		// top 10 음악의 앨범 매칭 시켜주는 작업
+		List<AlbumDTO> tenAlbum = new ArrayList<>();
+		for(MusicDTO m : tenMusic) {			
+			AlbumDTO albumDTO = this.streamingDAO.albumView(m.getAnum());
+			tenAlbum.add(albumDTO);
+		}
+
+		model.addAttribute("artist", artistDTO);
+		model.addAttribute("artistImg", artistImg);
+		model.addAttribute("albumPage", albumPage);
+		model.addAttribute("musicPage", musicPage);
+		model.addAttribute("tenMusic", tenMusic);
+		model.addAttribute("tenAlbum", tenAlbum);
+		return "artist/artistView";
+	}
+
+	//  LATEST ALBUMS - AJAX 요청 (앨범, 앨범 이미지 가져오기) 리스트로 perPage는 4
+	public String artistLatestAlbums (String arartist, int curPage, 
+			int perPage, Model model) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCurPage(curPage);
+		pageMaker.setPerPage(perPage);
+		pageMaker.makeRow();
+
+		// 앨범 정보 가져오기
+		List<AlbumDTO> albumList = this.streamingDAO.getAlbumList_map(arartist, pageMaker);
+		// 페이지 만들기
+		pageMaker.makePage(albumList.size());
+		// 앨범 이미지 가져오기
+		List<FileupDTO> albumImgList = this.streamingDAO.fileupAlbumList(albumList);
+		// 앨범 가격 가져오기
+		List<Integer> albumPrices = new ArrayList<>();
+		for(AlbumDTO albumDTO : albumList) {
+			int aprice = this.streamingDAO.getGenreAndPriceOfMusic(albumDTO.getAnum());
+			albumPrices.add(aprice);
+		}	
+		model.addAttribute("albumList", albumList);
+		model.addAttribute("albumImgList", albumImgList);
+		model.addAttribute("albumPrices", albumPrices);
+		return "artist/latestAlbumsPart";
+	}
+
+	// MUSIC CHARTS - AJAX 요청 (음악, 아티스트 이미지, 앨범 이미지 가져오기)
+	public String artistMusicCharts (String arartist, int curPage, Model model) {
+		// ************************************************************
+		// 1. fsection='artist', subsection='아티스트 이름'으로 이미지 가져오기
+		ArtistDTO artistDTO = this.streamingDAO.artistView(arartist);
+		// 코드 재사용성을 위해
+		List<ArtistDTO> artist = new ArrayList<>();
+		artist.add(artistDTO);
+		// 아티스트 이미지 가져오기 -> 1개의 이미지를 가져오지만 코드 재사용을 위해 List를 쓰겠음 
+		List<FileupDTO> artistImg = this.streamingDAO.fileupArtistList(artist);
+		// ************************************************************
+
+		// ************************************************************
+		// 2. 아티스트의 모든 앨범 가져오기
+		List<AlbumDTO> albums = this.streamingDAO.getAlbumList_name(arartist);
+		// 3. 모든 음악 정보 가져오기
+		// 모든앨범의 모든 음악을 저장하기 위한 List
+		List<MusicDTO> allMusic = new ArrayList<>();
+		for(AlbumDTO a : albums) {
+			// 앨범 번호로 관련된 음악들 가져오기
+			List<MusicDTO> mList = this.streamingDAO.getMusicList_anum(a.getAnum());
+			for(MusicDTO m : mList) {
+				// 음악 리스트를 개별로 담아두기
+				allMusic.add(m);
+			}	
+		}
+		// 6개씩만 jsp 음악들을 뿌려주기 pageMaker를 하지않고 직접하기
+		// DB에서 가져오는부분들이 불편하기 때문에 직접하기
+		List<MusicDTO> sixMusic = new ArrayList<>();
+		// 인덱스 범위 설정
+		int startIndex = (curPage-1)*6;
+		int lastIndex = curPage*6;
+		for(int i=startIndex; i<lastIndex; i++) {
+			if( i == allMusic.size() ) {
+				break;
+			} else {			
+				sixMusic.add(allMusic.get(i));
+			}
+		}
+		// ************************************************************
+
+		// ************************************************************
+		// 6개의 음악리스트를 통해서 앨범, 앨범 이미지 매칭하기
+		List<AlbumDTO> sixAlbum = new ArrayList<>();
+		for(MusicDTO m : sixMusic) {			
+			AlbumDTO albumDTO = this.streamingDAO.albumView(m.getAnum());
+			sixAlbum.add(albumDTO);
+		}
+		// 파일에서 section = 앨범제목, subsection = 가수
+		List<FileupDTO> sixAlbumImg = this.streamingDAO.fileupAlbumList(sixAlbum);	
+		// ************************************************************
+
+		model.addAttribute("artistImg", artistImg);
+		model.addAttribute("sixMusic", sixMusic);
+		model.addAttribute("sixAlbum", sixAlbum);
+		model.addAttribute("sixAlbumImg", sixAlbumImg);
+		return "artist/musicChartsPart";
 	}
 }

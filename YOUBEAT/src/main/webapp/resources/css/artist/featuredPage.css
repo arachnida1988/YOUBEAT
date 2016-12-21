@@ -153,6 +153,7 @@ a:HOVER {
 	background-color: #ff4dff;
 	border: 1px solid #ff4dff;
 	-webkit-border-radius: 6px;
+	outline: none;
 }
 
 #slide_div_sub_img {
@@ -310,8 +311,10 @@ a:HOVER {
 	width: 100%;
 	height: 100%;
 	color: white;
+	font-size: 15px;
 	background-color: #ff4dff;
 	border: 1px solid #ff4dff;
+	outline: none;
 }
 
 #featured_newchart_div_sub_3 {
@@ -331,18 +334,4 @@ a:HOVER {
 	background-color: #404040;
 	border: 1px solid #404040;
 	outline: none;
-}
-
-.page_controls_btn {
-	width: 15.4%;
-	background-color : gray;
-	border: 1px solid gray;
-	color: #404040;
-	font-size: 20px;
-	outline: none;
-}
-
-.page_controls_btn:HOVER {
-	color: white;
-	text-decoration: underline;
 }

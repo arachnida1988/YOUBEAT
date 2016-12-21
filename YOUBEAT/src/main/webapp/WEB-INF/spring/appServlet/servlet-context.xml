@@ -44,6 +44,8 @@
 			<mapping path="/member/memberUpdate"/>
 			<mapping path="/member/memberDelete"/>
 			<mapping path="/member/memberCheckPopup"/>
+			<!-- <mapping path="/shoppingcart/shoppingcartAdd"/> -->
+			<!-- 장바구니 등록 버튼 클릭시 회원 체크하는것 필요 (나중에 꼭 주석처리 풀어줘야한다.)-->
 			<mapping path="/shoppingcart/cartList"/>
 			<beans:ref bean="memberCheck"/>
 		</interceptor>

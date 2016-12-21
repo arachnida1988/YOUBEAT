@@ -9,7 +9,7 @@
 				end="${ (first.index*3)+2 }">
 				<td class="newchart_td">
 					<!-- background 흐림 처리 부분 -->
-					<div class="newchart_td_div">
+					<div class="newchart_td_div" id="${ newAlbumPrices[second.index] }">
 						<!-- 장바구니 버튼 div 부분 -->
 						<div class="newchart_td_div_sub">
 							<!-- 실제로 장바구니 등록하는 부분 hover처리 필요-->
@@ -22,7 +22,11 @@
 						<!-- 정보 등록 해야하는 부분 -->
 						<div class="newchart_td_div_sub">
 							<p><a href="#">${ newAlbumList[second.index].atitle }</a></p>
-							<p class="p_artist"><a href="#">${ newArtistList[second.index].arartist }</a></p>
+							<p class="p_artist">
+								<a href="artistView?arartist=${ newArtistList[second.index].arartist }">
+									${ newArtistList[second.index].arartist }
+								</a>
+							</p>
 						</div>
 					</div> 
 					<!-- 아티스트 이미지 --> 
@@ -34,30 +38,30 @@
 </table>
 <script type="text/javascript">
 	$(function(){
-		// .newchart_td_div의 MOUSEOVER처리에 따른 결과 처리
-		$(".newchart_td_div").mouseover(function(){
-			var result="<div class='cart_add_sub_div'><div class='cart_add_sub_contents_div'>";
-			result = result + "<div class='cart_contents_div_1'>";
-			result = result + "<div class='contents_1_play_div'>";
-			result = result + '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
-			result = result + "</div>";
-			result = result + "<div class='contents_1_add_list_div'>";
-			result = result + '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/list_add_btn.PNG">';
-			result = result + "</div></div>";
-			result = result + "<div class='cart_contents_div_2'>";
-			result = result + "<div class='contents_2_price_div'>";
-			result = result + '<input type="button" class="price_cart_add" value="$18.40 ▼">';
-			result = result + "</div></div>";
-			result = result + "</div></div>";
-			$(this).find('.cart_add_div').css("background-color", "rgba( 0, 0, 0, 0.5)")
-			$(this).find('.cart_add_div').html(result);
-		});
-
-		// .newchart_td_div의 MOUSEOUT처리에 따른 결과 처리
-		$(".newchart_td_div").mouseout(function(){
-			var result = '<img src="/beat/resources/upload/';
-			result = result + $(this).find('.cart_add_div').prop("id")+'">';
-			$(this).find('.cart_add_div').html(result);
+		// .newchart_td_div의 hover처리에 따른 결과 처리
+		$(".newchart_td_div").on({
+			"mouseenter" : function() {
+				var result="<div class='cart_add_sub_div'><div class='cart_add_sub_contents_div'>";
+				result = result + "<div class='cart_contents_div_1'>";
+				result = result + "<div class='contents_1_play_div'>";
+				result = result + '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
+				result = result + "</div>";
+				result = result + "<div class='contents_1_add_list_div'>";
+				result = result + '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/list_add_btn.PNG">';
+				result = result + "</div></div>";
+				result = result + "<div class='cart_contents_div_2'>";
+				result = result + "<div class='contents_2_price_div'>";
+				result = result + '<input type="button" class="price_cart_add2" value="$'+$(this).prop("id")+'.00 ▼">';
+				result = result + "</div></div>";
+				result = result + "</div></div>";
+				$(this).find('.cart_add_div').css("background-color", "rgba( 0, 0, 0, 0.5)");
+				$(this).find('.cart_add_div').html(result);
+			},
+			"mouseleave" : function() {
+				var result = '<img src="/beat/resources/upload/';
+				result = result + $(this).find('.cart_add_div').prop("id")+'">';
+				$(this).find('.cart_add_div').html(result);
+			}
 		});
 
 		// 페이지 넘김 버튼

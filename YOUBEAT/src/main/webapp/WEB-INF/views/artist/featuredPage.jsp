@@ -8,8 +8,10 @@
 		<div id="featured_genrechart_div_sub_1">
 			<h3>ARTIST CHARTS BY GENRE</h3>
 			<br>
-			<a href="#" class="genre_a_tag">World Pop</a>
-			<span class="genre_span_tag">(1123123)</span><br><br>
+			<c:forEach items="${ genreList }" var="genres" varStatus="status">			
+				<a href="#" class="genre_a_tag">${ genres }</a>
+				<span class="genre_span_tag">(${ genreCounts[status.index] })</span><br><br>
+			</c:forEach>
 		</div>
 	</div>
 	<!-- 추천 순위 1위부터 ~ 10위 까지 포스터 형식으로  -->
@@ -26,11 +28,13 @@
 							<!-- title -->
 							<h2><a href="#">${ featuredAlbums[status.index].atitle }</a></h2>
 							<!-- 정보 처리 해줘야함 -->
-							<span class="span_1"><a href="#">${ featuredAlbums[status.index].aartist }</a> | </span>
-							<span class="span_1">${ featuredAlbums[status.index].adate } | </span>
-							<c:forEach begin="1" end="3">							
-								<span class="span_1"><a href="#">genre</a>, </span>
-							</c:forEach>
+							<span class="span_1">
+								<a href="artistView?arartist=${ featuredAlbums[status.index].aartist }">
+									${ featuredAlbums[status.index].aartist }
+								</a> | 
+							</span>
+							<span class="span_1">${ featuredAlbums[status.index].adate } | </span>						
+							<span class="span_1">${ mgenres[status.index] }</span>
 							<!-- ############# -->
 							<br>
 							<div id="play_cart_btn_div">
@@ -50,8 +54,8 @@
 							<div id="price_btn_div">
 								<!-- 꼭~~~~~ 가격 넣어주기 -->
 								<!-- music 테이블 가져와서 계산해야함 -->
-								<input type="button" class="price_cart_add" 
-									value="${ aprices[status.index].value }.00 ▼" >	
+								<input type="button" class="price_cart_add" id="anum_${ featuredAlbums[status.index].anum }"
+									value="$${ aprices[status.index] }.00 ▼" >	
 							</div>		
 						</div>
 					</div>
@@ -79,9 +83,9 @@
 							begin="${ (first.index*3) }" end="${ (first.index*3)+2 }">
 							<td class="newchart_td">
 								<!-- background 흐림 처리 부분 -->						
-								<div class="newchart_td_div">
+								<div class="newchart_td_div" id="${ newAlbumPrices[second.index] }">
 									<!-- 장바구니 버튼 div 부분 -->
-									<div class="newchart_td_div_sub">
+									<div class="newchart_td_div_sub" id="newAnum_${ newAlbumList[second.index].anum }">
 										<!-- 실제로 장바구니 등록하는 부분 hover처리 필요-->
 										<!-- jQuery로 처리 -->
 										<div class="cart_add_div" id="${ newAlbumFileList[second.index].ffilename }">
@@ -92,7 +96,11 @@
 									<!-- 정보 등록 해야하는 부분 -->							
 									<div class="newchart_td_div_sub">								
 										<p><a href="#">${ newAlbumList[second.index].atitle }</a></p>
-										<p class="p_artist"><a href="#">${ newArtistList[second.index].arartist }</a></p>
+										<p class="p_artist">
+											<a href="artistView?arartist=${ newArtistList[second.index].arartist }">
+												${ newArtistList[second.index].arartist }
+											</a>
+										</p>
 									</div>
 								</div>
 								<!-- 아티스트 이미지 -->
@@ -106,15 +114,9 @@
 		<!-- 페이징 처리 -->
 		<div id="featured_newchart_div_sub_3">
 			<div id="pageing_div">			
- 				<c:if test="${ page.curBlock > 1 }">
- 					<input type="button" class="page_controls_btn" value="PREV"> 
-				</c:if>
 				<c:forEach begin="${ page.startNum }" end="${ page.lastNum }" varStatus="status">
 					<input type="button" id="${ status.index }" class="page_btn">
 				</c:forEach>
-				<c:if test="${ page.curBlock < page.totalBlock }">
-					<input type="button" class="page_controls_btn"  value="NEXT">
-				</c:if> 
 			</div>
 			<!-- CSS 처리를 위함-->
 			<!-- 태그 끝 -->	

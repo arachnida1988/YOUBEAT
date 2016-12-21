@@ -61,4 +61,40 @@
 			select sum(mprice) from music where anum=#{anum}
 		]]>	
 	</select>
+	<!-- getGenreAndPriceOfMusic2 -->
+	<!-- 앨범의 번호로 음악 장르 가져오기 -->
+	<select id="getGenreAndPriceOfMusic2" parameterType="int" resultType="String">
+		<![CDATA[
+			select mgenre from music where anum=#{anum} and rownum=1
+		]]>	
+	</select>
+	
+	<!-- 중복 제거된 장르들 가져오기 -->
+	<select id="getTotalGenreList" resultType="String">
+		<![CDATA[
+			select DISTINCT mgenre from music
+		]]>
+	</select>
+	
+	<!-- 장르별로 존재하는 음악수 가져오기 -->
+	<select id="getGenreCount" parameterType="String" resultType="int">
+		<![CDATA[
+			select count(mnum) from music where mgenre=#{mgenre}
+		]]>
+	</select>
+	
+	<!-- 앨범의 번호로 음악리스트 가져오기 (1개앨범씩 가져오기) -->
+	<select id="getMusicList_anum" parameterType="int" 
+		resultType="com.you.music.MusicDTO">
+		<![CDATA[
+			select * from music where anum=#{anum}
+		]]>
+	</select>
+	
+	<!-- 장바구니 부분에서 사용할 음악 정보 가져오는 부분 -->
+	<select id="musicView_cart" parameterType="int" resultType="com.you.music.MusicDTO">
+		<![CDATA[
+			select * from music where mnum=#{mnum}
+		]]>		
+	</select>
 </mapper>

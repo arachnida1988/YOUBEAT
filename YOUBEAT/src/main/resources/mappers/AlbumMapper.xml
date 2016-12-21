@@ -103,5 +103,22 @@
 			select * from album where adate=#{adate} and aartist=#{aartist} and rownum=1
 		]]>
 	</select>
-	<!-- 복사 끝 -->
+	<!-- 페이지수와 아티스트로 앨범 리스트 가져오기 (map)으로 -->
+	<!-- page수에서 따라서 끊어서 가져오는 그런 부분 -->
+	<select id="getAlbumList_map" parameterType="java.util.Map" 
+		resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from (select rownum r, t.* 
+			from (select * from album where aartist=#{aartist})t) 
+			where r between #{page.startRowNum} and #{page.lastRowNum}
+		]]>
+	</select>
+	
+	<!-- 아티스트의 이름으로만 총 앨범리스트를 가져오기 -->
+	<select id="getAlbumList_name" parameterType="String" 
+		resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from album where aartist=#{aartist}
+		]]>
+	</select>
 </mapper>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Artist List :: YOU BEAT</title>
+<title>Artist :: YouBeat</title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <link rel="stylesheet" href="/beat/resources/css/slider/jquery.bxslider.css" />
 <link rel="stylesheet" href="/beat/resources/css/artist/artistList.css" type="text/css">
@@ -23,7 +23,6 @@
 			<h1>ARTISTS</h1>
 			<br>
 			<input type="button" id="featured_btn" class="btn1" value="FEATURED">
-			<input type="button" id="all_artist_btn" class="btn1" value="ALL ARTISTS">
 			<br><br>
 			<!-- AJAX 결과에 따른 두가지 PAGE 출력 -->
 			<div id="ajax_result_div">
