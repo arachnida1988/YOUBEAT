@@ -18,10 +18,9 @@
 		<c:import url="../template/header.jsp"></c:import>
 	</div>	
 	<div id="artist_div">
-		<br><br><br><br>
+		<br><br><br>
 		<div id="artist_main_div">
 			<h1>ARTISTS</h1>
-			<br>
 			<input type="button" id="featured_btn" class="btn1" value="FEATURED">
 			<br><br>
 			<!-- AJAX 결과에 따른 두가지 PAGE 출력 -->

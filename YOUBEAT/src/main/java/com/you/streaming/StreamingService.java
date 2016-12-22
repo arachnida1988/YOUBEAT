@@ -102,13 +102,16 @@ public class StreamingService {
 		List<ArtistDTO> featuredArtists = new ArrayList<ArtistDTO>();
 		// 2. 매칭된 음악 정보 불러오기
 		List<Integer> aprices = new ArrayList<Integer>();
+		List<String> mgenres = new ArrayList<>();
 		for(AlbumDTO albumDTO : featuredAlbums) {
 			// 아티스트 정보 불러오기
 			ArtistDTO artistDTO = this.streamingDAO.artistView(albumDTO.getAartist());
 			// 음악 장르, 총 가격(앨범 가격) 가져오기
 			int aprice = this.streamingDAO.getGenreAndPriceOfMusic(albumDTO.getAnum());
+			String mgenre = this.streamingDAO.getGenreAndPriceOfMusic2(albumDTO.getAnum());
 			featuredArtists.add(artistDTO);
 			aprices.add(aprice);
+			mgenres.add(mgenre);
 		}
 		// 이미지 불러오기
 		List<FileupDTO> featuredImgs = this.streamingDAO.fileupArtistList(featuredArtists);
@@ -138,18 +141,40 @@ public class StreamingService {
 		}
 		// 아티스트의 앨범 이미지 가져오기
 		List<FileupDTO> newAlbumFileList = this.streamingDAO.fileupAlbumList(newAlbumList);
+		// 앨범 가격, 장르 가져오기
+		List<Integer> newAlbumPrices = new ArrayList<>();
+		for(AlbumDTO albumDTO : newAlbumList) {
+			int aprice = this.streamingDAO.getGenreAndPriceOfMusic(albumDTO.getAnum());
+			newAlbumPrices.add(aprice);
+		}
+		
 		// *********** NEW ARTISTS 부분 끝 *********** 
-
-		// ************ 장르별로 음악DTO 가져오는 부분 ***************
-		// ************ 장르별로 음악DTO 가져오는 부분  끝***************
+		
+		// ******** ARTIST CHARTS BY GENRE 부분 시작 *********
+		// 음악 DB에 존재하는 장르 가져오기 - 중복 제거된 List
+		List<String> genreList = this.streamingDAO.getTotalGenreList();
+		// 장르별로 존재하는 음악수 가져오기
+		List<Integer> genreCounts = new ArrayList<>();
+		for(String s : genreList) {
+			genreCounts.add(this.streamingDAO.getGenreCount(s.toString()));
+		}
+		
+		// ******** ARTIST CHARTS BY GENRE 부분 끝 *********
+		// 상단 부분
 		model.addAttribute("featuredAlbums", featuredAlbums);
 		model.addAttribute("featuredImgs", featuredImgs);
 		model.addAttribute("aprices", aprices);
+		model.addAttribute("mgenres", mgenres);
+		// 하단 부분
 		model.addAttribute("page", pageMaker);
 		model.addAttribute("newArtistList", newArtistList);
 		model.addAttribute("newArtistImgList", newArtistFileList);
 		model.addAttribute("newAlbumList", newAlbumList);
 		model.addAttribute("newAlbumFileList", newAlbumFileList);
+		model.addAttribute("newAlbumPrices", newAlbumPrices);
+		// 장르 부분
+		model.addAttribute("genreList", genreList);
+		model.addAttribute("genreCounts", genreCounts);
 		return "artist/featuredPage";
 	}
 
@@ -179,6 +204,12 @@ public class StreamingService {
 		}
 		// 아티스트의 앨범 이미지 가져오기
 		List<FileupDTO> newAlbumFileList = this.streamingDAO.fileupAlbumList(newAlbumList);
+		// 앨범 가격, 장르 가져오기
+		List<Integer> newAlbumPrices = new ArrayList<>();
+		for(AlbumDTO albumDTO : newAlbumList) {
+			int aprice = this.streamingDAO.getGenreAndPriceOfMusic(albumDTO.getAnum());
+			newAlbumPrices.add(aprice);
+		}
 		// *********** NEW ARTISTS 부분 끝 *********** 
 
 		model.addAttribute("page", pageMaker);
@@ -186,6 +217,7 @@ public class StreamingService {
 		model.addAttribute("newArtistImgList", newArtistFileList);
 		model.addAttribute("newAlbumList", newAlbumList);
 		model.addAttribute("newAlbumFileList", newAlbumFileList);
+		model.addAttribute("newAlbumPrices", newAlbumPrices);
 		return "artist/newChartsPage";
 	}
 	// ArtistView - 아티스트 정보, 음악 정보(판매량이 많은 순서대로) 가져오기

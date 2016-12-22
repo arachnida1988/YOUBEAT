@@ -1,13 +1,19 @@
 @CHARSET "UTF-8";
 
-.tag_p_1 {
+.ptag_1 {
 	color: white;
 	text-transform: uppercase;
 }
 
-.tag_h_1 {
+.htag_1 {
 	color: white;
 	text-transform: uppercase;
+}
+
+.htag_2 {
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 #artist_id {
@@ -16,7 +22,7 @@
 
 #artist_view {
 	width: 100%;
-	height: 1300px;
+	height: 1400px;
 	background-color: gray;
 }
 
@@ -35,7 +41,7 @@
 
 #top10_title {
 	width: 90%;
-	height: 78px;
+	height: 88px;
 	margin: 0 auto;
 	margin-top: 10px;
 }
@@ -270,6 +276,7 @@
 	color: #8c8c8c;
 	font-size: 13px;
 	text-transform: lowercase;
+	font-weight: bold;
 }
 
 #album_pageing_div {
@@ -342,6 +349,7 @@
 	color: #8c8c8c;
 	font-size: 13px;
 	text-transform: lowercase;
+	font-weight: bold;
 }
 
 .contents_wrap_img {
