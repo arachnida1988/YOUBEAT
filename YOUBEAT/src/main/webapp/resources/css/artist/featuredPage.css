@@ -1,7 +1,50 @@
 @CHARSET "UTF-8";
 
-h2, h3 {
+.htag_1 {
 	color: white;
+	text-transform: uppercase;
+}
+
+.atag_1 {
+	color: white;
+	font-size: 30px;
+	text-transform: uppercase;
+}
+
+.atag_1:HOVER {
+	color: white;
+	text-decoration: underline;
+}
+
+.atag_2 {
+	color: white;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+.atag_2:HOVER {
+	color: white;
+	text-decoration: underline;
+}
+
+.atag_3 {
+	color: white;
+	font-size: 13.5px;
+	font-weight: bold;
+}
+
+.atag_3:HOVER {
+	text-decoration: underline;
+}
+
+.atag_4 {
+	color: white;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.atag_4:HOVER {
+	text-decoration: underline;
 }
 
 p {
@@ -153,6 +196,16 @@ a:HOVER {
 	background-color: #ff4dff;
 	border: 1px solid #ff4dff;
 	-webkit-border-radius: 6px;
+	outline: none;
+}
+
+.price_cart_add2 {
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-size: 16px;
+	background-color: #ff4dff;
+	border: 1px solid #ff4dff;
 	outline: none;
 }
 

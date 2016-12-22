@@ -12,7 +12,7 @@
 					</div>
 					<div class="info_add_div">
 						<div class="info_wrap_div">						
-							<h5>${ albumList[a.index].atitle }</h5>
+							<h5 class="htag_2">${ albumList[a.index].atitle }</h5>
 							<p class="p_tag_2">${ albumList[a.index].aartist }</p>
 						</div> 
 					</div>
