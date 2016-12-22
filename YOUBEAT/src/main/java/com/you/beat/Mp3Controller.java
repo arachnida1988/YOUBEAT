@@ -39,4 +39,9 @@ public class Mp3Controller {
 		return "/mp3/mp3List";
 	}
 	
+	@RequestMapping(value="/audio")
+	public String audio(){
+		return "header/audio";
+	}
+	
 }

@@ -39,7 +39,7 @@ public class AlbumDAO {
 		return this.sqlSession.selectList(namespace+"allAlbumList");
 	}
 	//tracks
-
+	
 
 
 	// AlbumTotalCount

@@ -22,7 +22,7 @@ public class StreamingService {
 	private StreamingDAO streamingDAO;
 
 	//tracks part list 불러오기
-	public void tracksList(int curPage, int perPage, Model model){
+	public void tracksList(int curPage, int perPage, Model model, String arraytype){
 		List<MusicDTO> music = streamingDAO.musicList(curPage, perPage, model);
 		List<Mp3DTO> mp3 = streamingDAO.mp3List();
 		List<ArtistDTO> artist = streamingDAO.artistList();

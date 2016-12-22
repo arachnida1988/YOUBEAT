@@ -1,7 +1,6 @@
 package com.you.mp3;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Service
 public class Mp3Service {
@@ -47,6 +46,8 @@ public class Mp3Service {
 		}
 			mp3dao.mp3Write(mp3names);
 	}
+	
+	
 	
 	public List<Mp3DTO> mp3List(Model model){
 		/*model.addAttribute("mp3", mp3dao.mp3List());*/

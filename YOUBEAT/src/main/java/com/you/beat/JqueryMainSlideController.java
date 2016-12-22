@@ -13,21 +13,38 @@ import com.you.streaming.StreamingService;
 @Controller
 @RequestMapping(value="/header")
 public class JqueryMainSlideController {
-	
+
 	@Autowired
 	private StreamingService streamingService;
-	
+
 	@RequestMapping(value="/mainSlideTest" , method={RequestMethod.POST,RequestMethod.GET})
 	public String JMSlide(){
 		return "mainSlide/mainSlideTest";
 	}
-	
+
 	@RequestMapping(value="music")
 	private void music(){}
 
 	//tracks  파트부분
 	@RequestMapping(value= "/tracks")
 	public void tracks(){}
+
+	@RequestMapping(value= "/tracks", method=RequestMethod.POST)
+	public String tracks(@RequestParam(defaultValue="1") int curPage, @RequestParam(defaultValue="25") int perPage, Model model, @RequestParam(defaultValue="dateup") String arraytype){
+		streamingService.tracksList(curPage, perPage, model, arraytype);
+		return "/header/tracksResult";
+	}
+
+	//mp3playerLoading
+	@RequestMapping(value="/audio")
+	public String playerLoading(){
+		return "/mp3/audio";
+	}
+
+	//youtube
+	@RequestMapping(value="/youtube")
+	public void youtube(){
+	}
 
 	@RequestMapping(value= "/tracks", method=RequestMethod.POST)
 	public String tracks(Model model){

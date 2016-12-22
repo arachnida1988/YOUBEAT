@@ -18,6 +18,7 @@
 	min-height: 50px;
 	background: #333;
 	overflow: auto;
+	color: white;
 	border: #666 solid 2px;
 	 -moz-border-radius: 10px;
 	 -webkit-border-radius:10px;
@@ -196,10 +197,6 @@ button #list{
 		<div id="audio-player">
 			<ul id="playlist">
 			
-<!-- 				<li song="DNCE.mp3" cover="dnce.jpg" artist="dnce">dnce.mp3</li>
-				<li song="Cake By The Ocean.mp3" cover="dnce.jpg" artist="dnce">cake by the ocean.mp3</li>
-				<li song="Doctor You.mp3" cover="dnce.jpg" artist="dnce">Doctor You.mp3</li>
-				<li song="Toothbrush.mp3" cover="dnce.jpg" artist="dnce">Toothbrush.mp3</li> -->
 			</ul>
 			<div id="audio-img">
 				<img class="cover">
@@ -230,3 +227,7 @@ button #list{
 	
 	<script src="/beat/resources/audioPlayer/js/audio.js"></script>
 	
+<!-- 				<li song="DNCE.mp3" cover="dnce.jpg" artist="dnce">dnce.mp3</li>
+				<li song="Cake By The Ocean.mp3" cover="dnce.jpg" artist="dnce">cake by the ocean.mp3</li>
+				<li song="Doctor You.mp3" cover="dnce.jpg" artist="dnce">Doctor You.mp3</li>
+				<li song="Toothbrush.mp3" cover="dnce.jpg" artist="dnce">Toothbrush.mp3</li> -->
