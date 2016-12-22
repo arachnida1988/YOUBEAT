@@ -19,14 +19,17 @@
 #company{
 	margin-top: 20px;
 	float: right;
+	font-size: 5px;
 }
 #network{
 	margin-top: 20px;
 	float: right;
+	font-size: 5px;
 }
 #language{
 	margin-top: 20px;
 	float: right;
+	font-size: 5px;
 }
 </style>
 </head>
