@@ -15,7 +15,7 @@
 	<!-- 리스트 -->
 	<select id="musicList" parameterType="com.you.util.PageMaker" resultType="com.you.music.MusicDTO">
 		<![CDATA[
-			select * from (select rownum r, t.* from (select * from music)t) where r between #{startRowNum} and #{lastLowNum}
+			select * from (select rownum r, t.* from (select * from music)t) where r between #{startRowNum} and #{lastRowNum}
 		]]>		
 	</select>
 	

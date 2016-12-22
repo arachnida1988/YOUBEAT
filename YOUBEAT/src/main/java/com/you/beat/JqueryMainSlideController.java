@@ -46,11 +46,6 @@ public class JqueryMainSlideController {
 	public void youtube(){
 	}
 
-	@RequestMapping(value= "/tracks", method=RequestMethod.POST)
-	public String tracks(Model model){
-		return "";
-	}
-
 	// Artist 파트 부분 - 경로 이동
 	@RequestMapping(value="/artist", method=RequestMethod.GET)
 	public String artist() {
