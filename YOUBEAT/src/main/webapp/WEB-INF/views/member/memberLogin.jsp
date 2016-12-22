@@ -12,9 +12,6 @@
 </head>
 <body>
 
-
-
-
 <c:import url="../template/header.jsp"></c:import>
 	<!-- Server에서 넘어오는 message Hidden 처리 -->
 	<!-- JavaScript로 메시지 호출하기 위해서 -->
@@ -22,6 +19,7 @@
 	<!-- Hidden 처리 끝 -->
 	<!-- 로그인 form -->
 	<div id="main_session">
+		<div id="login_main">
 		<div class="title1">
 			<span>Login</span>
 		</div>
@@ -30,18 +28,23 @@
 		</div>
 		<div class="title2">
 			<form id="loginfrm" action="memberLogin" method="post">
-			<span class="title2_2">EXISTING USERS</span>
+			<span class="title2_2">EXISTING USERS</span><br>
+			<div class="frm">
 				<input type="text" name="memid" placeholder="Username"><br>
-				 <input type="password" name="mempw" placeholder="Password"><br>
-					<a href="#" id="find_pw_btn">비밀번호 찾기 </a>
-					<a href="#" id="find_id_btn">아이디 찾기 </a>
+				<input type="password" name="mempw" placeholder="Password"><br>
+			 </div>
 			</form>
-			<div class="rememberID_Parent">
-				<input type="button" id="login_btn" value="Login">
-					<div class="rememberID_Parent2">
-						<input class="rememberID_1" type="checkbox" >
+			<div class="main_rememberID_Parent">
+				 <div class="forget">
+					<a href="#" id="login_find_pw_btn" class="forget">비밀번호 찾기 </a>
+						<a href="#" id="login_find_id_btn" class="forget">아이디 찾기 </a>
 					</div>
-					<label class="rememberID_2">remember ID?</label>
+			<input type="button" id="login_btn" value="Login">
+				<div class="rememberID_Parent2_1">
+					<input class="rememberID_1_1" type="checkbox" >
+				</div>
+					<label class="rememberID_2_3">remember ID?</label>
+			</div>
 			</div>
 		</div>
 			<!-- 로그인 form 끝 -->

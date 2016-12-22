@@ -2,15 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html>
 	<head>
   		<link href="/beat/resources/css/template/main.css" rel="stylesheet" type="text/css">
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>Final Project first-team "YOUBEAT"</title>
-		<!-- <meta name="description" content="Draggable Dual-View Slideshow: A Slideshow with two views and content area" /> -->
-		<!-- <meta name="keywords" content="draggable, slideshow, fullscreen, carousel, views, zoomed, 3d transform, perspective, dragdealer" /> -->
+		<meta name="description" content="Draggable Dual-View Slideshow: A Slideshow with two views and content area" />
+		<meta name="keywords" content="draggable, slideshow, fullscreen, carousel, views, zoomed, 3d transform, perspective, dragdealer" />
 		<meta name="author" content="Codrops" />
 		<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
 		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:900,400|Lato:300,400,700' rel='stylesheet' type='text/css'>
@@ -175,9 +175,9 @@ $(document).ready(function(){
 		<section class="pages">
 		<div class="content" data-content="content-1" style="background-color: gray;">
 		<!-- 여기서부터 메인 -->
-	<div>
+			
 		<c:import url="../template/header.jsp"></c:import>
-	</div>
+			
 		<table id="t">
 	<tr>
 		<td>

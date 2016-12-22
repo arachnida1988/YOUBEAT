@@ -9,33 +9,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="/beat/resources/js/memberJS/memberLogin.js"></script>
 
-<!-- modal 시작 -->
-<script type='text/javascript' src='/beat/resources/js/modalPopup/jquery.simplemodal.js'></script>
-<script type='text/javascript' src='/beat/resources/js/modalPopup/basic.js'></script>
-<script type='text/javascript' src='/beat/resources/js/modalPopup/jquery.js'></script>
-<link rel="stylesheet" href="/beat/resources/css/modalPopup/basic.css">
-<link rel="stylesheet" href="/beat/resources/css/modalPopup/basic_ie.css">
-<link rel="stylesheet" href="/beat/resources/css/modalPopup/demo.css">
-<!-- modal 끝 -->
+
 <link rel="stylesheet" href="/beat/resources/css/template/header.css">
 <link rel="stylesheet" href="/beat/resources/css/template/header_login.css">
 
-<style type="text/css">
+<!-- <style type="text/css">
 	#header{
 	font: 35px SUNN;
 }
-#simplemodal-overlay {
-	background-color:#000;
-}
-#modal_content{
-	display:none;
-	margin:50 auto;
-	width:400px;
-	height:300px;
-	background:gray;
-	color:#fff
-}
-</style>
+</style> -->
 
 <script>
 $(document).ready(function(){
