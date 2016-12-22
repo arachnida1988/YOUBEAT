@@ -7,7 +7,6 @@ body {
 	height:1200px;
 	margin: 0 auto;
 	background-color: #2c2c2c;
-	border: 2px solid green;
 	padding: 100px;
 	padding-top: 100px;
 	padding-bottom: 100px;
@@ -16,7 +15,6 @@ body {
 	width: 50%;
 	height:200px;
 	margin: 0 auto;
-	border: 1px solid red;
 }
 .title1{
 	padding-top: 14px;
@@ -34,9 +32,12 @@ body {
 	margin-top:30px;
 	width: 50%;
 	color: white;
-	border-right: 1px solid #ff0000;
 	background-color: #595959;
-	
+}
+.title2_2_1{
+	padding-left: 12px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 .frm{
 	width: 50%;
@@ -45,20 +46,30 @@ body {
 .frm input{
 	width: 80%;
 }
-.forget{
-	width:50%;
+.forget a{
 	text-decoration: none;
 	color: white;
 	float: right;
-	font-size: 13px;
+	font-size: 11px;
+}
+.forget1{
+	padding-right: 50px;
+}
+.forget2{
+	padding-right: 10px;
 }
 .main_rememberID_Parent{
 	width: 50%;
 }
+.low{
+	padding-top: 70px;
+	height: 50px;
+	border-right: 1px solid red;
+}
 .rememberID_Parent2_1{
-	width: 20px;
 	float: right;
+	padding-right: 60px;
 }
 .rememberID_2_3{
-	float: right;
+	font-size: 10px;
 }

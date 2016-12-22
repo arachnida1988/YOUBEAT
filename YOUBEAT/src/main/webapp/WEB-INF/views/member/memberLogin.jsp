@@ -28,7 +28,7 @@
 		</div>
 		<div class="title2">
 			<form id="loginfrm" action="memberLogin" method="post">
-			<span class="title2_2">EXISTING USERS</span><br>
+			<span class="title2_2_1">EXISTING USERS</span><br>
 			<div class="frm">
 				<input type="text" name="memid" placeholder="Username"><br>
 				<input type="password" name="mempw" placeholder="Password"><br>
@@ -36,15 +36,17 @@
 			</form>
 			<div class="main_rememberID_Parent">
 				 <div class="forget">
-					<a href="#" id="login_find_pw_btn" class="forget">비밀번호 찾기 </a>
-						<a href="#" id="login_find_id_btn" class="forget">아이디 찾기 </a>
+					<a href="#" id="login_find_pw_btn" class="forget1">비밀번호 찾기 </a>
+						<a href="#" id="login_find_id_btn" class="forget2">아이디 찾기 </a>
 					</div>
-			<input type="button" id="login_btn" value="Login">
-				<div class="rememberID_Parent2_1">
-					<input class="rememberID_1_1" type="checkbox" >
+				<div class="low">
+					<input type="button" id="login_btn1" value="Login">
+						<div class="rememberID_Parent2_1">
+								<input class="rememberID_1_1" type="checkbox" >
+							<label class="rememberID_2_3">remember ID</label>
+						</div>
+					</div>	
 				</div>
-					<label class="rememberID_2_3">remember ID?</label>
-			</div>
 			</div>
 		</div>
 			<!-- 로그인 form 끝 -->
