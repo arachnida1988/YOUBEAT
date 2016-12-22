@@ -21,9 +21,9 @@
 						</div>
 						<!-- 정보 등록 해야하는 부분 -->
 						<div class="newchart_td_div_sub">
-							<p><a href="#">${ newAlbumList[second.index].atitle }</a></p>
+							<a class="a_tag_3" href="#">${ newAlbumList[second.index].atitle }</a>
 							<p class="p_artist">
-								<a href="artistView?arartist=${ newArtistList[second.index].arartist }">
+								<a class="a_tag_4" href="artistView?arartist=${ newArtistList[second.index].arartist }">
 									${ newArtistList[second.index].arartist }
 								</a>
 							</p>

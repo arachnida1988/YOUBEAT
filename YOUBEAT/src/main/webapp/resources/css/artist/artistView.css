@@ -1,7 +1,16 @@
 @CHARSET "UTF-8";
 
-h1, h2, h3, h4, h5, p {
+.tag_p_1 {
 	color: white;
+	text-transform: uppercase;
+}
+
+.tag_h_1 {
+	color: white;
+	text-transform: uppercase;
+}
+
+#artist_id {
 	text-transform: uppercase;
 }
 
@@ -19,7 +28,7 @@ h1, h2, h3, h4, h5, p {
 
 #top10_list_div {
 	width: 390px;
-	height: 1000px;
+	height: 1100px;
 	background-color: #404040;
 	float: right;
 }
@@ -33,7 +42,7 @@ h1, h2, h3, h4, h5, p {
 
 .top10_list {
 	width: 90%;
-	height: 78px;
+	height: 88px;
 	margin: 0 auto;
 	margin-top: 10px;
 }
@@ -120,7 +129,7 @@ h1, h2, h3, h4, h5, p {
 #contents_div {
 	width: 750px;
 	height: 250px;
-	background-color: #666666;
+	background-color: #4d4d4d;
 }
 
 #contents_img_div {
@@ -143,6 +152,8 @@ h1, h2, h3, h4, h5, p {
 
 .p_tag {
 	font-size: 13.7px;
+	color: #e6e6e6;
+	text-transform: uppercase;
 }
 
 #latest_album_div {
@@ -256,7 +267,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 .p_tag_2 {
-	color: gray;
+	color: #8c8c8c;
 	font-size: 13px;
 	text-transform: lowercase;
 }
@@ -328,7 +339,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 .p_tag_3 {
-	color: gray;
+	color: #8c8c8c;
 	font-size: 13px;
 	text-transform: lowercase;
 }
