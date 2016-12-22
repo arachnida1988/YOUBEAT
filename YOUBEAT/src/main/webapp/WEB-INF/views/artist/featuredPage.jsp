@@ -6,7 +6,7 @@
 	<!-- 장르도 리스트로 뿌려주기 -->
 	<div id="featured_genrechart_div">
 		<div id="featured_genrechart_div_sub_1">
-			<h3 class="h_tag_1">ARTIST CHARTS BY GENRE</h3>
+			<h3>ARTIST CHARTS BY GENRE</h3>
 			<br>
 			<c:forEach items="${ genreList }" var="genres" varStatus="status">			
 				<a href="#" class="genre_a_tag">${ genres }</a>
@@ -26,10 +26,10 @@
 					<div id="slide_div_sub_info">
 						<div id="title_and_info_div">
 							<!-- title -->
-							<h2><a class="a_tag_1" href="#">${ featuredAlbums[status.index].atitle }</a></h2>
+							<h2><a href="#">${ featuredAlbums[status.index].atitle }</a></h2>
 							<!-- 정보 처리 해줘야함 -->
 							<span class="span_1">
-								<a class="a_tag_2" href="artistView?arartist=${ featuredAlbums[status.index].aartist }">
+								<a href="artistView?arartist=${ featuredAlbums[status.index].aartist }">
 									${ featuredAlbums[status.index].aartist }
 								</a> | 
 							</span>
@@ -71,7 +71,7 @@
 		<!-- title div -->
 		<div id="featured_newchart_div_sub_1">
 			<div id="featured_newchart_title">			
-				<h3 class="h_tag_1">NEW CHARTS</h3>
+				<h3>NEW CHARTS</h3>
 			</div>
 		</div>
 		<!-- table -->
@@ -95,9 +95,9 @@
 									</div>
 									<!-- 정보 등록 해야하는 부분 -->							
 									<div class="newchart_td_div_sub">								
-										<a class="a_tag_3" href="#">${ newAlbumList[second.index].atitle }</a>
+										<p><a href="#">${ newAlbumList[second.index].atitle }</a></p>
 										<p class="p_artist">
-											<a class="a_tag_4" href="artistView?arartist=${ newArtistList[second.index].arartist }">
+											<a href="artistView?arartist=${ newArtistList[second.index].arartist }">
 												${ newArtistList[second.index].arartist }
 											</a>
 										</p>

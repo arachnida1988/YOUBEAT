@@ -1,51 +1,7 @@
+@CHARSET "UTF-8";
 
-.h_tag_1 {
+h2, h3 {
 	color: white;
-	text-transform: uppercase;
-}
-
-.a_tag_1 {
-	color: white;
-	font-size: 30px;
-	text-transform: uppercase;
-}
-
-.a_tag_1:HOVER {
-	color: white;
-	text-decoration: underline;
-}
-
-.a_tag_2 {
-	color: white;
-	font-size: 20px;
-}
-
-.a_tag_2:HOVER {
-	color: white;
-	text-decoration: underline;
-}
-
-.a_tag_3 {
-	color: white;
-	font-size: 11.5px;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.a_tag_3:HOVER {
-	color: white;
-	text-decoration: underline;
-}
-
-.a_tag_4 {
-	color: white;
-	font-size: 11.5px;
-	text-transform: uppercase;
-}
-
-.a_tag_4:HOVER {
-	color: white;
-	text-decoration: underline;
 }
 
 p {

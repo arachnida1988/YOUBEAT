@@ -21,7 +21,7 @@
 						<div class="contents_sub_div_2">
 							<!-- 정보 입력 -->
 							<div class="contents_wrap_info_div">
-								<h5 class="tag_h_1">${ musics.mtitle }</h5>
+								<h5>${ musics.mtitle }</h5>
 								<p class="p_tag_3">${ sixAlbum[second.index].atitle }</p>
 							</div>
 						</div>
