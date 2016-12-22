@@ -1,81 +1,98 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Shopping Cart :: YouBeat</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="/beat/resources/js/shoppingcartJS/cartList.js"></script>
+<link rel="stylesheet" href="/beat/resources/css/shoppingcart/cartList.css" type="text/css">
 </head>
 <body>
-	<h2>MAIN CART</h2>
-	<!-- 고려해야 할 사항  (처리해줘야 함)-->
-	<!-- 1. 장바구니가 비어있는 경우, 비어있지 않은 경우 -->
-	<!-- 2. 장바구니에서 음악 리스트가 비어있는 경우 -->
-	<!-- 3. 장바구니에서 앨범 리스트가 비어있는 경우 -->
-	<!-- 4. 음악이 이미 존재하는데 앨범을 장바구니에 담은 경우 -->
-	
-	<!-- Music List (장바구니) -->
-	<div id="music_list_div_title">
-		<h3>숫자 MUSICS TOTAL</h3>
+	<!-- SID가 넘어오면 AJAX요청을 위해서 HIDDEN 처리 -->
+	<input type="hidden" value="${ sid }" id="sid">
+	<!-- header -->
+	<div>	
+		<c:import url="../template/header.jsp"></c:import>
 	</div>
-	<!-- 음악 부분 List -->
-	<div id="music_list_div_table">
-		<table>
-			<tr>
-				<td>TITEL</td>
-				<td>ARTISTS</td>
-				<td>GENRE</td>
-				<td>DATE</td>
-				<td>FORMAT</td>
-				<td>PRICE</td>
-			</tr>
-			<!-- 실질적인 처리 부분 C태그 사용 -->
-		</table>
+	<div id="cartlist_div">
+		<br><br><br><br>
+		<div id="cartlist_main_div">
+			<h1>MAIN CART</h1>
+		</div>
+		<div id="cartlist_contents_div">
+			<div id="cart_musiclist_div">
+				<!-- AJAX 결과 처리 부분 -->
+			</div>
+			<div id="cart_albumlist_div">
+				<!-- AJAX 결과 처리 부분 -->
+			</div>
+			<div id="cart_totalprice_div">
+				<!-- AJAX 결과 처리 부분 -->
+			</div>
+		</div>
+		<div id="cartlist_recommend_div">
+			<!-- 장바구니에 있을 경우에만 실행 -->
+			<c:if test="${ nullCheck eq 1 }">
+				<div id="recommend_title_div">
+					<h2 id="h2_1">RECOMMEND</h2>
+				</div>
+				<div id="recommend_list_div">
+					<table id="table_4">
+						<tr id="tr_id_1" class="tr_class_1">
+							<td id="td_id_1" colspan="4">TITLE</td>
+							<td class="td_class_1">ARTISTS</td>
+							<td class="td_class_4">ALBUM</td>
+							<td class="td_class_1">GENRE</td>
+							<td class="td_class_7">RELEASED</td>
+							<td class="td_class_2"></td>
+						</tr>				
+						<c:forEach items="${ rdMusics }" var="music" varStatus="st">
+							<tr class="tr_class_1">
+								<!-- IMG -->
+								<td class="td_class_3">
+									<img class="img_1" src="/beat/resources/upload/${ rdImgs[st.index].ffilename }">
+								</td>
+								<!-- PLAYBUTTON -->
+								<td class="td_class_3">
+									<input type="image" onfocus="this.blur()" class="imgbtn"
+										src="/beat/resources/image/artist_page/play_btn_2.PNG">
+								</td>
+								<!-- ADDLIST -->
+								<td class="td_class_3">
+									<input type="image" onfocus="this.blur()" class="imgbtn"
+										src="/beat/resources/image/artist_page/list_add_btn.PNG">
+								</td>
+								<!-- TITLE -->
+								<td>${ music.mtitle }</td>
+								<!-- ARTISTS -->
+								<td class="td_class_5">
+									<a href="/beat/header/artistView?arartist=${ rdAlbums[st.index].aartist }" class="a_tag_1">
+										${ rdAlbums[st.index].aartist }
+									</a>
+								</td>
+								<!-- ALBUM -->
+								<td class="td_class_6">${ rdAlbums[st.index].atitle }</td>
+								<!-- GENRE -->
+								<td class="td_class_5">${ music.mgenre }</td>
+								<!-- RELEASED -->
+								<td class="td_class_8">${ music.mdate }</td>
+								<!-- BUTTON -->
+								<td class="td_class_2">
+									<input type="button" class="price_cart_add_4" value=".00 ▼">
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</c:if>
+		</div>
 	</div>
-	<!-- 페이징 처리 부분 -->
-	<div id="music_list_div_pageing">
-	
-	</div>
-	<!-- 음악부분의 총 가격 -->
-	<div id="music_list_div_subtotal">
-		<h4>MUSIC SUBTOTAL : 가격</h4>
-	</div>
-	
-	<!-- Album List (장바구니) -->
-	<h3>ALBUM TOTAL</h3>
-	<div id="album_list_div_title">
-		<h3>숫자 ALBUM TOTAL</h3>
-	</div>
-	<!-- 앨범 부분 List -->
-	<div id="album_list_div_table">
-		<table>
-			<tr>
-				<td>TITEL</td>
-				<td>ARTISTS</td>
-				<td>GENRE</td>
-				<td>DATE</td>
-				<td>FORMAT</td>
-				<td>PRICE</td>
-			</tr>
-			<!-- 실질적인 처리 부분 C태그 사용 -->
-		</table>
-	</div>
-	<!-- 페이징 처리 부분 -->
-	<div id="album_list_div_pageing">
-	
-	</div>
-	<!-- 음악부분의 총 가격 -->
-	<div id="album_list_div_subtotal">
-		<h4>ALBUM SUBTOTAL : 가격</h4>
-	</div>
-	
-	<!-- TOTAL -->
-	<div>
-		<h3>TOTAL PRICE : 총가격</h3>
-		<input type="button" id="checkout_btn" value="CHECKOUT">
-	</div>
+	<!-- footer -->
+	<div>	
+		<c:import url="../template/futer.jsp"></c:import>
+	</div>	
 </body>
 </html>

@@ -3,4 +3,26 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ShoppingcartMapper">
+	<!-- 장바구니 등록하기전에 존재하는지 알아보기 위한 리스트 가져오기 - 아이디,카테고리-->
+	<select id="shoppingcartList" parameterType="com.you.shoppingcart.ShoppingcartDTO"
+		resultType="com.you.shoppingcart.ShoppingcartDTO">
+		<![CDATA[
+			select * from shoppingcart where sid=#{sid} 
+			and scategory=#{scategory}
+		]]>	
+	</select>
+	<!-- 장바구니 등록 -->
+	<insert id="shoppingcartAdd" parameterType="com.you.shoppingcart.ShoppingcartDTO">
+		<![CDATA[
+			insert into shoppingcart values(cart_seq.nextval,
+			#{sid}, sysdate, #{scategory}, #{scategorynum})
+		]]>	
+	</insert>
+	
+	<!-- 장바구니 취소 -->
+	<delete id="shoppingcartDel" parameterType="int">
+		<![CDATA[
+			delete shoppingcart where snum=#{snum}
+		]]>
+	</delete>
 </mapper>

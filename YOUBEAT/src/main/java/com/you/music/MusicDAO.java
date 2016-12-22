@@ -1,6 +1,8 @@
 package com.you.music;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +81,15 @@ public class MusicDAO {
 	// 장바구니 부분에서 사용할 음악 정보 가져오는 부분 - 음악번호
 	public MusicDTO musicView_cart(int mnum) throws Exception {
 		return this.sqlSession.selectOne(namespace+"musicView_cart", mnum);
+	}
+	
+	// 16.12.21.11:18 추가 ****************** 
+	// 장르로 음악 리스트 20개만 가져오기 최근 날짜 
+	public List<MusicDTO> musicList_map(String mgenre, PageMaker pageMaker) 
+			throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("page", pageMaker);
+		map.put("mgenre", mgenre);
+		return this.sqlSession.selectList(namespace+"musicList_map", map);
 	}
 }

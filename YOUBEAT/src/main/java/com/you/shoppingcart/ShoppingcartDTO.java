@@ -2,12 +2,12 @@ package com.you.shoppingcart;
 
 import java.sql.Date;
 
-public class ShoppingCartDTO {
+public class ShoppingcartDTO {
 	private int snum;
 	private String sid;
 	private Date sdate;
-	private String category;
-	private int categorynum;
+	private String scategory;
+	private int scategorynum;
 	
 	public int getSnum() {
 		return snum;
@@ -27,16 +27,16 @@ public class ShoppingCartDTO {
 	public void setSdate(Date sdate) {
 		this.sdate = sdate;
 	}
-	public String getCategory() {
-		return category;
+	public String getScategory() {
+		return scategory;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setScategory(String scategory) {
+		this.scategory = scategory;
 	}
-	public int getCategorynum() {
-		return categorynum;
+	public int getScategorynum() {
+		return scategorynum;
 	}
-	public void setCategorynum(int categorynum) {
-		this.categorynum = categorynum;
+	public void setScategorynum(int scategorynum) {
+		this.scategorynum = scategorynum;
 	}
 }

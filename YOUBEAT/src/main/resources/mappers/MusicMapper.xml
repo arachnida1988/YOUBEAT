@@ -97,4 +97,15 @@
 			select * from music where mnum=#{mnum}
 		]]>		
 	</select>
+	
+	<!-- 장르로 음악 리스트 20개만 가져오기 - 최근 날짜 기준 (16.12.21.11:18 추가)  -->
+	<select id="musicList_map" parameterType="java.util.Map"
+		resultType="com.you.music.MusicDTO">
+		<![CDATA[
+			select * from 
+			(select rownum r, t.* from 
+			(select * from music where mgenre=#{mgenre} order by mcounts desc)t) 
+			where r between #{page.startRowNum} and #{page.lastRowNum}
+		]]>
+	</select>
 </mapper>
