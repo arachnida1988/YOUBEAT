@@ -40,6 +40,7 @@ $(function(){
 		}
 	});
 	
+	// 추천리스트의 장바구니 버튼 hover처리
 	$(".add_cart_btn").on({
 		"mouseenter" : function() {
 			$(this).css("opacity", "1.0");
@@ -49,9 +50,17 @@ $(function(){
 		}
 	});
 	
+	// 추천리스트의 장바구니 등록 버튼
 	$(".add_cart_btn").click(function(){
 		var mnum = $(this).prop("id");
 		mnum = mnum.substring(2, mnum.length);
 		alert(mnum);
+	});
+	
+	// 결제 페이지 이동
+	$("#checkout_btn").click(function(){
+		// 아이디만 넘기기 !
+		var memid = $("#sid").val();
+		location.href="../payment/checkout?memid="+memid;
 	});
 });

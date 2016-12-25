@@ -37,6 +37,11 @@
 				<div id="cart_totalprice_div">
 					<!-- AJAX 결과 처리 부분 -->
 				</div>
+				<div id="cart_checkout_div">
+					<div id="cart_checkout_btn_div">					
+						<input type="button" id="checkout_btn" value="CHECKOUT">
+					</div>
+				</div>
 			</div>
 			<div id="cartlist_recommend_div">
 				<div id="recommend_title_div">

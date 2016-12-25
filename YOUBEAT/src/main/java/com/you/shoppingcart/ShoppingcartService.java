@@ -150,9 +150,6 @@ public class ShoppingcartService {
 			// 3. 장바구니에 많이 들어있는 장르를 파악 (제일 중요 - 어떻게 해야할지 생각..)
 			// 3-1. MUSIC에서 존재하는 총 장르를 가져와서 비교???
 			List<String> allGenre = this.musicDAO.getTotalGenreList();
-			for(String s : allGenre) {
-				System.out.println(s.toString());
-			}
 			int [] genreCounts = new int[allGenre.size()];
 			for(int i=0; i<genreCounts.length; i++) {
 				// 음악 부분 
@@ -171,7 +168,6 @@ public class ShoppingcartService {
 						genreCounts[i]++;
 					}
 				}
-				System.out.println(i+" : "+genreCounts[i]);
 			}
 			// 3-2. 최대값 구하기
 			int maxCount = genreCounts[0];
@@ -185,7 +181,6 @@ public class ShoppingcartService {
 			// 4. 그 장르에 맞는 MUSIC 20개 뽑아오기 최근 날짜 순으로..
 			// 4-1. PageMaker필요.. perPage=20
 			String maxGenre = allGenre.get(maxIndex);
-			System.out.println("maxGenre : "+maxGenre);
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCurPage(1);
 			pageMaker.setPerPage(20);
