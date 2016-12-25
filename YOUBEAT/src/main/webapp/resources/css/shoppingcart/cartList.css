@@ -1,7 +1,8 @@
 @CHARSET "UTF-8";
 
-h1, h2 {
+.h_tag_1 {
 	color: white;
+	text-transform: uppercase;
 }
 
 #cartlist_div {
@@ -11,12 +12,6 @@ h1, h2 {
 }
 
 #cartlist_main_div {
-	width: 93%;
-	height: auto;
-	margin: 0 auto;
-}
-
-#cartlist_contents_div {
 	width: 93%;
 	height: auto;
 	margin: 0 auto;
@@ -34,34 +29,290 @@ h1, h2 {
 	float: blue;
 }
 
-#cart_musiclist_div {
+#cartlist_contents_div {
+	width: 93%;
+	height: auto;
+	margin: 0 auto;
+}
+
+table {
+	width: 100%;
+	height: auto;
+	border-spacing: 5px;
+	border-collapse: collapse;
+}
+
+td {
+	height: 38px;
+	background-color: #4d4d4d;
+	font-size: 12px;
+	font-weight: bold;
+	color: white;
+}
+
+#cart_music_div {
 	width: 100%;
 	height: auto;
 	margin: 0 auto;
 }
 
-#cart_albumlist_div {
+#cart_music_title_div {
+	width: 100%;
+	height: 40px;
+	margin-top: 30px;
+}
+
+#all_remove_btn_1 {
+	width: 150px;
+	height: 35px;
+	background-color: #666666;
+	border: 1px solid #666666;
+	color: white;
+	font-size: 13px;
+	float: right;
+	outline: none;
+}
+
+#all_check_btn_1 {
+	width: 150px;
+	height: 35px;
+	background-color: #666666;
+	border: 1px solid #666666;
+	color: white;
+	font-size: 13px;
+	float: right;
+	margin-right: 5px;
+	outline: none;
+}
+
+#cart_music_list_div {
+	width: 100%;
+	height: auto;
+}
+
+#cart_music_price_div {
+	width: 100%;
+	height: 40px;
+}
+
+#cart_album_div {
 	width: 100%;
 	height: auto;
 	margin: 0 auto;
+	margin-top: 50px;
+}
+
+#cart_album_title_div {
+	width: 100%;
+	height: 40px;
+}
+
+#all_remove_btn_2 {
+	width: 150px;
+	height: 35px;
+	background-color: #666666;
+	border: 1px solid #666666;
+	color: white;
+	font-size: 13px;
+	float: right;
+}
+
+#all_check_btn_2 {
+	width: 150px;
+	height: 35px;
+	background-color: #666666;
+	border: 1px solid #666666;
+	color: white;
+	font-size: 13px;
+	float: right;
+	margin-right: 5px;
+	outline: none;
+}
+
+#cart_album_list_div {
+	width: 100%;
+	height: auto;
+}
+
+#cart_album_price_div {
+	width: 100%;
+	height: 40px;
+}
+
+.td_title_1 {
+	width: 36%;
+	text-align: center;
+	background-color: #737373;
+}
+
+.td_1 {
+	width: 10%;
+	background-color: #737373;
+}
+
+.td_2 {
+	width: 11%;
+	background-color: #737373;
+}
+
+.td_3 {
+	width: 8%;
+	background-color: #737373;
+}
+
+.td_4 {
+	width: 4%;
+	background-color: #737373;
+}
+
+.td_title_2 {
+	width: 3.4%;
+}
+
+.input_img_1 {
+	width: 39px;
+	height: 37px;	
+}
+
+.input_img_2 {
+	width: 30px;
+	height: 28px;
+	margin: 0 auto;	
+}
+
+.td_title_3 {
+	width: 25.8%;
+	margin-left: 1%;
+}
+
+.td_5 {
+	width: 10%;
+	color: #39c1de;
+}
+
+.td_6 {
+	width: 11%;
+	font-weight: normal;
+	color: #ffffe6;
+}
+
+.td_7 {
+	width: 8%;
+	font-weight: normal;
+	color: #ffffe6;
+}
+
+.td_8 {
+	width: 8%;
+	color: #94D500;
+}
+
+.td_9 {
+	width: 8%;
+	color: #ff53a0;
+}
+
+.td_10 {
+	width: 4%;
+	color: #006bb3;
+}
+
+.one_remove_btn {
+	height: 100%;
+ 	background-color: #4d4d4d;
+	border : 1px solid #4d4d4d;
+	font-size: 17px;
+	outline: none;
+}
+.one_remove_btn:HOVER {
+	text-decoration: underline;
+}
+
+.img_1 {
+	width: 40px;
+	height: 38px;
+}
+
+.sub_price_div {
+	width: 35%;
+	height: 100%;
+	float: right;
+}
+
+.sub_1 {
+	font-size: 15px;
+	color: #4d4d4d;
+}
+
+.sub_2 {
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
 }
 
 #cart_totalprice_div {
 	width: 100%;
+	height: 150px;
+}
+
+#cart_totalprice_contents_div {
+	width: 35%;
 	height: auto;
-	margin: 0 auto;
+	float: right;
+}
+
+.sub_3 {
+	font-size: 18px;
+	color: #4d4d4d;
+}
+
+.sub_4 {
+	font-size: 23px;
+	font-weight: bold;
+	color: white;
+}
+
+#sub_5 {
+	color: #ffffe6;
+}
+
+#sub_6 {
+	color: #e6ffe6;
+}
+
+#sub_7 {
+	color: #ccccff;
+}
+
+#checkout_btn_div {
+	width: 65%;
+	height: 35px;
+	margin-top: 15px;
+	float: right;
+}
+
+#checkout_btn {
+	width: 45%;
+	height: 100%;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background-color: #94D500;
+	border: 1px solid #94D500;
+	-webkit-border-radius: 3px;
+	outline: none;
 }
 
 #cartlist_recommend_div {
 	width: 93%;
-	height: 900px;
+	height: auto;
 	margin: 0 auto;
 	margin-top: 50px;
 }
 
 #recommend_title_div {
 	width: 100%;
-	height: 35px;
+	height: 40px;
 }
 
 #h2_1 {
@@ -73,102 +324,79 @@ h1, h2 {
 	height: auto;
 }
 
-#table_4 {
-	width: 100%;
-	height: 100%;
-	border-spacing: 0px;
-	border-collapse: collapse;	
-}
-
-#tr_id_1 {
-	background-color: gray;
-	border-top: 1.5px solid #494949;
-}
-
-.tr_class_1 {
-	height: 40px;
-	color: white;
-	background-color: #494949;
-	border-spacing: 5px;
-	font-size: 13px;
-	font-weight: bold;
-}
-
-
-.td_class_1 {
-	width: 12.5%;
-}
-
-.td_class_2 {
-	width: 7%;
-}
-
-.td_class_3 {
-	width: 4%;
-}
-
-.td_class_4 {
-	width: 17%;
-	color: white;
-}
-
-.td_class_5 {
-	width: 12.5%;
-	font-weight: normal;
-	color: #a6a6a6;
-}
-
-.td_class_6 {
-	width: 17%;
-	font-weight: normal;
-	color: #a6a6a6;
-}
-
-.td_class_7 {
- 	width: 8%;	
-}
-
-.td_class_8 {
- 	width: 8%;
- 	font-weight: normal;
-	color: #a6a6a6;	
-}
-
-
-#td_id_1 {
+#rd_td_1 {
+	width: 36%;
 	text-align: center;
-	font-size: 15px;
+	background-color: #737373;
 }
 
-.a_tag_1 {
+.rd_td_2 {
+	width: 12.5%;
+	background-color: #737373;
+}
+
+.rd_td_3 {
+	width: 17.5%;
+	background-color: #737373;
+}
+
+#rd_td_4 {
+	width: 14%;
+	background-color: #737373;
+}
+
+#rd_td_5 {
+	width: 9%;
+	background-color: #737373;
+}
+
+#rd_td_6 {
+	width: 9%;
+	background-color: #737373;
+}
+
+.rd_1 {
+	width: 3.4%;
+}
+
+.rd_2 {
+	width: 25.2%;
+}
+
+.rd_3 {
+	width: 14.5%;
 	color: #39c1de;
-	text-decoration: none;
-	font-weight: bold;
 }
 
-.a_tag_1:HOVER {
-	text-decoration: underline;
+.rd_4 {
+	width: 17.5%;
+	font-weight: normal;
+	color: #ffffe6;
 }
 
-.img_1 {
-	width: 100%;
-	height: 40px;
+.rd_5 {
+	width: 14%;
+	font-weight: normal;
+	color: #ffffe6;
 }
 
-.imgbtn {
-	width: 35px;
-	height: 30px;
-	margin: 0 auto;
-	margin-left: 5px;
+.rd_6 {
+	width: 9%;
+	font-weight: normal;
+	color: #ffffe6;	
 }
 
-.price_cart_add_4 {
-	width: 100%;
+.add_cart_btn {
+	width: 75%;
 	height: 90%;
+	margin: 0 auto;
+	-webkit-border-radius: 5px;
+	background-color: #ff53a0;
+	border: 1px solid #ff53a0;
 	color: white;
-	font-size: 16px;
-	background-color: #ff4dff;
-	border: 1px solid #ff4dff;
-	-webkit-border-radius: 6px;
 	outline: none;
+	font-size: 15px;
+	font-weight: bold;
+	opacity: 0.5;
 }
+

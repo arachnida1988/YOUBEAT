@@ -25,7 +25,7 @@ public class ShoppingcartDAO {
 	}
 	
 	// 장바구니에서 삭제
-	public int shoppingcartDel(int snum) throws Exception {
-		return this.sqlSession.delete(namespace+"shoppingcartDel", snum);
+	public int shoppingcartDelete(int snum) throws Exception {
+		return this.sqlSession.delete(namespace+"shoppingcartDelete", snum);
 	}
 }

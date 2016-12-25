@@ -18,9 +18,8 @@
 			#{sid}, sysdate, #{scategory}, #{scategorynum})
 		]]>	
 	</insert>
-	
 	<!-- 장바구니 취소 -->
-	<delete id="shoppingcartDel" parameterType="int">
+	<delete id="shoppingcartDelete" parameterType="int">
 		<![CDATA[
 			delete shoppingcart where snum=#{snum}
 		]]>

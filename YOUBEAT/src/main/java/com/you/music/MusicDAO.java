@@ -55,7 +55,6 @@ public class MusicDAO {
 
 	// 앨범의 번호로 음악별로 더해진 총가격(=앨범 가격) 가져오기
 	public int getGenreAndPriceOfMusic(int anum) throws Exception {
-		System.out.println("anum : "+anum);
 		return this.sqlSession.selectOne(namespace+"getGenreAndPriceOfMusic", anum);
 	}
 	// 앨범의 번호로 음악 장르 가져오기 가져오기

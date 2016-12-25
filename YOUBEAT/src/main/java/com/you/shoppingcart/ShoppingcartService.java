@@ -2,6 +2,7 @@ package com.you.shoppingcart;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,7 +66,7 @@ public class ShoppingcartService {
 						// 음악번호가 존재하면
 						if(m.getMnum() == sc.getScategorynum()) {
 							// 장바구니에 있는 영화 정보 삭제
-							this.scDAO.shoppingcartDel(sc.getSnum());
+							this.scDAO.shoppingcartDelete(sc.getSnum());
 						}
 					} // for
 				} // for		
@@ -92,6 +93,29 @@ public class ShoppingcartService {
 		}
 		model.addAttribute("result", result);
 		return "shoppingcart/shoppingcartResult";
+	}
+	// 장바구니 목록에서 삭제
+	public String shoppingcartDelete(ShoppingcartDTO shoppingcartDTO, Model model,
+			String strSnum) {
+		String path = "";
+		try {
+			StringTokenizer st = new StringTokenizer(strSnum, "/");
+			while(st.hasMoreTokens()) {
+				// 장바구니에서 삭제
+				this.scDAO.shoppingcartDelete(Integer.parseInt(st.nextToken()));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 음악인지, 장바구니인지 판단하기 위해서
+		if(shoppingcartDTO.getScategory().equals("music")) {
+			// 음악 리스트 뿌리기
+			path = this.cartMusicList(shoppingcartDTO, model);
+		} else {
+			// 앨범 리스트 뿌리기
+			path = this.cartAlbumList(shoppingcartDTO, model);
+		}
+		return path;
 	}
 	
 	// 장바구니 페이지
@@ -126,6 +150,9 @@ public class ShoppingcartService {
 			// 3. 장바구니에 많이 들어있는 장르를 파악 (제일 중요 - 어떻게 해야할지 생각..)
 			// 3-1. MUSIC에서 존재하는 총 장르를 가져와서 비교???
 			List<String> allGenre = this.musicDAO.getTotalGenreList();
+			for(String s : allGenre) {
+				System.out.println(s.toString());
+			}
 			int [] genreCounts = new int[allGenre.size()];
 			for(int i=0; i<genreCounts.length; i++) {
 				// 음악 부분 
@@ -144,21 +171,21 @@ public class ShoppingcartService {
 						genreCounts[i]++;
 					}
 				}
+				System.out.println(i+" : "+genreCounts[i]);
 			}
-			// 3-2. 정렬..
+			// 3-2. 최대값 구하기
+			int maxCount = genreCounts[0];
+			int maxIndex = 0;
 			for(int i=0; i<genreCounts.length; i++) {
-				for(int j=0; j<genreCounts.length; j++) {
-					if(genreCounts[i] < genreCounts[j]) {
-						int temp = genreCounts[i];
-						genreCounts[i] = genreCounts[j];
-						genreCounts[j] = temp;
-					}
+				if(maxCount < genreCounts[i]) {
+					maxCount = genreCounts[i];
+					maxIndex = i;
 				}
 			}
 			// 4. 그 장르에 맞는 MUSIC 20개 뽑아오기 최근 날짜 순으로..
 			// 4-1. PageMaker필요.. perPage=20
-			int maxIndex = genreCounts.length-1;
 			String maxGenre = allGenre.get(maxIndex);
+			System.out.println("maxGenre : "+maxGenre);
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCurPage(1);
 			pageMaker.setPerPage(20);
@@ -187,26 +214,166 @@ public class ShoppingcartService {
 		return "shoppingcart/cartList";
 	}
 	
-	// AJAX 요청 부분 - 장바구니의 앨범 리스트
-	public String cartAlbumList(ShoppingcartDTO shoppingcartDTO, Model model) {
-		List<ShoppingcartDTO> cartAlbums = null;
+	// AJAX 요청 부분 - 장바구니의 음악 리스트
+	public String cartMusicList(ShoppingcartDTO shoppingcartDTO, Model model) {
+		List<ShoppingcartDTO> cartMusics = null;
+		List<MusicDTO> musicList = null;
+		List<AlbumDTO> albumList = null;
+		List<FileupDTO> imgList = null;
+		List<String> substrAtitle = null;
+		int subTotal = 0;
+		int check = 0;
+		int musicCount = 0;
 		try {
-			cartAlbums = this.scDAO.shoppingcartList(shoppingcartDTO);
+			cartMusics = this.scDAO.shoppingcartList(shoppingcartDTO);
+			// 갯수 가져오기
+			musicCount = cartMusics.size();
+			// 음악 정보 가져오기 (리스트 만들기)
+			musicList = new ArrayList<>();
+			for(ShoppingcartDTO sc : cartMusics) {
+				MusicDTO m = this.musicDAO.musicView_cart(sc.getScategorynum());
+				musicList.add(m);
+			}
+			// 앨범 정보 가져오기 (리스트 만들기)
+			albumList = new ArrayList<>();
+			substrAtitle = new ArrayList<>();
+			for(MusicDTO m : musicList) {
+				// 음악의 총 가격 구하기
+				subTotal += m.getMprice();
+				AlbumDTO a = this.AlbumDAO.albumView(m.getAnum());
+				// 앨범 타이틀 10줄로 줄이기
+				String atitle = a.getAtitle();
+				if(atitle.length() > 20) {
+					atitle = atitle.substring(0, 15)+"...";
+				}
+				substrAtitle.add(atitle);
+				albumList.add(a);
+			}
+			// 이미지 파일 가져오기 (리스트)
+			imgList = this.fileupDAO.fileupAlbumList(albumList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		if(cartMusics != null) {
+			check = 1;
+		}
+		model.addAttribute("check", check);
+		model.addAttribute("substrAtitle", substrAtitle);
+		model.addAttribute("cartMusics", cartMusics);
+		model.addAttribute("musicCount", musicCount);
+		model.addAttribute("musicList", musicList);
+		model.addAttribute("albumList", albumList);
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("subTotal", subTotal);
+		return "shoppingcart/cartMusicResult";
 	}
 	
-	// AJAX 요청 부분 - 장바구니의 음악 리스트
-	public String cartMusicList(ShoppingcartDTO shoppingcartDTO, Model model) {
-		return null;
+	// AJAX 요청 부분 - 장바구니의 앨범 리스트
+	public String cartAlbumList(ShoppingcartDTO shoppingcartDTO, Model model) {
+		List<ShoppingcartDTO> cartAlbums = null;
+		List<AlbumDTO> albumList = null;
+		List<FileupDTO> imgList = null;
+		List<String> genreList = null;
+		List<Integer> priceList = null;
+		List<String> substrAtitle = null;
+		int subTotal = 0;
+		int check = 0;
+		int albumCount = 0;
+		try {
+			cartAlbums = this.scDAO.shoppingcartList(shoppingcartDTO);
+			// 앨범 갯수 가져오기
+			albumCount = cartAlbums.size();
+			// 앨범 정보 가져오기 (리스트 만들기)
+			albumList = new ArrayList<>();
+			substrAtitle = new ArrayList<>();
+			for(ShoppingcartDTO sc : cartAlbums) {
+				AlbumDTO a = this.AlbumDAO.albumView(sc.getScategorynum());
+				// 앨범 타이틀 10줄로 줄이기
+				String atitle = a.getAtitle();
+				if(atitle.length() > 20) {
+					atitle = atitle.substring(0, 15)+"...";
+				}
+				substrAtitle.add(atitle);
+				albumList.add(a);
+			}
+			// 이미지 파일 가져오기 (리스트)
+			imgList = this.fileupDAO.fileupAlbumList(albumList);
+			// 음악 장르, 음악 가격 가져오기 - 앨범번호로
+			genreList = new ArrayList<>();
+			priceList = new ArrayList<>();
+			for(AlbumDTO a : albumList) {
+				String genre = this.musicDAO.getGenreAndPriceOfMusic2(a.getAnum());
+				int price = this.musicDAO.getGenreAndPriceOfMusic(a.getAnum());
+				genreList.add(genre);
+				priceList.add(price);
+				// 앨범의 총가격 구하기
+				subTotal += price;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(cartAlbums != null) {
+			check = 1;
+		}
+		
+		model.addAttribute("check", check);
+		model.addAttribute("substrAtitle", substrAtitle);
+		model.addAttribute("cartAlbums", cartAlbums);
+		model.addAttribute("albumCount", albumCount);
+		model.addAttribute("albumList", albumList);
+		model.addAttribute("imgList", imgList);
+		model.addAttribute("genreList", genreList);
+		model.addAttribute("priceList", priceList);
+		model.addAttribute("subTotal", subTotal);
+		return "shoppingcart/cartAlbumResult";
 	}
+	
 	
 	// AJAX 요청 부분 - 장바구니의 앨범, 음악의 총 가격 얻어오기
 	public String cartTotalPriceResult(ShoppingcartDTO shoppingcartDTO, Model model) {
-		shoppingcartDTO.setScategory("music");
-		shoppingcartDTO.setScategory("album");
-		return null;
+		List<ShoppingcartDTO> cartMusics = null;
+		List<ShoppingcartDTO> cartAlbums = null;
+		List<MusicDTO> musicList = null;
+		List<AlbumDTO> albumList = null;
+		List<Integer> priceList = null;
+		int totalPrice = 0;
+		int check = 0;
+		try {
+			// 음악 정보 가져오기 (리스트 만들기)
+			shoppingcartDTO.setScategory("music");
+			cartMusics = this.scDAO.shoppingcartList(shoppingcartDTO);
+			musicList = new ArrayList<>();
+			for(ShoppingcartDTO sc : cartMusics) {
+				MusicDTO m = this.musicDAO.musicView_cart(sc.getScategorynum());
+				musicList.add(m);
+			}
+			// 음악 총 가격 더하기
+			for(MusicDTO m : musicList) {
+				totalPrice += m.getMprice();
+			}
+			// 앨범 정보 가져오기 (리스트 만들기)
+			shoppingcartDTO.setScategory("album");
+			cartAlbums = this.scDAO.shoppingcartList(shoppingcartDTO);
+			albumList = new ArrayList<>();
+			for(ShoppingcartDTO sc : cartAlbums) {
+				AlbumDTO a = this.AlbumDAO.albumView(sc.getScategorynum());
+				albumList.add(a);
+			}
+			// 앨범 총 가격 더하기
+			priceList = new ArrayList<>();
+			for(AlbumDTO a : albumList) {
+				int price = this.musicDAO.getGenreAndPriceOfMusic(a.getAnum());
+				priceList.add(price);
+				totalPrice += price;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(priceList != null) {
+			check = 1;
+		}
+		model.addAttribute("check", check);
+		model.addAttribute("totalPrice", totalPrice);
+		return "shoppingcart/cartTotalPriceResult";
 	}
 }

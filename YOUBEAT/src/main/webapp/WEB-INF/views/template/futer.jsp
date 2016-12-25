@@ -7,27 +7,23 @@
 <style type="text/css">
 #futter{
 	width: 100%;
-	height: 200px;
+	height: 300px;
 	background-color: black;
 	color: white;
 }
 #f_logo{
-	margin-left: 30px;
 	margin-top: 20px;
 	float: left;
 }
 #company{
-	margin-top: 20px;
 	float: right;
 	font-size: 5px;
 }
 #network{
-	margin-top: 20px;
 	float: right;
 	font-size: 5px;
 }
 #language{
-	margin-top: 20px;
 	float: right;
 	font-size: 5px;
 }
@@ -57,8 +53,7 @@
 		<p>영어</p>
 		<p>한국어</p>
 		<p>일본어</p>
-		<p>짱꼴라?</p>
-		 
+		<p>짱꼴라?</p>	 
 	</div>
 </div>
 </body>
