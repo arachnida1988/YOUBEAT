@@ -60,7 +60,9 @@ $(function(){
 	// 결제 페이지 이동
 	$("#checkout_btn").click(function(){
 		// 아이디만 넘기기 !
-		var memid = $("#sid").val();
-		location.href="../payment/checkout?memid="+memid;
+		// 나중에는 member session에서 꺼내와서 사용하기
+		// $("#sid").val() 삭제하기
+		var pid = $("#sid").val();
+		location.href="../payment/checkout?pid="+pid;
 	});
 });
