@@ -218,9 +218,6 @@ public class ShoppingcartService {
 			model.addAttribute("result", 0);
 		} else {
 			System.out.println("good!");
-			// ---------- 없어도 되는 부분 ----------
-			model.addAttribute("sid", shoppingcartDTO.getSid());
-			// --------------------------------
 			model.addAttribute("result", 1);
 			model.addAttribute("rdMusics", rdMusics);
 			model.addAttribute("rdAlbums", rdAlbums);

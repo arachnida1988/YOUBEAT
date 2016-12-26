@@ -78,7 +78,7 @@
 				url : "shoppingcartDelete",
 				type : "POST",
 				data : {
-					sid : $("#sid").val(),
+					sid : $("#memid").val(),
 					scategory : "album",
 					strSnum : strSnum,
 				},
@@ -91,7 +91,7 @@
 				url : "cartTotalPriceResult",
 				post : "POST",
 				data : {
-					sid : $("#sid").val(),
+					sid : $("#memid").val(),
 				},
 				success : function(result) {
 					$("#cart_totalprice_div").html(result);
@@ -111,7 +111,7 @@
 					url : "shoppingcartDelete",
 					type : "POST",
 					data : {
-						sid : $("#sid").val(),
+						sid : $("#memid").val(),
 						scategory : "album",
 						strSnum : strSnum,
 					},
@@ -124,7 +124,7 @@
 					url : "cartTotalPriceResult",
 					post : "POST",
 					data : {
-						sid : $("#sid").val(),
+						sid : $("#memid").val(),
 					},
 					success : function(result) {
 						$("#cart_totalprice_div").html(result);

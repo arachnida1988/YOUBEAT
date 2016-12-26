@@ -114,10 +114,10 @@ $(document).on("click", ".price_cart_add_1", function(){
 	var anum = $(this).prop("id");
 	anum = anum.substring(5,anum.length);
 	$.ajax({
-		url : "../shoppingcart/shoppingcartAdd",
+		url : "/beat/shoppingcart/shoppingcartAdd",
 		type : "POST",
 		data : {
-			sid : "hyoseok6341",
+			sid : $("#memid").val(),
 			scategory : "album",
 			scategorynum : anum
 		},
@@ -138,10 +138,10 @@ $(document).on("click", ".price_cart_add_2", function(){
 	var mnum = $(this).prop("id");
 	mnum = mnum.substring(6,mnum.length);
 	$.ajax({
-		url : "../shoppingcart/shoppingcartAdd",
+		url : "/beat/shoppingcart/shoppingcartAdd",
 		type : "POST",
 		data : {
-			sid : "hyoseok6341",
+			sid : $("#memid").val(),
 			scategory : "music",
 			scategorynum : mnum
 		},
@@ -162,10 +162,10 @@ $(document).on("click", ".price_cart_add_3", function(){
 	var mnum = $(this).prop("id");
 	mnum = mnum.substring(6,mnum.length);
 	$.ajax({
-		url : "../shoppingcart/shoppingcartAdd",
+		url : "/beat/shoppingcart/shoppingcartAdd",
 		type : "POST",
 		data : {
-			sid : "hyoseok6341",
+			sid : $("#memid").val(),
 			scategory : "music",
 			scategorynum : mnum
 		},

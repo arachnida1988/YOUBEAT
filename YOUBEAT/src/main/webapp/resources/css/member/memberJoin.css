@@ -4,10 +4,13 @@
 	src: url("/beat/resources/font/sunn/SUNN.eot");
 	src: local(※), url("/beat/resources/font/sunn/SUNN.woff") format('woff');
 }
-a {
+
+.aaatag {
 	text-decoration: none;
+	color: #39c1de;	
 	font-size: 12px;
 }
+
 * {
    margin: 0;
    padding: 0;

@@ -10,8 +10,6 @@
 </head>
 <body>
 	<!-- SID가 넘어오면 AJAX요청을 위해서 HIDDEN 처리 -->
-	<!-- ---------- 없어도 됨 ---------- -->
-	<input type="hidden" value="${ sid }" id="sid">
 	<input type="hidden" value="${ message }" id="message">
 	<!-- ------------------------------ -->
 	<!-- header -->

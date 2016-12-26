@@ -69,13 +69,14 @@ $(document).ready(function(){
 	<!-- 로그인 -->
 	<c:if test="${ member ne null }">
 		<div id="join"><a href="/beat/member/memberView">INFO</a></div>
-		<div id="basket"><a href="">BASKET</a></div>
+		<div id="basket"><a href="/beat/shoppingcart/cartList?sid=${ member.memid }">BASKET</a></div>
 		<div id="logout"><a href="/beat/member/memberLogout">LOGOUT</a></div>
+		<input type="hidden" id="memid" value="${ member.memid }">
 	</c:if> 
 	<!-- 로그인 하지 않았을 때 -->
 	<c:if test="${ member eq null }">
 		<div id="join"><a href="/beat/member/memberJoin">JOIN</a></div>
-		<div id="login"><a href="/beat/member/memberJoin">LOGIN</a></div>
+		<div id="login"><a href="/beat/member/memberLogin">LOGIN</a></div>
 	</c:if>
 </div>
 
@@ -108,20 +109,21 @@ $(document).ready(function(){
 </div>
 <div id="login_windows">
 	<div class="title2">
-		<form id="loginfrm" action="/beat/member/memberLogin" method="post">
+		<form id="loginfrm2" action="/beat/member/memberLogin" method="post">
 			<span class="title2_2">EXISTING USERS</span><br>
 			<input type="text" name="memid" placeholder="Username"><br>
 			<input type="password" name="mempw" placeholder="Password"><br>
-				<input type="button" id="m_open">
-				<a href="#" id="find_pw_btn">비밀번호 찾기 </a> 
-				<a href="#" id="find_id_btn">아이디 찾기 </a>
-		</form>
-		<div class="rememberID_Parent">
-			<input type="button" id="login_btn" value="Login">
-			<div class="rememberID_Parent2">
-				<label class="rememberID_2">remember ID?</label>
-				<input class="rememberID_1" type="checkbox" >
+			<a href="#" class="find_pw_btn">비밀번호 찾기 </a> 
+			<a href="#" class="find_id_btn">아이디 찾기 </a>
+			<div class="rememberID_Parent">
+				<div class="login_sub_div_1">			
+					<input type="submit" id="login_btn_2" value="Login">
+				</div>
+				<div class="rememberID_Parent2">
+					<label class="rememberID_2">remember ID?</label>
+					<input class="rememberID_1" type="checkbox" >
+				</div>
 			</div>
-		</div>
+		</form>
 	</div>
 </div>

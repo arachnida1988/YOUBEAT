@@ -51,7 +51,7 @@
 				result = result + "</div></div>";
 				result = result + "<div class='cart_contents_div_2'>";
 				result = result + "<div class='contents_2_price_div'>";
-				result = result + '<input type="button" class="price_cart_add2" value="$'+$(this).prop("id")+'.00 ▼">';
+				result = result + '<input type="button" class="price_cart_add2" value="$'+$(this).prop("id")+'.00▼">';
 				result = result + "</div></div>";
 				result = result + "</div></div>";
 				$(this).find('.cart_add_div').css("background-color", "rgba( 0, 0, 0, 0.5)");

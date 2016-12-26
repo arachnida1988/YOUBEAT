@@ -22,12 +22,12 @@
 	<!-- Join_div 시작 -->
 	<div id="main_session">
 		<div id="join_session">
-			<form action="#" id="element">
+			<form action="memberJoin" method="post" id="element">
 				<!-- 메인타이틀 -->
 				<div class="title1">
 					<h1>CUSTOMIZE YOUR YOUBEAT EXPERIENCE</h1>
 					<span class="title1_1">Have a Youbeat ID?</span><br> 
-					<a href="/beat/member/memberLogin">Sign in here</a>
+					<a class="aaatag" href="/beat/member/memberLogin">Sign in here</a>
 					<h5>Welcome to YouBeat Please fill out the fields below:</h5>
 				</div>
 

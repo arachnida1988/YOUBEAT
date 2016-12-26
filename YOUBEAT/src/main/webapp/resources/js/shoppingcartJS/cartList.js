@@ -7,7 +7,7 @@ $(function(){
 		url : "cartMusicList",
 		post : "POST",
 		data : {
-			sid : $("#sid").val(),
+			sid : $("#memid").val(),
 			scategory : "music"
 		},
 		success : function(result) {
@@ -20,7 +20,7 @@ $(function(){
 		url : "cartAlbumList",
 		post : "POST",
 		data : {
-			sid : $("#sid").val(),
+			sid : $("#memid").val(),
 			scategory : "album"
 		},
 		success : function(result) {
@@ -33,7 +33,7 @@ $(function(){
 		url : "cartTotalPriceResult",
 		post : "POST",
 		data : {
-			sid : $("#sid").val(),
+			sid : $("#memid").val(),
 		},
 		success : function(result) {
 			$("#cart_totalprice_div").html(result);
@@ -55,10 +55,10 @@ $(function(){
 		var mnum = $(this).prop("id");
 		mnum = mnum.substring(2, mnum.length);
 		$.ajax({
-			url : "../shoppingcart/shoppingcartAdd",
+			url : "/beat/shoppingcart/shoppingcartAdd",
 			type : "POST",
 			data : {
-				sid : "hyoseok6341",
+				sid : $("#memid").val(),
 				scategory : "music",
 				scategorynum : mnum
 			},
@@ -79,7 +79,7 @@ $(function(){
 		// 아이디만 넘기기 !
 		// 나중에는 member session에서 꺼내와서 사용하기
 		// $("#sid").val() 삭제하기
-		var pid = $("#sid").val();
-		location.href="../payment/checkout?pid="+pid;
+		var pid = $("#memid").val();
+		location.href="/beat/payment/checkout?pid="+pid;
 	});
 });

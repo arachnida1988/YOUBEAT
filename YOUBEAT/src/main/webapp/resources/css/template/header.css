@@ -101,7 +101,7 @@
  margin-top: 60px;
  position: fixed;
  background-color: gray;
- z-index: 99;
+ z-index: 9999;
  }
  #headerT{
  	width: 1420px;
@@ -117,11 +117,12 @@
  }
  
  #login_windows{
- 	width: 25%;
+ 	width: 20%;
+ 	height: 170px;
  	display: none;
 	margin-top: 60px;
 	position: fixed;
-	margin-left:75%;
+	margin-left: 77%;
 	z-index: 99;
 }
 	

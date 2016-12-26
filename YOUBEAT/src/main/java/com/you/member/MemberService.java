@@ -26,16 +26,16 @@ public class MemberService {
 	
 	@Autowired
 	private MemberDAO memberDAO;
-	private int cfNumber = 0;	// ���� ��ȣ�� ���� ���� ó��
-	List<String> memids = null;	// �̸��Ϸ� ������ ID�� ����ִ� List
+	private int cfNumber = 0;	// 인증 번호를 위한 변수 처리
+	List<String> memids = null;	// 이메일로 보내줄 ID를 담고있는 List
 
-	// ID �ߺ��˻�
+	// ID 중복검사
 	public String memberIdCheck(String memid, Model model) {
-		int result = 0;	// ID üũ ����
+		int result = 0;	// ID 체크 변수
 		try {
-			// ID�� �ߺ��̸� �� ��
+			// ID가 중복이면 일 때
 			if(memid.equals(this.memberDAO.memberIdCheck(memid))) {
-				// 1�� ����
+				// 1로 세팅
 				result = 1;
 			}
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class MemberService {
 	public String memberJoin(MemberDTO memberDTO, Model model) {
 		int result = 0;
 		
-		// ȸ��ó�� ���� ���ֱ�
+		// 회원처리 세팅 해주기
 		memberDTO.setMemrating("member");
 		try {
 			result = this.memberDAO.memberJoin(memberDTO);
@@ -74,10 +74,10 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		if(memberDTO != null) {
-			message = "�α��� �Ϸ�!";
-			path = "redirect:/";
+			message = "로그인 완료!";
+			path = "home";
 		} else {
-			message = "ID�� PassWord�� ��ġ���� �ʽ��ϴ�.";
+			message = "ID나 PassWord가 일치하지 않습니다.";
 			path = "member/memberLogin";
 		}
 		model.addAttribute("message", message);
@@ -99,41 +99,41 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		if(result > 0) {
-			message = "ȸ�� Ż�� �Ϸ�";
+			message = "회원 탈퇴 완료";
 			path = "redirect:/";
 			session.invalidate();
 		} else {
-			message = "ȸ�� Ż�� ����";
+			message = "회원 탈퇴 실패";
 			path = "redirect:/member/memberView";
 		}
 		rd.addFlashAttribute("message", message);
 		return path;
 	}
 	
-	// �̸��Ϸ� ������ȣ �����ϴ� �޼���
+	// 이메일로 인증번호 전송하는 메서드
 	public String memberSendtoConfirmNumber(MemberDTO memberDTO, 
 			String type, Model model) {
-		int result = 0;			// SQL ������ �����
+		int result = 0;			// SQL 쿼리문 결과값
 		try {
-			// ������Ʈ �κп��� ��û��
+			// 업데이트 부분에서 요청시
 			if(type.equals("update")) {
-				// ID�� PW�� 
+				// ID와 PW로 
 				memberDTO = this.memberDAO.memberLogin(memberDTO);
-			// find �κп��� ��û��	
+			// find 부분에서 요청시	
 			} else if(type.equals("find")){
-				// ID�� E-MAIL
+				// ID와 E-MAIL
 				memberDTO = this.memberDAO.memberGetPassword(memberDTO);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// ȸ���� �����ϸ�
+		// 회원이 존재하면
 		if(memberDTO != null) {
 			String email = memberDTO.getMememail();
-            // ���� ������ �Լ�
+            // 메일 보내는 함수
             this.messageSendtoEmail(email, "requestNumber");
-            // ��� ó��
+            // 결과 처리
             result = 1;
 		}
 		model.addAttribute("result", result);
@@ -141,13 +141,13 @@ public class MemberService {
 	}
 	
 	// Update
-	// DAO 2�� ó���ϱ� ����..
+	// DAO 2번 처리하기 때문..
 	@Transactional
 	public String memberUpdate(MemberDTO memberDTO, Model model) {
 		int result = 0;
 		try {
 			result = this.memberDAO.memberUpdate(memberDTO);
-			// ID�� PW�� ���ؼ� �����;� ��..
+			// ID와 PW를 통해서 가져와야 함..
 			memberDTO = this.memberDAO.memberLogin(memberDTO);
 		} catch (Exception e) {
 			memberDTO = null;
@@ -158,28 +158,28 @@ public class MemberService {
 		return "member/memberResult";
 	}
 	
-	// Find id - �̸��Ϸ� ������
+	// Find id - 이메일로 보내기
 	public String memberIdSendtoEmail(String mememail, Model model) {
 		int result = 0;
 		try {
-			// �̸��� �����ϴ��� ���ϱ� ���ؼ�
+			// 이메일 존재하는지 비교하기 위해서
 			memids = this.memberDAO.memberIdSendtoEmail(mememail);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// ID�� �����ϸ�
+		// ID가 존재하면
 		if(memids != null) {
-            // ���� ������ �Լ�
+            // 메일 보내는 함수
             this.messageSendtoEmail(mememail, "memberID");
-            // ���ó��
+            // 결과처리
             result = 1;
 		}
         model.addAttribute("result", result);
         return "member/memberResult";
 	}
 	
-	// Find PW - ��й�ȣ ����
+	// Find PW - 비밀번호 보기
 	public String memberGetPassword(MemberDTO memberDTO, Model model) {
 		try {
 			memberDTO = this.memberDAO.memberGetPassword(memberDTO);
@@ -195,12 +195,12 @@ public class MemberService {
 		return "member/memberPasswordResult";
 	}
 	
-	// ��й�ȣ ����
+	// 비밀번호 변경
 	public String memberUpdatePassword(MemberDTO memberDTO, Model model) {
 		int result = 0;
 		try {
 			result = this.memberDAO.memberUpdatePassword(memberDTO);
-			// ID�� PW�� ���ؼ� �����;� ��..
+			// ID와 PW를 통해서 가져와야 함..
 			memberDTO = this.memberDAO.memberLogin(memberDTO);
 		} catch (Exception e) {
 			memberDTO = null;
@@ -211,60 +211,60 @@ public class MemberService {
 		return "member/memberResult";		
 	}
 	
-	// �̸��Ϸ� �����ϴ� �޼��� 
+	// 이메일로 전송하는 메서드 
 	public void messageSendtoEmail(String email, String type) {
         Properties p = System.getProperties();
-        p.put("mail.smtp.starttls.enable", "true");     // gmail�� ������ true ����
-        p.put("mail.smtp.host", "smtp.gmail.com");      // smtp ���� �ּ�
-        p.put("mail.smtp.auth","true");                 // gmail�� ������ true ����
-        p.put("mail.smtp.port", "587");                 // gmail ��Ʈ
+        p.put("mail.smtp.starttls.enable", "true");     // gmail은 무조건 true 고정
+        p.put("mail.smtp.host", "smtp.gmail.com");      // smtp 서버 주소
+        p.put("mail.smtp.auth","true");                 // gmail은 무조건 true 고정
+        p.put("mail.smtp.port", "587");                 // gmail 포트
         
         Authenticator auth = new MyAuthentication();   
-        //session ���� ��  MimeMessage����
+        //session 생성 및  MimeMessage생성
         Session session = Session.getDefaultInstance(p, auth);
         MimeMessage msg = new MimeMessage(session);
         
         try{
-            //���������ð�
+            //편지보낸시간
             msg.setSentDate(new Date());
              
             InternetAddress from = new InternetAddress();
             from = new InternetAddress("YOUBEAT<sendmailtest13@gmail.com>");
              
-            // �̸��� �߽���
+            // 이메일 발신자
             msg.setFrom(from);
              
-            // �̸��� ������
+            // 이메일 수신자
             InternetAddress to = new InternetAddress(email);
             msg.setRecipient(Message.RecipientType.TO, to);
             
-            // ���� ��ȣ�� ���
+            // 인증 번호의 경우
             if(type.equals("requestNumber")) {            	
-            	// �̸��� ����
-                // Random �Լ��� �̿��ؼ� 6�ڸ� ���� ��ȣ ������
+            	// 이메일 제목
+                // Random 함수를 이용해서 6자리 인증 번호 보내기
                 Random random = new Random();
                 cfNumber = random.nextInt(900000) + 100000;
-            	msg.setSubject("YOUBEAT���� ���� ������ȣ�Դϴ�.", "UTF-8");
-            	// �̸��� ���� 
-            	msg.setText("������ȣ : "+this.cfNumber, "UTF-8");
-            	System.out.println("�۽� ������ȣ : "+this.cfNumber);
+            	msg.setSubject("YOUBEAT에서 보낸 인증번호입니다.", "UTF-8");
+            	// 이메일 내용 
+            	msg.setText("인증번호 : "+this.cfNumber, "UTF-8");
+            	System.out.println("송신 인증번호 : "+this.cfNumber);
             	
-            // ȸ�� ID�� �ִ� ���	
+            // 회원 ID를 주는 경우	
             } else if(type.equals("memberID")) {
-                // ID �Ϻκ� secret *** ó���ϱ�
-                // ID�� ������ ������ �ֱ� ����
+                // ID 일부분 secret *** 처리하기
+                // ID가 여러개 있을수 있기 때문
                 String [] ids = new String[memids.size()];
-            	// ���̵� �������� ��츦 ó���ϱ� ���ؼ�
+            	// 아이디가 여러개인 경우를 처리하기 위해서
             	String sendids = "";
                 for(int i=0; i<memids.size(); i++) {
                 	ids[i] = "";
-                	// ���� ID�� ���� ���ϱ�
+                	// 현재 ID의 길이 구하기
                 	int id_length = memids.get(i).length();
-                	// ù��°�ڸ����� 4��° �ڸ����� ���ϱ�
+                	// 첫번째자리부터 4번째 자리까지 더하기
                 	ids[i] += memids.get(i).substring(0, id_length-6);
-                	// ***~ ó������ �ڸ��� ���� ���ϱ�
+                	// ***~ 처리해줄 자리의 길이 구하기
                 	int secretLength = memids.get(i).substring(id_length-5, id_length-1).length();
-                	// �ױ��̸�ŭ
+                	// 그길이만큼
                 	for(int j=0; j<secretLength; j++) {
                 		ids[i] += "*";
                 	}
@@ -276,15 +276,15 @@ public class MemberService {
                 		sendids += ids[i]+", ";
                 	}
                 }            	
-            	// �̸��� ����
-            	msg.setSubject("YOUBEAT���� ���� ȸ������ ID�Դϴ�.", "UTF-8");
-            	// �̸��� ���� 
-            	msg.setText("ȸ������ ID : "+sendids, "UTF-8");           	
+            	// 이메일 제목
+            	msg.setSubject("YOUBEAT에서 보낸 회원님의 ID입니다.", "UTF-8");
+            	// 이메일 내용 
+            	msg.setText("회원님의 ID : "+sendids, "UTF-8");           	
             }
-            // �̸��� ��� 
+            // 이메일 헤더 
             msg.setHeader("content-Type", "text/html");
              
-            //���Ϻ�����
+            //메일보내기
             javax.mail.Transport.send(msg);
         }catch (AddressException addr_e) {
             addr_e.printStackTrace();
@@ -293,32 +293,32 @@ public class MemberService {
         }				
 	}
 	
-	// ������ȣ Ȯ���� ���� �޼���
+	// 인증번호 확인을 위한 메서드
 	public String memberCheckNumber(int confirmNumber, Model model) {
 		int result = 0;
-		// ���� ��ȣ�� �´ٸ�
-		System.out.println("���� ������ȣ : "+confirmNumber);
+		// 인증 번호가 맞다면
+		System.out.println("수신 인증번호 : "+confirmNumber);
 		if(this.cfNumber == confirmNumber) {
-			result = 1;	// ������� 1�� �ְ�
+			result = 1;	// 결과값을 1로 주고
 		}
-		this.cfNumber = 0;	// 0���� �ʱ�ȭ
+		this.cfNumber = 0;	// 0으로 초기화
 		model.addAttribute("result", result);
 		return "member/memberResult";
 	}	
 	
-	// ������ �̸��� ���� ���� ���ִ� ���� Ŭ����
+	// 보내는 이메일 권한 설정 해주는 내부 클래스
 	class MyAuthentication extends Authenticator {      
 	    PasswordAuthentication pa;
 	    
 	    public MyAuthentication(){ 
-	        String id = "sendmailtest13";    // ���� ID
-	        String pw = "asdf94115";         // ���� ��й�ȣ
+	        String id = "sendmailtest13";    // 구글 ID
+	        String pw = "asdf94115";         // 구글 비밀번호
 	        
-	        // ID�� ��й�ȣ�� �Է��Ѵ�.
+	        // ID와 비밀번호를 입력한다.
 	        pa = new PasswordAuthentication(id, pw);
 	    }
 	 
-	    // �ý��ۿ��� ����ϴ� ��������
+	    // 시스템에서 사용하는 인증정보
 	    public PasswordAuthentication getPasswordAuthentication() {
 	        return pa;
 	    }

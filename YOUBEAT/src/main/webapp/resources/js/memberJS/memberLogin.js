@@ -11,13 +11,8 @@ $(function () {
 		alert(message);
 	}
 	
-	// 로그인 버튼
-	$("#login_btn").click(function() {
-		$("#loginfrm").submit();
-	});
-	
 	// ID 찾기 버튼
-	$("#find_id_btn").click(function(){
+	$(".find_id_btn").click(function(){
 		var scWidth = screen.availWidth;
 		var scHeight = screen.availHeight;
 		var left = (parseInt(scWidth)-400)/2;
@@ -27,7 +22,7 @@ $(function () {
 	});
 	
 	// PW 찾기 버튼
-	$("#find_pw_btn").click(function(){
+	$(".find_pw_btn").click(function(){
 		var scWidth = screen.availWidth;
 		var left = (parseInt(scWidth)-400)/2;
 		var newWindow = window.open("/beat/member/memberFindpwPopup", 

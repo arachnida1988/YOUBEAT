@@ -62,9 +62,6 @@ public class PaymentService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// -------- 나중에 지우기 --------
-		model.addAttribute("pid", paymentDTO.getPid());
-		// ----------------------------
 		model.addAttribute("musicList", musicList);
 		model.addAttribute("albumList", albumList);
 		model.addAttribute("albumPrice", albumPrice);

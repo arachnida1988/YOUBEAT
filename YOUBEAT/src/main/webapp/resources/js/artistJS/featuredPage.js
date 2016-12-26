@@ -26,7 +26,7 @@ $(function(){
 			result = result + "</div></div>";
 			result = result + "<div class='cart_contents_div_2'>";
 			result = result + "<div class='contents_2_price_div'>";
-			result = result + '<input type="button" class="price_cart_add2" id="newAnum2_'+newAnum+'" value="$'+$(this).prop("id")+'.00 ▼">';
+			result = result + '<input type="button" class="price_cart_add2" id="newAnum2_'+newAnum+'" value="$'+$(this).prop("id")+'.00▼">';
 			result = result + "</div></div>";
 			result = result + "</div></div>";
 			$(this).find('.cart_add_div').css("background-color", "rgba( 0, 0, 0, 0.5)");
@@ -64,10 +64,10 @@ $(function(){
 		var anum = $(this).prop("id");
 		anum = anum.substring(5,anum.length);
 		$.ajax({
-			url : "../shoppingcart/shoppingcartAdd",
+			url : "/beat/shoppingcart/shoppingcartAdd",
 			type : "POST",
 			data : {
-				sid : "hyoseok6341",
+				sid : $("#memid").val(),
 				scategory : "album",
 				scategorynum : anum
 			},
@@ -89,10 +89,10 @@ $(document).on("click", ".price_cart_add2", function(){
 	var anum = $(".price_cart_add2").prop("id");
 	anum = anum.substring(9, anum.length);
 	$.ajax({
-		url : "../shoppingcart/shoppingcartAdd",
+		url : "/beat/shoppingcart/shoppingcartAdd",
 		type : "POST",
 		data : {
-			sid : "hyoseok6341",
+			sid : $("#memid").val(),
 			scategory : "album",
 			scategorynum : anum
 		},
