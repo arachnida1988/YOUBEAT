@@ -276,7 +276,7 @@ button.content-switch:hover {
 }
 
 button.content-switch::before {
-	content: '\e097';
+	/*content: '\e097';
 	font-family: 'feathericons';
 	speak: none;
 	position: absolute;
@@ -287,14 +287,15 @@ button.content-switch::before {
 	font-size: 1.5em;
 	line-height: 0.75;
 	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale;*/
 }
 
 .show-content .current button.content-switch {
+	/* 메인 슬라이드 버튼 클릭후 변경
 	border-color: #c5d3d6;
 	color: #c5d3d6;
 	-webkit-transform: translate3d(-50%,100%,0);
-	transform: translate3d(-50%,100%,0);
+	transform: translate3d(-50%,100%,0);*/
 }
 
 .show-content .current button.content-switch::before {

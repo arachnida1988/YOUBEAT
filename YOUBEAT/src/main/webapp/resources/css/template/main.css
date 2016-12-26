@@ -1,16 +1,13 @@
 @CHARSET "UTF-8";
-#body{
-	width: 100%;
-	background-color: gray;
-	font-size: 10px;
-}
 #t{
  	margin: 0 auto;
 	width: 90%;
+	border: red 1px solid;
 }	
-td{
+#t td{
  	padding: 0px;
  	padding-top: 0px;
+ 	border: red 1px solid;
 }
 .side{
 	width: 30%; 
