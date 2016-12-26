@@ -57,7 +57,7 @@ $(document).ready(function(){
 </head>
 
 <div id="header2">
-	<div id="logo"><a href="youbeat">LOGO</a></div>
+	<div id="logo"><a href="mainSlideTest">LOGO</a></div>
 	<div id="genre"><a href="">GENRES</a></div>
 	<div id="track"><a href="tracks">TRACKS</a></div>
 	<div id="album"><a href="album">ALBUMS</a></div>
