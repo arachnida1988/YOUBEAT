@@ -3,4 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="PaymentMapper">
+	<!-- 결제 부분 저장 -->
+	<insert id="paymentAdd" parameterType="com.you.payment.PaymentDTO">
+		<![CDATA[
+			insert into payment values
+			(payment_seq.nextval, #{pid}, #{pprice}, sysdate,
+			#{pcategory}, #{pcategorynum}, #{pcardtype}, #{pname})
+		]]>	
+	</insert>
 </mapper>

@@ -95,6 +95,7 @@ public class ShoppingcartService {
 		return "shoppingcart/shoppingcartResult";
 	}
 	// 장바구니 목록에서 삭제
+	@Transactional
 	public String shoppingcartDelete(ShoppingcartDTO shoppingcartDTO, Model model,
 			String strSnum) {
 		String path = "";
@@ -119,6 +120,7 @@ public class ShoppingcartService {
 	}
 	
 	// 장바구니 페이지
+	@Transactional
 	public String cartList(ShoppingcartDTO shoppingcartDTO, Model model) {
 		List<MusicDTO> rdMusics = null;
 		List<AlbumDTO> rdAlbums = null;
@@ -201,7 +203,9 @@ public class ShoppingcartService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// ---------- 없어도 되는 부분 ----------
 		model.addAttribute("sid", shoppingcartDTO.getSid());
+		// --------------------------------
 		model.addAttribute("nullCheck", nullCheck);
 		model.addAttribute("rdMusics", rdMusics);
 		model.addAttribute("rdAlbums", rdAlbums);
@@ -210,6 +214,7 @@ public class ShoppingcartService {
 	}
 	
 	// AJAX 요청 부분 - 장바구니의 음악 리스트
+	@Transactional
 	public String cartMusicList(ShoppingcartDTO shoppingcartDTO, Model model) {
 		List<ShoppingcartDTO> cartMusics = null;
 		List<MusicDTO> musicList = null;
@@ -264,6 +269,7 @@ public class ShoppingcartService {
 	}
 	
 	// AJAX 요청 부분 - 장바구니의 앨범 리스트
+	@Transactional
 	public String cartAlbumList(ShoppingcartDTO shoppingcartDTO, Model model) {
 		List<ShoppingcartDTO> cartAlbums = null;
 		List<AlbumDTO> albumList = null;
@@ -325,6 +331,7 @@ public class ShoppingcartService {
 	
 	
 	// AJAX 요청 부분 - 장바구니의 앨범, 음악의 총 가격 얻어오기
+	@Transactional
 	public String cartTotalPriceResult(ShoppingcartDTO shoppingcartDTO, Model model) {
 		List<ShoppingcartDTO> cartMusics = null;
 		List<ShoppingcartDTO> cartAlbums = null;

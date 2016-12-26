@@ -10,6 +10,7 @@ public class PaymentDTO {
 	private String pcategory;
 	private int pcategorynum;
 	private String pcardtype;
+	private String pname;
 	
 	public int getPnum() {
 		return pnum;
@@ -52,5 +53,11 @@ public class PaymentDTO {
 	}
 	public void setPcardtype(String pcardtype) {
 		this.pcardtype = pcardtype;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 }
