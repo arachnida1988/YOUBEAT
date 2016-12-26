@@ -14,9 +14,9 @@
 		<c:import url="../template/header.jsp"></c:import>
 	</div>
 	<div id="checkoutPage_div">
-		<br><br><br>
+		<br><br><br><br>
 		<div id="checkoutPage_main_div">
-			<h1 class="h_tag_1">EDIT BILLING INFO</h1>
+			<h1>EDIT BILLING INFO</h1>
 		</div>
 		<div id="checkoutPage_backbtn_div">
 			<input type="button" id="back_btn" value="BACK TO CART">

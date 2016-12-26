@@ -1,6 +1,10 @@
 package com.you.beat;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,10 +52,17 @@ public class ShoppingcartController {
 		return this.scService.cartAlbumList(shoppingcartDTO, model);
 	}
 	
-	
 	// AJAX 요청 부분 - 장바구니의 앨범, 음악의 총 가격 얻어오기
 	@RequestMapping(value="/cartTotalPriceResult", method = {RequestMethod.GET, RequestMethod.POST})
 	public String cartTotalPriceResult(ShoppingcartDTO shoppingcartDTO, Model model) {
 		return this.scService.cartTotalPriceResult(shoppingcartDTO, model);
+	}
+	
+	// JSON 처리
+	@RequestMapping(value="/checkingCartInfo", method = RequestMethod.GET)
+	public ResponseEntity<List<ShoppingcartDTO>> checkingCartInfo(ShoppingcartDTO shoppingcartDTO) {
+		List<ShoppingcartDTO> checkingInfo = this.scService.checkingCartInfo(shoppingcartDTO);
+		// 정상적인 처리로 보내겠다.
+		return new ResponseEntity<List<ShoppingcartDTO>>(checkingInfo, HttpStatus.OK);
 	}
 }

@@ -125,91 +125,107 @@ public class ShoppingcartService {
 		List<MusicDTO> rdMusics = null;
 		List<AlbumDTO> rdAlbums = null;
 		List<FileupDTO> rdImgs = null;
-		int nullCheck = 0;
+		List<MusicDTO> mGenreList = null;
+		List<String> aGenreList = null;
+		int nullCheck_1 = 0;
+		int nullCheck_2 = 0;
 		try {
 			// 1. SID, MUSIC으로 리스트 호출
 			shoppingcartDTO.setScategory("music");
 			List<ShoppingcartDTO> cMusics = this.scDAO.shoppingcartList(shoppingcartDTO);
-			// 1-1. 음악 번호로 장르 가져오기 - 코드 재사용( 음악 정보 가져오는 DAO를 호출 하겠다. )
-			// 원래는 그냥 MusicDTO인데 장르만 사용할것이기 때문에 mGenreList라고 변수 선언
-			List<MusicDTO> mGenreList = new ArrayList<>();
-			// MusicDAO부분이 하나씩 꺼내오는 부분이라서 이렇게 해야하는점.
-			for(ShoppingcartDTO musics : cMusics) {
-				// 원래는 그냥 MusicDTO인데 장르만 사용할것이기 때문에 헷갈리지 않게 mGenre라고 선언
-				MusicDTO mGenre = this.musicDAO.musicView_cart(musics.getScategorynum());
-				mGenreList.add(mGenre);
+			if(!cMusics.isEmpty()) {
+				nullCheck_1 = 1;
+			}
+			if(nullCheck_1 == 1) {
+				// 1-1. 음악 번호로 장르 가져오기 - 코드 재사용( 음악 정보 가져오는 DAO를 호출 하겠다. )
+				// 원래는 그냥 MusicDTO인데 장르만 사용할것이기 때문에 mGenreList라고 변수 선언
+				mGenreList = new ArrayList<>();
+				// MusicDAO부분이 하나씩 꺼내오는 부분이라서 이렇게 해야하는점.
+				for(ShoppingcartDTO musics : cMusics) {
+					// 원래는 그냥 MusicDTO인데 장르만 사용할것이기 때문에 헷갈리지 않게 mGenre라고 선언
+					MusicDTO mGenre = this.musicDAO.musicView_cart(musics.getScategorynum());
+					mGenreList.add(mGenre);
+				}
 			}
 			// 2. SID, ALBUM으로 리스트 호출
 			shoppingcartDTO.setScategory("album");
 			List<ShoppingcartDTO> cAlbums = this.scDAO.shoppingcartList(shoppingcartDTO);
-			// 2-1. 앨범 번호로 장르 가져오기
-			List<String> aGenreList = new ArrayList<>();
-			// MusicDAO부분이 하나씩 꺼내오는 부분이라서 이렇게 해야하는점.
-			for(ShoppingcartDTO albums : cAlbums) {
-				String aGenre = this.musicDAO.getGenreAndPriceOfMusic2(albums.getScategorynum());
-				aGenreList.add(aGenre);
+			if(!cAlbums.isEmpty()) {
+				nullCheck_2 = 1;
 			}
-			// 3. 장바구니에 많이 들어있는 장르를 파악 (제일 중요 - 어떻게 해야할지 생각..)
-			// 3-1. MUSIC에서 존재하는 총 장르를 가져와서 비교???
-			List<String> allGenre = this.musicDAO.getTotalGenreList();
-			int [] genreCounts = new int[allGenre.size()];
-			for(int i=0; i<genreCounts.length; i++) {
-				// 음악 부분 
-				for(MusicDTO mGenre : mGenreList) {
-					// 장르가 매치가 되면
-					if(allGenre.get(i).equals(mGenre.getMgenre())) {
-						// 해당되는 count값 증가
-						genreCounts[i]++;
+			if(nullCheck_2 == 1) { 	
+				// 2-1. 앨범 번호로 장르 가져오기
+				aGenreList = new ArrayList<>();
+				// MusicDAO부분이 하나씩 꺼내오는 부분이라서 이렇게 해야하는점.
+				for(ShoppingcartDTO albums : cAlbums) {
+					String aGenre = this.musicDAO.getGenreAndPriceOfMusic2(albums.getScategorynum());
+					aGenreList.add(aGenre);
+				}
+				// 3. 장바구니에 많이 들어있는 장르를 파악 (제일 중요 - 어떻게 해야할지 생각..)
+				// 3-1. MUSIC에서 존재하는 총 장르를 가져와서 비교???
+				List<String> allGenre = this.musicDAO.getTotalGenreList();
+				int [] genreCounts = new int[allGenre.size()];
+				for(int i=0; i<genreCounts.length; i++) {
+					// 음악 부분 
+					for(MusicDTO mGenre : mGenreList) {
+						// 장르가 매치가 되면
+						if(allGenre.get(i).equals(mGenre.getMgenre())) {
+							// 해당되는 count값 증가
+							genreCounts[i]++;
+						}
+					}
+					// 앨범 부분
+					for(String aGenre : aGenreList) {
+						// 장르가 매치가 되면
+						if(allGenre.get(i).equals(aGenre.toString())) {
+							// 해당되는 count값 증가
+							genreCounts[i]++;
+						}
 					}
 				}
-				// 앨범 부분
-				for(String aGenre : aGenreList) {
-					// 장르가 매치가 되면
-					if(allGenre.get(i).equals(aGenre.toString())) {
-						// 해당되는 count값 증가
-						genreCounts[i]++;
+				// 3-2. 최대값 구하기
+				int maxCount = genreCounts[0];
+				int maxIndex = 0;
+				for(int i=0; i<genreCounts.length; i++) {
+					if(maxCount < genreCounts[i]) {
+						maxCount = genreCounts[i];
+						maxIndex = i;
 					}
 				}
-			}
-			// 3-2. 최대값 구하기
-			int maxCount = genreCounts[0];
-			int maxIndex = 0;
-			for(int i=0; i<genreCounts.length; i++) {
-				if(maxCount < genreCounts[i]) {
-					maxCount = genreCounts[i];
-					maxIndex = i;
+				// 4. 그 장르에 맞는 MUSIC 20개 뽑아오기 최근 날짜 순으로..
+				// 4-1. PageMaker필요.. perPage=20
+				String maxGenre = allGenre.get(maxIndex);
+				PageMaker pageMaker = new PageMaker();
+				pageMaker.setCurPage(1);
+				pageMaker.setPerPage(20);
+				pageMaker.makeRow();
+				rdMusics = this.musicDAO.musicList_map(maxGenre, pageMaker);
+				pageMaker.makePage(rdMusics.size());
+				// 5. 앨범 정보 가져오기
+				rdAlbums = new ArrayList<>();
+				for(MusicDTO m : rdMusics) {
+					AlbumDTO album = this.AlbumDAO.albumView(m.getAnum());
+					rdAlbums.add(album);
 				}
-			}
-			// 4. 그 장르에 맞는 MUSIC 20개 뽑아오기 최근 날짜 순으로..
-			// 4-1. PageMaker필요.. perPage=20
-			String maxGenre = allGenre.get(maxIndex);
-			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCurPage(1);
-			pageMaker.setPerPage(20);
-			pageMaker.makeRow();
-			rdMusics = this.musicDAO.musicList_map(maxGenre, pageMaker);
-			pageMaker.makePage(rdMusics.size());
-			// 5. 앨범 정보 가져오기
-			rdAlbums = new ArrayList<>();
-			for(MusicDTO m : rdMusics) {
-				AlbumDTO album = this.AlbumDAO.albumView(m.getAnum());
-				rdAlbums.add(album);
-			}
-			// 6. 이미지 가져오기
-			rdImgs = this.fileupDAO.fileupAlbumList(rdAlbums);
-			if(rdImgs != null) {
-				nullCheck = 1;
-			}
+				// 6. 이미지 가져오기
+				rdImgs = this.fileupDAO.fileupAlbumList(rdAlbums);
+			}	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		// ---------- 없어도 되는 부분 ----------
-		model.addAttribute("sid", shoppingcartDTO.getSid());
-		// --------------------------------
-		model.addAttribute("nullCheck", nullCheck);
-		model.addAttribute("rdMusics", rdMusics);
-		model.addAttribute("rdAlbums", rdAlbums);
-		model.addAttribute("rdImgs", rdImgs);
+		if(nullCheck_1 == 0 && nullCheck_2 == 0 ) {	
+			System.out.println("empty!");
+			model.addAttribute("result", 0);
+		} else {
+			System.out.println("good!");
+			// ---------- 없어도 되는 부분 ----------
+			model.addAttribute("sid", shoppingcartDTO.getSid());
+			// --------------------------------
+			model.addAttribute("result", 1);
+			model.addAttribute("rdMusics", rdMusics);
+			model.addAttribute("rdAlbums", rdAlbums);
+			model.addAttribute("rdImgs", rdImgs);
+		}
 		return "shoppingcart/cartList";
 	}
 	
@@ -377,5 +393,16 @@ public class ShoppingcartService {
 		model.addAttribute("check", check);
 		model.addAttribute("totalPrice", totalPrice);
 		return "shoppingcart/cartTotalPriceResult";
+	}
+	
+	// 장바구니에 있는 목록들을 통해 버튼 비활성화 처리 - music
+	public List<ShoppingcartDTO> checkingCartInfo(ShoppingcartDTO shoppingcartDTO) {
+		List<ShoppingcartDTO> checkingInfo = null;
+		try {
+			checkingInfo = this.scDAO.shoppingcartList(shoppingcartDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return checkingInfo;
 	}
 }

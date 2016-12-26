@@ -19,17 +19,30 @@
 		<c:import url="../template/header.jsp"></c:import>
 	</div>
 	<div id="cartlist_div">
-		<br><br><br>
+		<br><br><br><br>
 		<div id="cartlist_main_div">
-			<h1 class="h_tag_1">MAIN CART</h1>
+			<h1>MAIN CART</h1>
 		</div>
 		<!-- 장바구니에 아무것도 없을 경우 -->
-		<c:if test="${ nullCheck eq 0 }">
-			<div id="empty_cart_img_div"></div>
-			<div id="empty_cart_info_div"></div>
+		<c:if test="${ result eq 0 }">
+			<br>
+			<div id="empty_cart_div">
+				<div id="empty_cart_img_div">
+					<img src="/beat/resources/image/shoppingcart/cart_img_1.PNG">
+				</div>
+				<div id="empty_cart_info_div">
+					<br>
+					<h3 id="h_tag_2">YOUR SHOPPING CART IS EMPTY!</h3>
+					<br>
+					<p class="ppp_tag">Your shopping cart is ready and waiting. Click any of the pink buy buttons throughout the site to add items to your cart.</p>
+					<p class="ppp_tag">Come back here when you're ready to check out.</p>
+					<p class="ppp_tag"><span>Start shopping from the </span><span class="spannnn_1">HOMEPAGE</span></p>
+					<p class="ppp_tag"><span>See items you've saved in your </span><span class="spannnn_1">HOLD BIN</span></p>
+				</div>
+			</div>
 		</c:if>
 		<!-- 장바구니에 있을 경우에만 실행 -->
-		<c:if test="${ nullCheck eq 1 }">
+		<c:if test="${ result eq 1 }">
 			<div id="cartlist_contents_div">
 				<div id="cart_music_div">
 					<!-- AJAX 결과 처리 부분 -->

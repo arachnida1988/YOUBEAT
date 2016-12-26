@@ -9,16 +9,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/beat/resources/js/memberJS/memberJoin.js"></script>
 <link rel="stylesheet" type="text/css" href="/beat/resources/css/member/memberJoin.css">
-<style type="text/css">
-.join_text{
-	font: 24px SUNN;
-}
-.agree{
-	font:20px SUNN;
-	color: green;
-}
-</style>
-
 </head>
 <body>
 	<div>
@@ -36,17 +26,10 @@
 				<!-- 메인타이틀 -->
 				<div class="title1">
 					<h1>CUSTOMIZE YOUR YOUBEAT EXPERIENCE</h1>
-				</div>
-				<!-- 오른쪽 sign타이틀 -->
-				<div class="title2">
-					<span class="title2_1">Have a Youbeat ID?</span><br> 
-						<a href="/beat/member/memberLogin">Sign in here</a>
-				</div>
-				<!-- 맨 아래 3번째 타이틀 -->
-				<div class="title3">
+					<span class="title1_1">Have a Youbeat ID?</span><br> 
+					<a href="/beat/member/memberLogin">Sign in here</a>
 					<h5>Welcome to YouBeat Please fill out the fields below:</h5>
 				</div>
-
 
 				<!-- ID -->
 				<div class="member_join">
@@ -103,11 +86,10 @@
 				</div>
 				<div id="join_button">
 					<input type="button" id="submit_btn" value="CreateAccount"><br>
-					</div>
-				<div class="last_message">
-					<h4>By click this button you agree to the YOUBEAT Terms Of Korea</h4>
 				</div>
-
+				<div class="last_message">
+					<h4 class="h_tag_1">By click this button you agree to the YOUBEAT Terms Of Korea</h4>
+				</div>
 			</form>
 		</div>
 	</div>

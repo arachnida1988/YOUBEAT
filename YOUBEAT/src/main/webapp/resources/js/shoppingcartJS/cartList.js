@@ -54,7 +54,24 @@ $(function(){
 	$(".add_cart_btn").click(function(){
 		var mnum = $(this).prop("id");
 		mnum = mnum.substring(2, mnum.length);
-		alert(mnum);
+		$.ajax({
+			url : "../shoppingcart/shoppingcartAdd",
+			type : "POST",
+			data : {
+				sid : "hyoseok6341",
+				scategory : "music",
+				scategorynum : mnum
+			},
+			success : function(result) {
+				if(result == 0) {
+					alert("오류! 관리자에게 문의하세요");
+				} else if (result == 1){
+					alert("장바구니 등록!");
+				} else if (result == 2) {
+					alert("이미 장바구니에 존재합니다");
+				}
+			}
+		});
 	});
 	
 	// 결제 페이지 이동

@@ -7,10 +7,10 @@
 		<span class="sub_4" id="sub_5">$${ totalPrice }.00</span><br>
 		<span class="sub_3">
 			TAXES : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</span>
 		<span class="sub_4" id="sub_6">$0.00</span><br>
-		<span class="sub_3">GRAND TOTAL : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span class="sub_3">GRAND TOTAL : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		<span class="sub_4" id="sub_7">$${ totalPrice }.00</span>
 		<input type="hidden" id="totalPrice" value="${ totalPrice }">
 	</div>
