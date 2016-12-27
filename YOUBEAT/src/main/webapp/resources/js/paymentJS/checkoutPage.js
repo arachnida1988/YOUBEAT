@@ -53,4 +53,10 @@ $(function(){
 			alert("모든 정보를 입력하세요");
 		}
 	});
+	
+	$("#back_btn").click(function(){
+		alert("!@#");
+		var sid = $("#memid").val();
+		location.href="/beat/shoppingcart/cartList?sid="+sid;
+	});
 });

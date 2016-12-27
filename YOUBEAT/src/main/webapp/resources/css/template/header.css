@@ -84,13 +84,19 @@
  float: right;
  margin-right: 30px;
  }
- #logout{
+
+ #view {
  width: 4%;
  height: 60px;
  float: right;
  margin-right: 30px;
  }
  #basket{
+ width: 4%;
+ height: 60px;
+ float: right;
+ }
+ #logout{
  width: 4%;
  height: 60px;
  float: right;

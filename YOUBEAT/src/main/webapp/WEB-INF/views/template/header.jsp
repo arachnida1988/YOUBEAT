@@ -22,6 +22,11 @@
 #simplemodal-overlay {
 	background-color:#000;
 }
+
+.header_img_img_1 {
+	width: 70%;
+	height: 70%;
+}
 </style>
 
 <script>
@@ -57,19 +62,27 @@ $(document).ready(function(){
 </head>
 
 <div id="header2">
-	<div id="logo"><a href="mainSlideTest">LOGO</a></div>
+	<div id="logo"><a href="/beat/header/mainSlideTest">LOGO</a></div>
 	<div id="genre"><a href="">GENRES</a></div>
-	<div id="track"><a href="tracks">TRACKS</a></div>
-	<div id="album"><a href="album">ALBUMS</a></div>
-	<div id="artist"><a href="artist">ARTISTS</a></div>
+	<div id="track"><a href="/beat/header/tracks">TRACKS</a></div>
+	<div id="album"><a href="/beat/header/album">ALBUMS</a></div>
+	<div id="artist"><a href="/beat/header/artist">ARTISTS</a></div>
 	<div id="scform">
 		<button id="scbtn" style="height: 30px; font-size: 10px;">search<img alt="" src="" ></button>
 		<input type="text" id="sc" name="sc" height="50px" size="30" style="height: 23px;">
 	</div>
 	<!-- 로그인 -->
 	<c:if test="${ member ne null }">
-		<div id="join"><a href="/beat/member/memberView">INFO</a></div>
-		<div id="basket"><a href="/beat/shoppingcart/cartList?sid=${ member.memid }">BASKET</a></div>
+		<div id="view">
+			<a href="/beat/member/memberView">
+				<img class="header_img_img_1" src="/beat/resources/image/slider_main/mem_info.PNG">
+			</a>
+		</div>
+		<div id="basket">
+			<a href="/beat/shoppingcart/cartList?sid=${ member.memid }">
+				<img class="header_img_img_1" src="/beat/resources/image/slider_main/cart_basket_img.PNG">
+			</a>
+		</div>
 		<div id="logout"><a href="/beat/member/memberLogout">LOGOUT</a></div>
 		<input type="hidden" id="memid" value="${ member.memid }">
 	</c:if> 
@@ -103,9 +116,7 @@ $(document).ready(function(){
 			<td><a href="">장르12</a></td>
 		</tr>
 	</table>
-
 	<input type="hidden" id="message" value="${ message }">
-
 </div>
 <div id="login_windows">
 	<div class="title2">

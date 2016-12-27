@@ -75,7 +75,7 @@ public class MemberService {
 		}
 		if(memberDTO != null) {
 			message = "로그인 완료!";
-			path = "home";
+			path = "template/youbeat";
 		} else {
 			message = "ID나 PassWord가 일치하지 않습니다.";
 			path = "member/memberLogin";

@@ -1,13 +1,21 @@
 @CHARSET "UTF-8";
+
+#main_body {
+	background-color: gray;
+}
+
+table {
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
 #t{
  	margin: 0 auto;
 	width: 90%;
-	border: red 1px solid;
 }	
 #t td{
  	padding: 0px;
  	padding-top: 0px;
- 	border: red 1px solid;
 }
 .side{
 	width: 30%; 

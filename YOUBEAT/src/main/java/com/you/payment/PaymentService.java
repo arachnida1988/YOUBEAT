@@ -85,12 +85,6 @@ public class PaymentService {
 			for(ShoppingcartDTO sc : cartMusic) {
 				paymentDTO.setPcategory("music");
 				paymentDTO.setPcategorynum(sc.getScategorynum());
-				System.out.println(paymentDTO.getPid());
-				System.out.println(paymentDTO.getPprice());
-				System.out.println(paymentDTO.getPcategory());
-				System.out.println(paymentDTO.getPcategorynum());
-				System.out.println(paymentDTO.getPcardtype());
-				System.out.println(paymentDTO.getPname());
 				// 결제 DB에 저장
 				result = this.paymentDAO.paymentAdd(paymentDTO);
 				// 장바구니 부분에서 삭제
@@ -112,8 +106,8 @@ public class PaymentService {
 			e.printStackTrace();
 		}
 		if(result > 0) {
-			message = "결제 완료 !";
-			path = "payment/checkoutResultPage";
+			message = "결제 완료.. 회원 정보에서 구매 내역을 확인하세요!";
+			path = "template/youbeat";
 		} else {
 			message = "결제 실패..다시 시도해주세요";
 			path = "redirect:/payment/checkoutPage";

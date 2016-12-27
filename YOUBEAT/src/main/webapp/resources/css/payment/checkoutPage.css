@@ -220,7 +220,8 @@ td {
 #info_price_div {
 	width: 95%;
 	height: auto;
-	margin: 0 auto; 
+	margin: 0 auto;
+	margin-top: 10px; 
 }
 
 #totalPrice_1 {

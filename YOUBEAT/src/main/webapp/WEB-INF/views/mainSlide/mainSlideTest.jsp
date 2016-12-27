@@ -1,51 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-  		<link href="/beat/resources/css/template/main.css" rel="stylesheet" type="text/css">
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>Final Project first-team "YOUBEAT"</title>
-		<!-- <meta name="description" content="Draggable Dual-View Slideshow: A Slideshow with two views and content area" /> -->
-		<!-- <meta name="keywords" content="draggable, slideshow, fullscreen, carousel, views, zoomed, 3d transform, perspective, dragdealer" /> -->
-		<meta name="author" content="Codrops" />
-		<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
-		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:900,400|Lato:300,400,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="/beat/resources/css/mainSlide/component.css?ver=1" />
-  		<script src="/beat/resources/js/mainSlideJS/modernizr.custom.js?ver=1"></script>
-  		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js?ver=1"></script>
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?ver=1"></script>
-  		
- <style type="text/css">
- 	.tname{
- 		font-size: 5px;
- 		text-align: center;
- 	}
- 	.content{
- 		background-color: black;
- 	}
- 
- 	
- </style>
-  		
- <script type="text/javascript">
-$(document).ready(function(){
-	$(".ss").mouseover(function(){
-	  $(this).find(".price").show();
+<link href="/beat/resources/css/template/main.css" rel="stylesheet"
+	type="text/css">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Project first-team "YOUBEAT"</title>
+<!-- <meta name="description" content="Draggable Dual-View Slideshow: A Slideshow with two views and content area" /> -->
+<!-- <meta name="keywords" content="draggable, slideshow, fullscreen, carousel, views, zoomed, 3d transform, perspective, dragdealer" /> -->
+<meta name="author" content="Codrops" />
+<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
+<link
+	href='http://fonts.googleapis.com/css?family=Playfair+Display:900,400|Lato:300,400,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css"
+	href="/beat/resources/css/mainSlide/component.css?ver=1" />
+<script src="/beat/resources/js/mainSlideJS/modernizr.custom.js?ver=1"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js?ver=1"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js?ver=1"></script>
+
+<style type="text/css">
+.tname {
+	font-size: 5px;
+	text-align: center;
+}
+
+.content {
+	background-color: black;
+}
+
+#page_move_youbeat {
+	border: 2px solid white;
+	background: transparent;
+	width: 160px;
+	height: 50px;
+	z-index: 6666;
+	opacity: 0.7;
+	top: 60%;
+	left: 55%;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: 'Lato', sans-serif;
+	position: absolute;
+}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".ss").mouseover(function() {
+			$(this).find(".price").show();
+		});
+		$(".ss").mouseout(function() {
+			$(this).find(".price").hide();
+		});
+		$(".objectT").mouseover(function() {
+			$(this).find(".object_price").show();
+		});
+		$(".objectT").mouseout(function() {
+			$(this).find(".object_price").hide();
+		});
+
+		$("#page_move_youbeat").click(function() {
+			location.href = "/beat/template/youbeat";
+		});
 	});
-	$(".ss").mouseout(function(){
-	  $(this).find(".price").hide();
-	});
-	$(".objectT").mouseover(function(){
-        $(this).find(".object_price").show();
-    });
-    $(".objectT").mouseout(function(){
-    	$(this).find(".object_price").hide();
-    });
-});
 </script>
 </head>
 
@@ -76,7 +101,7 @@ $(document).ready(function(){
 						YOUBEAT<span><br>Final Project FirstTeam<br>
 							Music Striming Site : YOUBEAT</span>
 					</h2>
-					<button class="content-switch">Read more</button>
+					<button id="page_move_youbeat">GO YOUBEAT</button>
 				</div>
 			</div>
 
@@ -367,51 +392,50 @@ $(document).ready(function(){
 </div>
 <!-- /container -->
 <script src="/beat/resources/js/mainSlideJS/dragdealer.js"></script>
-		<script src="/beat/resources/js/mainSlideJS/classie.js"></script>
-		<script src="/beat/resources/js/mainSlideJS/dragslideshow.js"></script>
-		<script>
-			(function() {
-				var overlay = document.getElementById( 'overlay' ),
-					overlayClose = overlay.querySelector( 'button' ),
-					header = document.getElementById( 'header' )
-					switchBtnn = header.querySelector( 'button.slider-switch' ),
-					toggleBtnn = function() {
-						if( slideshow.isFullscreen ) {
-							classie.add( switchBtnn, 'view-maxi' );
-						}
-						else {
-							classie.remove( switchBtnn, 'view-maxi' );
-						}
-					},
-					toggleCtrls = function() {
-						if( !slideshow.isContent ) {
-							classie.add( header, 'hide' );
-						}
-					},
-					toggleCompleteCtrls = function() {
-						if( !slideshow.isContent ) {
-							classie.remove( header, 'hide' );
-						}
-					},
-					slideshow = new DragSlideshow( document.getElementById( 'slideshow' ), { 
-						// toggle between fullscreen and minimized slideshow
-						onToggle : toggleBtnn,
-						// toggle the main image and the content view
-						onToggleContent : toggleCtrls,
-						// toggle the main image and the content view (triggered after the animation ends)
-						onToggleContentComplete : toggleCompleteCtrls
-					}),
-					toggleSlideshow = function() {
-						slideshow.toggle();
-						toggleBtnn();
-					},
-					closeOverlay = function() {
-						classie.add( overlay, 'hide' );
-					};
-				// toggle between fullscreen and small slideshow
-				switchBtnn.addEventListener( 'click', toggleSlideshow );
-				// close overlay
-				overlayClose.addEventListener( 'click', closeOverlay );
-			}());
-		</script>
+<script src="/beat/resources/js/mainSlideJS/classie.js"></script>
+<script src="/beat/resources/js/mainSlideJS/dragslideshow.js"></script>
+<script>
+	(function() {
+		var overlay = document.getElementById('overlay'),
+			overlayClose = overlay.querySelector('button'),
+			header = document.getElementById('header')
+		switchBtnn = header.querySelector('button.slider-switch'),
+		toggleBtnn = function() {
+			if (slideshow.isFullscreen) {
+				classie.add(switchBtnn, 'view-maxi');
+			} else {
+				classie.remove(switchBtnn, 'view-maxi');
+			}
+		},
+		toggleCtrls = function() {
+			if (!slideshow.isContent) {
+				classie.add(header, 'hide');
+			}
+		},
+		toggleCompleteCtrls = function() {
+			if (!slideshow.isContent) {
+				classie.remove(header, 'hide');
+			}
+		},
+		slideshow = new DragSlideshow(document.getElementById('slideshow'), {
+			// toggle between fullscreen and minimized slideshow
+			onToggle : toggleBtnn,
+			// toggle the main image and the content view
+			onToggleContent : toggleCtrls,
+			// toggle the main image and the content view (triggered after the animation ends)
+			onToggleContentComplete : toggleCompleteCtrls
+		}),
+		toggleSlideshow = function() {
+			slideshow.toggle();
+			toggleBtnn();
+		},
+		closeOverlay = function() {
+			classie.add(overlay, 'hide');
+		};
+		// toggle between fullscreen and small slideshow
+		switchBtnn.addEventListener('click', toggleSlideshow);
+		// close overlay
+		overlayClose.addEventListener('click', closeOverlay);
+	}());
+</script>
 </html>
