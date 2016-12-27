@@ -63,6 +63,41 @@ $(function(){
 	$(".price_cart_add").click(function(){
 		var anum = $(this).prop("id");
 		anum = anum.substring(5,anum.length);
+		
+		if($("#memid").val() != null) {
+			$.ajax({
+				url : "/beat/shoppingcart/shoppingcartAdd",
+				type : "POST",
+				data : {
+					sid : $("#memid").val(),
+					scategory : "album",
+					scategorynum : anum
+				},
+				success : function(result) {
+					if(result == 0) {
+						alert("오류! 관리자에게 문의하세요");
+					} else if (result == 1){
+						alert("장바구니 등록!");
+					} else if (result == 2) {
+						alert("이미 장바구니에 존재합니다");
+					} else if (result == 3) {
+						alert("이미 결제한 음원입니다.");
+					}
+				}
+			});
+		} else {
+			alert("로그인 하세요.");
+			location.href="/beat/member/memberLogin";
+		}
+	});
+});
+
+
+$(document).on("click", ".price_cart_add2", function(){
+	var anum = $(".price_cart_add2").prop("id");
+	anum = anum.substring(9, anum.length);
+	
+	if($("#memid").val() != null) {
 		$.ajax({
 			url : "/beat/shoppingcart/shoppingcartAdd",
 			type : "POST",
@@ -78,32 +113,13 @@ $(function(){
 					alert("장바구니 등록!");
 				} else if (result == 2) {
 					alert("이미 장바구니에 존재합니다");
+				} else if (result == 3) {
+					alert("이미 결제한 음원입니다.");
 				}
 			}
 		});
-	});
-});
-
-
-$(document).on("click", ".price_cart_add2", function(){
-	var anum = $(".price_cart_add2").prop("id");
-	anum = anum.substring(9, anum.length);
-	$.ajax({
-		url : "/beat/shoppingcart/shoppingcartAdd",
-		type : "POST",
-		data : {
-			sid : $("#memid").val(),
-			scategory : "album",
-			scategorynum : anum
-		},
-		success : function(result) {
-			if(result == 0) {
-				alert("오류! 관리자에게 문의하세요");
-			} else if (result == 1){
-				alert("장바구니 등록!");
-			} else if (result == 2) {
-				alert("이미 장바구니에 존재합니다");
-			}
-		}
-	});
+	} else {
+		alert("로그인 하세요.");
+		location.href="/beat/member/memberLogin";
+	}
 });

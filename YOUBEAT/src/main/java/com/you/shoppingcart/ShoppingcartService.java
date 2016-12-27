@@ -15,6 +15,8 @@ import com.you.fileup.FileupDAO;
 import com.you.fileup.FileupDTO;
 import com.you.music.MusicDAO;
 import com.you.music.MusicDTO;
+import com.you.payment.PaymentDAO;
+import com.you.payment.PaymentDTO;
 import com.you.util.PageMaker;
 
 @Service
@@ -28,6 +30,8 @@ public class ShoppingcartService {
 	private AlbumDAO AlbumDAO;
 	@Autowired
 	private FileupDAO fileupDAO;
+	@Autowired
+	private PaymentDAO paymentDAO;
 	
 	// 장바구니에 등록
 	@Transactional
@@ -69,7 +73,7 @@ public class ShoppingcartService {
 							this.scDAO.shoppingcartDelete(sc.getSnum());
 						}
 					} // for
-				} // for		
+				} // for
 			} // else if		
 			// 앨범이 존재하지 않으면 장바구니의 등록
 			if(albumCheck == false) {
@@ -83,8 +87,20 @@ public class ShoppingcartService {
 						result = 2;
 					}
 				}
-				// 3. 장바구니에 없으면 등록
-				if(numCheck == false) {				
+				// 3. 결제 내역에서 존재하는지 검사
+				PaymentDTO pDTO = new PaymentDTO();
+				pDTO.setPid(shoppingcartDTO.getSid());
+				pDTO.setPcategory(shoppingcartDTO.getScategory());
+				List<PaymentDTO> paymentList = this.paymentDAO.paymentList(pDTO);
+				for(PaymentDTO p : paymentList) {
+					if(shoppingcartDTO.getScategorynum() == p.getPcategorynum()) {
+						// 존재하면
+						numCheck = true;
+						result = 3;
+					}
+				}
+				// 4. 장바구니에 없으면 등록
+				if(numCheck == false) {
 					result = this.scDAO.shoppingcartAdd(shoppingcartDTO);
 				}
 			}
@@ -127,6 +143,7 @@ public class ShoppingcartService {
 		List<FileupDTO> rdImgs = null;
 		List<MusicDTO> mGenreList = null;
 		List<String> aGenreList = null;
+		List<String> substrMtitle = null;
 		int nullCheck_1 = 0;
 		int nullCheck_2 = 0;
 		try {
@@ -203,9 +220,16 @@ public class ShoppingcartService {
 				pageMaker.makePage(rdMusics.size());
 				// 5. 앨범 정보 가져오기
 				rdAlbums = new ArrayList<>();
+				substrMtitle = new ArrayList<>();
 				for(MusicDTO m : rdMusics) {
 					AlbumDTO album = this.AlbumDAO.albumView(m.getAnum());
+					// 음악 타이틀 자르기
+					String mtitle = m.getMtitle();
+					if(mtitle.length() > 45) {
+						mtitle = mtitle.substring(0, 40)+"...";
+					}
 					rdAlbums.add(album);
+					substrMtitle.add(mtitle);
 				}
 				// 6. 이미지 가져오기
 				rdImgs = this.fileupDAO.fileupAlbumList(rdAlbums);
@@ -219,6 +243,7 @@ public class ShoppingcartService {
 		} else {
 			System.out.println("good!");
 			model.addAttribute("result", 1);
+			model.addAttribute("substrMtitle", substrMtitle);
 			model.addAttribute("rdMusics", rdMusics);
 			model.addAttribute("rdAlbums", rdAlbums);
 			model.addAttribute("rdImgs", rdImgs);
@@ -234,6 +259,7 @@ public class ShoppingcartService {
 		List<AlbumDTO> albumList = null;
 		List<FileupDTO> imgList = null;
 		List<String> substrAtitle = null;
+		List<String> substrMtitle = null;
 		int subTotal = 0;
 		int check = 0;
 		int musicCount = 0;
@@ -250,16 +276,23 @@ public class ShoppingcartService {
 			// 앨범 정보 가져오기 (리스트 만들기)
 			albumList = new ArrayList<>();
 			substrAtitle = new ArrayList<>();
+			substrMtitle = new ArrayList<>();
 			for(MusicDTO m : musicList) {
 				// 음악의 총 가격 구하기
 				subTotal += m.getMprice();
 				AlbumDTO a = this.AlbumDAO.albumView(m.getAnum());
 				// 앨범 타이틀 10줄로 줄이기
 				String atitle = a.getAtitle();
+				String mtitle = m.getMtitle();
 				if(atitle.length() > 20) {
 					atitle = atitle.substring(0, 15)+"...";
 				}
+				if(mtitle.length() > 45) {
+					mtitle = mtitle.substring(0, 40)+"...";
+				}
+				// 음악 타이틀 10줄로 줄이기
 				substrAtitle.add(atitle);
+				substrMtitle.add(mtitle);
 				albumList.add(a);
 			}
 			// 이미지 파일 가져오기 (리스트)
@@ -272,6 +305,7 @@ public class ShoppingcartService {
 		}
 		model.addAttribute("check", check);
 		model.addAttribute("substrAtitle", substrAtitle);
+		model.addAttribute("substrMtitle", substrMtitle);
 		model.addAttribute("cartMusics", cartMusics);
 		model.addAttribute("musicCount", musicCount);
 		model.addAttribute("musicList", musicList);
@@ -290,6 +324,7 @@ public class ShoppingcartService {
 		List<String> genreList = null;
 		List<Integer> priceList = null;
 		List<String> substrAtitle = null;
+		List<String> substrAtitle2 = null;
 		int subTotal = 0;
 		int check = 0;
 		int albumCount = 0;
@@ -300,14 +335,20 @@ public class ShoppingcartService {
 			// 앨범 정보 가져오기 (리스트 만들기)
 			albumList = new ArrayList<>();
 			substrAtitle = new ArrayList<>();
+			substrAtitle2 = new ArrayList<>();
 			for(ShoppingcartDTO sc : cartAlbums) {
 				AlbumDTO a = this.AlbumDAO.albumView(sc.getScategorynum());
 				// 앨범 타이틀 10줄로 줄이기
 				String atitle = a.getAtitle();
+				String atitle2 = a.getAtitle();
 				if(atitle.length() > 20) {
 					atitle = atitle.substring(0, 15)+"...";
 				}
+				if(atitle2.length() > 45) {
+					atitle2 = atitle2.substring(0, 40)+"...";
+				}
 				substrAtitle.add(atitle);
+				substrAtitle2.add(atitle2);
 				albumList.add(a);
 			}
 			// 이미지 파일 가져오기 (리스트)
@@ -332,6 +373,7 @@ public class ShoppingcartService {
 		
 		model.addAttribute("check", check);
 		model.addAttribute("substrAtitle", substrAtitle);
+		model.addAttribute("substrAtitle2", substrAtitle2);
 		model.addAttribute("cartAlbums", cartAlbums);
 		model.addAttribute("albumCount", albumCount);
 		model.addAttribute("albumList", albumList);

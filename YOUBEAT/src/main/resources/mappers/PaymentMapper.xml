@@ -11,4 +11,13 @@
 			#{pcategory}, #{pcategorynum}, #{pcardtype}, #{pname})
 		]]>	
 	</insert>
+	
+	<!-- 장바구니 등록하기전에 존재하는지 알아보기 위한 리스트 가져오기 - 아이디,카테고리-->
+	<select id="paymentList" parameterType="com.you.payment.PaymentDTO"
+		resultType="com.you.payment.PaymentDTO">
+		<![CDATA[
+			select * from payment where pid=#{pid} 
+			and pcategory=#{pcategory}
+		]]>	
+	</select>
 </mapper>

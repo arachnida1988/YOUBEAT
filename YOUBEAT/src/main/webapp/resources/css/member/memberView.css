@@ -1,1 +1,50 @@
 @CHARSET "UTF-8";
+
+.h_tag_1 {
+	color: #39c1de;
+}
+
+.h_tag_2 {
+	color: white;
+}
+
+#member_view_div {
+	width: 100%;
+	height: auto;
+	background-color: gray;
+}
+
+#member_view_main_div {
+	width: 93%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.btn_1 {
+	width: 160px;
+	height: 40px;
+	background-color: #666666;
+	border: 1px solid #666666;
+	font-weight: bold;
+	font-size: 13px;
+	color: white;
+	outline: none;
+}
+
+.ajax_two_result_div {
+	width: 93%;
+	height: auto;
+	margin: 0 auto;
+}
+
+#ajax_member_account_div {
+	width: 100%;
+	height: 500px;
+	background-color: orange;
+}
+
+#ajax_member_buylist_div {
+	width: 100%;
+	height: 500px;
+	background-color: green;
+}

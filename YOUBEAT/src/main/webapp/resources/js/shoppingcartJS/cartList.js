@@ -54,6 +54,7 @@ $(function(){
 	$(".add_cart_btn").click(function(){
 		var mnum = $(this).prop("id");
 		mnum = mnum.substring(2, mnum.length);
+		
 		$.ajax({
 			url : "/beat/shoppingcart/shoppingcartAdd",
 			type : "POST",
@@ -69,6 +70,8 @@ $(function(){
 					alert("장바구니 등록!");
 				} else if (result == 2) {
 					alert("이미 장바구니에 존재합니다");
+				} else if (result == 3) {
+					alert("이미 결제한 음원입니다.");
 				}
 			}
 		});

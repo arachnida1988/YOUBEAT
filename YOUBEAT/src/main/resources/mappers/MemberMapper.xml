@@ -85,5 +85,12 @@
 		<![CDATA[	
 			where memid=#{memid} and mememail=#{mememail}
 		]]>				
-	</update>	
+	</update>
+	
+	<select id="memberAccount" parameterType="com.you.member.MemberDTO"
+		resultType="com.you.member.MemberDTO">
+		<![CDATA[
+			select * from member where memid=#{memid}
+		]]>
+	</select>	
 </mapper>

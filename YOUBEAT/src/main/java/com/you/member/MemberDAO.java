@@ -52,4 +52,8 @@ public class MemberDAO {
 		return this.sqlSession.update(namespace+"memberUpdatePassword", memberDTO);
 	}
 	
+	// memberAccount
+	public MemberDTO memberAccount(MemberDTO memberDTO) throws Exception {
+		return this.sqlSession.selectOne(namespace+"memberAccount", memberDTO);
+	}
 }

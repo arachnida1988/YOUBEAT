@@ -33,7 +33,7 @@
 						<input class="input_img_2" type="image" onfocus="this.blur()" 
 						src="/beat/resources/image/artist_page/list_add_btn.PNG">
 					</td>
-					<td class="td_title_3">${ musics.mtitle }</td>
+					<td class="td_title_3">${ substrMtitle[st.index] }</td>
 					<td class="td_5">${ albumList[st.index].aartist }</td>
 					<td class="td_6">${ substrAtitle[st.index] }</td>
 					<td class="td_6">${ musics.mgenre }</td>

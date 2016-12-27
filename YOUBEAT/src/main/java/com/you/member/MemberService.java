@@ -322,5 +322,21 @@ public class MemberService {
 	    public PasswordAuthentication getPasswordAuthentication() {
 	        return pa;
 	    }
-	}	
+	}
+	
+	// VIEW - AJAX ( memberAccount )
+	public String memberAccount(MemberDTO memberDTO, Model model) {
+		try {
+			memberDTO = this.memberDAO.memberAccount(memberDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("memberDTO", memberDTO);
+		return "member/memberAccount";
+	}
+	
+	// VIEW - AJAX ( memberBuylist ) 
+	public String memberBuylist(MemberDTO memberDTO, Model model) {
+		return "member/memberBuylist";
+	}
 }

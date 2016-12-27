@@ -7,7 +7,7 @@
 <style type="text/css">
 #futter{
 	width: 100%;
-	height: 300px;
+	height: 220px;
 	background-color: black;
 	color: white;
 }
@@ -17,15 +17,20 @@
 }
 #company{
 	float: right;
-	font-size: 5px;
+	margin-right: 20px;
 }
 #network{
 	float: right;
-	font-size: 5px;
+	margin-right: 20px;
 }
 #language{
 	float: right;
-	font-size: 5px;
+	margin-right: 20px;
+}
+
+.pppp_tag_ppp {
+	font-size: 13.5px;
+	font-weight: normal;
 }
 </style>
 </head>
@@ -36,24 +41,26 @@
 	</div>
 	<div id="company">
 		<h3>COMPANY</h3>
-		<p>회사소개</p>
-		<p>직원소개</p>
-		<p>운영자에게</p>
+		<p class="pppp_tag_ppp">Company Info</p>
+		<p class="pppp_tag_ppp">Employee Info</p>
+		<p class="pppp_tag_ppp">Contacts Us</p>
+		<p class="pppp_tag_ppp">Careers</p>
+		<p class="pppp_tag_ppp">Privacy</p>
 	</div>
 	<div id="network">
 		<h3>NETWORK</h3>
-		<p>블로그</p>
-		<p>뭘봐</p>
-		<p>글쎼</p>
-		<p>뭘볼까</p>
-		<p>모르겠다</p>
+		<p class="pppp_tag_ppp">YouBeat Classic</p>
+		<p class="pppp_tag_ppp">YouBeat Sounds</p>
+		<p class="pppp_tag_ppp">YouBeat Mixes</p>
+		<p class="pppp_tag_ppp">YouBeat Pro</p>
+		<p class="pppp_tag_ppp">YouBeat DJs</p>
 	</div>
 	<div id="language">
 		<h3>LANGUAGE</h3>
-		<p>영어</p>
-		<p>한국어</p>
-		<p>일본어</p>
-		<p>짱꼴라?</p>	 
+		<p class="pppp_tag_ppp">English</p>
+		<p class="pppp_tag_ppp">Korean</p>
+		<p class="pppp_tag_ppp">Japanese</p>
+		<p class="pppp_tag_ppp">Chinese</p>	 
 	</div>
 </div>
 </body>

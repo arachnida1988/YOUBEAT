@@ -113,70 +113,94 @@ $(function(){
 $(document).on("click", ".price_cart_add_1", function(){
 	var anum = $(this).prop("id");
 	anum = anum.substring(5,anum.length);
-	$.ajax({
-		url : "/beat/shoppingcart/shoppingcartAdd",
-		type : "POST",
-		data : {
-			sid : $("#memid").val(),
-			scategory : "album",
-			scategorynum : anum
-		},
-		success : function(result) {
-			if(result == 0) {
-				alert("오류! 관리자에게 문의하세요");
-			} else if (result == 1){
-				alert("장바구니 등록!");
-			} else if (result == 2) {
-				alert("이미 장바구니에 존재합니다");
+	
+	if($("#memid").val() != null) {
+		$.ajax({
+			url : "/beat/shoppingcart/shoppingcartAdd",
+			type : "POST",
+			data : {
+				sid : $("#memid").val(),
+				scategory : "album",
+				scategorynum : anum
+			},
+			success : function(result) {
+				if(result == 0) {
+					alert("오류! 관리자에게 문의하세요");
+				} else if (result == 1){
+					alert("장바구니 등록!");
+				} else if (result == 2) {
+					alert("이미 장바구니에 존재합니다");
+				} else if (result == 3) {
+					alert("이미 결제한 음원입니다.");
+				}
 			}
-		}
-	});
+		});
+	} else {
+		alert("로그인 하세요.");
+		location.href="/beat/member/memberLogin";
+	}
 });
 
 // music 장바구니 등록 처리 부분 1
 $(document).on("click", ".price_cart_add_2", function(){
 	var mnum = $(this).prop("id");
 	mnum = mnum.substring(6,mnum.length);
-	$.ajax({
-		url : "/beat/shoppingcart/shoppingcartAdd",
-		type : "POST",
-		data : {
-			sid : $("#memid").val(),
-			scategory : "music",
-			scategorynum : mnum
-		},
-		success : function(result) {
-			if(result == 0) {
-				alert("오류! 관리자에게 문의하세요");
-			} else if (result == 1){
-				alert("장바구니 등록!");
-			} else if (result == 2) {
-				alert("이미 장바구니에 존재합니다");
+	
+	if($("#memid").val() != null) {
+		$.ajax({
+			url : "/beat/shoppingcart/shoppingcartAdd",
+			type : "POST",
+			data : {
+				sid : $("#memid").val(),
+				scategory : "music",
+				scategorynum : mnum
+			},
+			success : function(result) {
+				if(result == 0) {
+					alert("오류! 관리자에게 문의하세요");
+				} else if (result == 1) {
+					alert("장바구니 등록!");
+				} else if (result == 2) {
+					alert("이미 장바구니에 존재합니다");
+				} else if (result == 3) {
+					alert("이미 결제한 음원입니다.");
+				}
 			}
-		}
-	});
+		});
+	} else {
+		alert("로그인 하세요.");
+		location.href="/beat/member/memberLogin";
+	}
 });
 
 // music 장바구니 등록 처리 부분 2
 $(document).on("click", ".price_cart_add_3", function(){
 	var mnum = $(this).prop("id");
 	mnum = mnum.substring(6,mnum.length);
-	$.ajax({
-		url : "/beat/shoppingcart/shoppingcartAdd",
-		type : "POST",
-		data : {
-			sid : $("#memid").val(),
-			scategory : "music",
-			scategorynum : mnum
-		},
-		success : function(result) {
-			if(result == 0) {
-				alert("오류! 관리자에게 문의하세요");
-			} else if (result == 1){
-				alert("장바구니 등록!");
-			} else if (result == 2) {
-				alert("이미 장바구니에 존재합니다");
+	
+	if($("#memid").val() != null) {
+		$.ajax({
+			url : "/beat/shoppingcart/shoppingcartAdd",
+			type : "POST",
+			data : {
+				sid : $("#memid").val(),
+				scategory : "music",
+				scategorynum : mnum
+			},
+			success : function(result) {
+				if(result == 0) {
+					alert("오류! 관리자에게 문의하세요");
+				} else if (result == 1) {
+					alert("장바구니 등록!");
+				} else if (result == 2) {
+					alert("이미 장바구니에 존재합니다");
+				} else if (result == 3) {
+					alert("이미 결제한 음원입니다.");
+				}
 			}
-		}
-	});
+		});
+	} else {
+		alert("로그인 하세요.");
+		location.href="/beat/member/memberLogin";
+	}
 });

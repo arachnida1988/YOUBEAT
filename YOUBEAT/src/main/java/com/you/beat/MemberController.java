@@ -63,6 +63,18 @@ public class MemberController {
 	@RequestMapping(value="/memberView", method=RequestMethod.GET)
 	public void memberView() {}
 	
+	// VIEW - AJAX ( memberAccount )
+	@RequestMapping(value="/memberAccount", method=RequestMethod.POST)
+	public String memberAccount(MemberDTO memberDTO, Model model) {
+		return this.mService.memberAccount(memberDTO, model);
+	}
+	
+	// VIEW - AJAX ( memberBuylist ) 
+	@RequestMapping(value="/memberBuylist", method=RequestMethod.POST)
+	public String memberBuylist(MemberDTO memberDTO, Model model) {
+		return this.mService.memberBuylist(memberDTO, model);
+	}
+	
 	// Delete 처리
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
 	public String memberDelete(MemberDTO memberDTO, 
