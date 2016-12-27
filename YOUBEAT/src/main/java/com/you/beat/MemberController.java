@@ -56,7 +56,7 @@ public class MemberController {
 	@RequestMapping(value="/memberLogout")
 	public String memberLogout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/";
+		return "template/youbeat";
 	}
 	
 	// View 경로 이동
@@ -71,8 +71,14 @@ public class MemberController {
 	
 	// VIEW - AJAX ( memberBuylist ) 
 	@RequestMapping(value="/memberBuylist", method=RequestMethod.POST)
-	public String memberBuylist(MemberDTO memberDTO, Model model) {
-		return this.mService.memberBuylist(memberDTO, model);
+	public String memberBuylist(@RequestParam(defaultValue="1") int curPage, 
+			@RequestParam(defaultValue="10") int perPage , MemberDTO memberDTO, 
+			Model model) {
+		return this.mService.memberBuylist(curPage, perPage, memberDTO, model);
+	}
+	@RequestMapping(value="/memberMp3list", method=RequestMethod.POST)
+	public String memberMp3list(MemberDTO memberDTO, Model model) {
+		return this.mService.memberMp3list(memberDTO, model);
 	}
 	
 	// Delete 처리
@@ -81,10 +87,6 @@ public class MemberController {
 			RedirectAttributes rd ,HttpSession session) {
 		return this.mService.memberDelete(memberDTO, rd, session);
 	}
-	
-	// Update - 경로 이동
-	@RequestMapping(value="/memberUpdate", method=RequestMethod.GET)
-	public void memberUpdate() {}
 	
 	// Update 처리를 위한 인증 팝업창으로 이동
 	@RequestMapping(value="/memberCheckPopup", method=RequestMethod.GET)

@@ -68,8 +68,8 @@ $(document).ready(function(){
 	<div id="album"><a href="/beat/header/album">ALBUMS</a></div>
 	<div id="artist"><a href="/beat/header/artist">ARTISTS</a></div>
 	<div id="scform">
-		<button id="scbtn" style="height: 30px; font-size: 10px;">search<img alt="" src="" ></button>
-		<input type="text" id="sc" name="sc" height="50px" size="30" style="height: 23px;">
+		<button id="scbtn">search</button>
+		<input type="text" id="sc_input_123" name="sc">
 	</div>
 	<!-- 로그인 -->
 	<c:if test="${ member ne null }">

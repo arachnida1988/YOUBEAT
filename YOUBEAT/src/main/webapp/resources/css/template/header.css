@@ -58,15 +58,15 @@
   width: 17%;
  }
  #scbtn{
-  width: 20%;
+  width: 35%;
   float: left;
-  height: 40px;
+  height: 30px;
   background-color: black;
   color: white;
  }
- #sc{
-  width: 75%;
-  Height:34px;
+ #sc_input_123{
+  width: 65%;
+  Height: 30px;
   line-height: 10%;
   background-color: black;
   color: white;

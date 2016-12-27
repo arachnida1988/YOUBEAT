@@ -1,10 +1,14 @@
 package com.you.payment;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.you.util.PageMaker;
 
 @Repository
 public class PaymentDAO {
@@ -19,5 +23,14 @@ public class PaymentDAO {
 	
 	public List<PaymentDTO> paymentList(PaymentDTO paymentDTO) throws Exception {
 		return this.sqlSession.selectList(namespace+"paymentList", paymentDTO);
+	}
+	
+	// 페이지 처리된 결제 내역 리스트
+	public List<PaymentDTO> paymentPageList(PageMaker pageMaker, 
+			String pid) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("pid", pid);
+		map.put("page", pageMaker);
+		return this.sqlSession.selectList(namespace+"paymentPageList", map);
 	}
 }

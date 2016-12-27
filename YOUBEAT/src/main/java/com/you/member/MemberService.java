@@ -1,5 +1,6 @@
 package com.you.member;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -21,11 +22,17 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.you.payment.PaymentDAO;
+import com.you.payment.PaymentDTO;
+import com.you.util.PageMaker;
+
 @Service
 public class MemberService {
 	
 	@Autowired
 	private MemberDAO memberDAO;
+	@Autowired
+	private PaymentDAO paymentDAO;
 	private int cfNumber = 0;	// 인증 번호를 위한 변수 처리
 	List<String> memids = null;	// 이메일로 보내줄 ID를 담고있는 List
 
@@ -100,7 +107,7 @@ public class MemberService {
 		}
 		if(result > 0) {
 			message = "회원 탈퇴 완료";
-			path = "redirect:/";
+			path = "template/youbeat";
 			session.invalidate();
 		} else {
 			message = "회원 탈퇴 실패";
@@ -119,6 +126,7 @@ public class MemberService {
 			if(type.equals("update")) {
 				// ID와 PW로 
 				memberDTO = this.memberDAO.memberLogin(memberDTO);
+				
 			// find 부분에서 요청시	
 			} else if(type.equals("find")){
 				// ID와 E-MAIL
@@ -135,7 +143,7 @@ public class MemberService {
             this.messageSendtoEmail(email, "requestNumber");
             // 결과 처리
             result = 1;
-		}
+		} 
 		model.addAttribute("result", result);
 		return "member/memberResult";
 	}
@@ -331,12 +339,32 @@ public class MemberService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("memberDTO", memberDTO);
+		model.addAttribute("memberView", memberDTO);
 		return "member/memberAccount";
 	}
 	
 	// VIEW - AJAX ( memberBuylist ) 
-	public String memberBuylist(MemberDTO memberDTO, Model model) {
+	public String memberBuylist(int curPage, int perPage, 
+			MemberDTO memberDTO, Model model) {
+		List<PaymentDTO> paymentList = null;
+		PageMaker pMaker = new PageMaker();
+		pMaker.setCurPage(curPage);
+		pMaker.setPerPage(perPage);
+		pMaker.makeRow();
+		
+		try {
+			paymentList = this.paymentDAO.paymentPageList(pMaker, memberDTO.getMemid());
+			pMaker.makePage(paymentList.size());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("page", pMaker);
 		return "member/memberBuylist";
+	}
+	
+	public String memberMp3list(MemberDTO memberDTO, Model model) {
+		return "member/memberMp3list";
 	}
 }

@@ -20,4 +20,15 @@
 			and pcategory=#{pcategory}
 		]]>	
 	</select>
+	
+	<!-- 페이징 처리된 리스트 -->
+	<select id="paymentPageList" parameterType="java.util.Map"
+		resultType="com.you.payment.PaymentDTO">
+		<![CDATA[
+			select * from 
+			(select rownum r, t.* from 
+			(select * from payment where pid=#{pid} order by pdate desc)t) 
+			where r between #{page.startRowNum} and #{page.lastRowNum}
+		]]>	
+	</select>
 </mapper>

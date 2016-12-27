@@ -22,13 +22,14 @@
 			<button id="mp3_download_page_btn" class="btn_1">DOWNLOADS</button>
 			<br><br>
 		</div>
+		<br>
 		<div class="ajax_two_result_div">
 			<!-- 원하는 페이지를 불러오도록 안내하는 div -->
 			<!-- 나중에 ajax결과에 따라 처리되는 부분 -->
 			<h3 class="h_tag_1">Click the Button!</h3>
 			<h4 class="h_tag_2">After Click the Button, Page Open</h4>
 		</div>	
-		<br><br>
+		<br><br><br><br><br>
 	</div>
 	<div>
 		<c:import url="../template/futer.jsp"></c:import>

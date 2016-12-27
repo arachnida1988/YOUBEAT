@@ -47,19 +47,14 @@
 			update member
 		]]>
 		<trim prefix="set">
-			<if test="memname != null">
+			<if test="mempw != null">
 				<![CDATA[		
-					memname=#{memname},
-				]]>	
-			</if>
-			<if test="mememail != null">
-				<![CDATA[		
-					mememail=#{mememail},
+					mempw=#{mempw}
 				]]>	
 			</if>		
 		</trim>					
 		<![CDATA[	
-			memmailcheck=#{memmailcheck} where memid=#{memid}
+		 	where memid=#{memid}
 		]]>		
 	</update>
 	
