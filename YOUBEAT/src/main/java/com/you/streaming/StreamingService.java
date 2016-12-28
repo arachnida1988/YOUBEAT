@@ -28,7 +28,6 @@ public class StreamingService {
 		List<ArtistDTO> artistList = streamingDAO.artistSearch(q);
 		model.addAttribute("artistList", artistList);//아티스트 검색
 		model.addAttribute("artistfiles", this.streamingDAO.fileupArtistList(artistList));//아티스트사진
-		System.out.println("artist files size: "+this.streamingDAO.fileupArtistList(artistList).get(0).getFfilename());
 		List<AlbumDTO> albumList = streamingDAO.albumSearch(q);
 		model.addAttribute("albumList", albumList);//앨범 검색
 		model.addAttribute("albumfiles", streamingDAO.fileupAlbumList(albumList));

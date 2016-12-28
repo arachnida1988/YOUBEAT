@@ -7,7 +7,7 @@ h1 {
 #artist_div {
 	width: 100%;
 	height: 1200px;
-	background-color: gray;
+	background-color: #262626;
 }
 
 #artist_main_div {
@@ -18,8 +18,8 @@ h1 {
 
 .btn1 {
 	height: 30px;
-	background-color: #666666;
-	border: 0px solid #666666;
+	background-color: #262626;
+	border: 0px solid #262626;
 	color: white;
 	font-weight: bold;
 	font-size: 17px;

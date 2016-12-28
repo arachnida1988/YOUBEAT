@@ -1,6 +1,6 @@
 $(function() {
 	$("#scbtn").click(function() {
-		var value = $(this).parent().find("#sc").val();
+		var value = $(this).parent().find("#sc_input_123").val();
 		if(value != ""){
 			location.href="search?q="+value;
 		}else{

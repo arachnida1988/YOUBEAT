@@ -103,8 +103,6 @@
 	#footer{
 		position: fixed;
 		bottom: 1px;
-		left: 50px;
-		margin: 0 auto;
 	}
 </style>
 <script type="text/javascript">
