@@ -193,23 +193,6 @@ function setAudio(data) {
 	showDuration();
 	audio.play();
 }
-
-// auto next play
-$(function() {
-	if(audio!=null){
-		$(audio).on("ended", function() { 
-			audio.pause(); 
-			var next = $("#playlist li.active").next(); 
-			if (next.length == 0) { 
-				next = $("#playlist li:first-child");
-			}
-			setAudio(next);
-		});
-	}
-});
-	
-
-
 // 플레이리스트 우클릭시 리스트에서 해당곡삭제
 $("#playlist").on("contextmenu", "li", function(e) {
 	$(this).remove();
@@ -273,3 +256,41 @@ function deleteCookie(cookieName) {
 	document.cookie = cookieName + "= " + "; expires="
 			+ expireDate.toGMTString();
 }
+
+$(function() {
+	//auto next play
+	if(audio!=null){
+		$(audio).on("ended", function() { 
+			audio.pause(); 
+			var next = $("#playlist li.active").next(); 
+			if (next.length == 0) { 
+				next = $("#playlist li:first-child");
+			}
+			setAudio(next);
+		});
+	}
+	//앨범 통째로 재생리스트 만들고 재생
+	$("#featured_slide_div").on("click", function() {
+		alert("click");
+	});
+	$(".album_add").click(function () {
+		alert("click");
+	});
+	$(".bxslider").on("click", function() {
+		alert("click");
+	});
+});
+
+$(document).on("click",".album_add",function(){
+	alert($(this).parent().parent().parent().parent().find(".atag_1").text());
+	$.ajax({url: "header/album_addList",type:"post", data : {
+		title : $(this).attr("album_title"),
+		artist : $(this).attr("album_artist")
+		}, success: function(data){
+			var create = document.createElement("div");
+			create.className = "album_set";
+			$(this).parent().find("album_set").html(data);
+    }});
+});
+
+

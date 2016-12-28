@@ -9,6 +9,12 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="/beat/resources/js/artistJS/artistView.js"></script>
 <link rel="stylesheet" href="/beat/resources/css/artist/artistView.css" type="text/css">
+<style type="text/css">
+		#footer{
+		position: fixed;
+		bottom: 1px;
+	}
+</style>
 </head>
 <body>
 	<!-- header -->
@@ -106,5 +112,8 @@
 	</div>
 	<!-- footer -->
 		<c:import url="../template/futer.jsp"></c:import>	
+	<div id="footer">
+		<c:import url="/header/audio"></c:import>
+	</div>
 </body>
 </html>

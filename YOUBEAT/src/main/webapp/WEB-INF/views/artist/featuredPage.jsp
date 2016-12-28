@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <div id="featuredPage_div">
 	<!-- 장르에 의한 아티스트 차트 -->
 	<!-- 장르도 리스트로 뿌려주기 -->
@@ -40,8 +41,8 @@
 							<div id="play_cart_btn_div">
 								<div id="play_btn_div_1">
 									<div>
-										<input type="image" onfocus="this.blur()"
-											src="/beat/resources/image/artist_page/play_btn.PNG">
+										<input type="image" class="album_add" onfocus="this.blur()"
+											src="/beat/resources/image/artist_page/play_btn.PNG" album_title="${ featuredAlbums[status.index].anum }" album_artist="${ featuredAlbums[status.index].aartist }">
 									</div>
 								</div>
 								<div id="play_btn_div_2">
