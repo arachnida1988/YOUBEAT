@@ -103,7 +103,7 @@
 	#footer{
 		position: fixed;
 		bottom: 1px;
-		left: 150px;
+		left: 50px;
 		margin: 0 auto;
 	}
 </style>

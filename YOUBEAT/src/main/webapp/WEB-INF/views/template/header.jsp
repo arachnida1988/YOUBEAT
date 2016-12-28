@@ -7,6 +7,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="/beat/resources/js/memberJS/memberLogin.js"></script>
 
+<!-- search -->
+<script type="text/javascript" src="/beat/resources/js/mainSearch.js"></script>
+
 <!-- modal 시작 -->
 <script type='text/javascript' src='/beat/resources/js/modalPopup/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='/beat/resources/js/modalPopup/basic.js'></script>
