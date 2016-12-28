@@ -38,4 +38,11 @@
 			select count(pnum) from payment where pid=#{pid}
 		]]>	
 	</select>
+	
+	<select id="paymentView" parameterType="int"
+		resultType="com.you.payment.PaymentDTO">
+		<![CDATA[
+			select * from payment where	pnum=#{pnum}
+		]]>	
+	</select>
 </mapper>

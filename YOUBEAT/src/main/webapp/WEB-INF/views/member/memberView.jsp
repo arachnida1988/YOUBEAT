@@ -12,6 +12,9 @@
 	<div>
 		<c:import url="../template/header.jsp"></c:import>
 	</div>
+	<!-- hidden -->
+	<input type="hidden" id="pageType" value="${ pageType }">
+	<input type="hidden" id="curPage" value="${ curPage }">
 	<!-- View -->
 	<div id="member_view_div">
 		<br><br><br><br>
@@ -37,6 +40,23 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		if($("#pageType").val() == 1)  {
+			$("#mp3_download_page_btn").css("border-bottom", "2px solid #94D500");
+			$("#account_set_page_btn").css("border-bottom", "");
+			
+			$.ajax({
+				url : "memberBuylist",
+				type : "POST",
+				data : {
+					memid : $("#memid").val(),
+					curPage : $("#curPage").val()
+				},
+				success : function(result) {
+					$(".ajax_two_result_div").html(result);
+				}
+			});
+		}
+		
 		$("#account_set_page_btn").click(function () {
 			$(this).css("border-bottom", "2px solid #94D500");
 			$("#mp3_download_page_btn").css("border-bottom", "");

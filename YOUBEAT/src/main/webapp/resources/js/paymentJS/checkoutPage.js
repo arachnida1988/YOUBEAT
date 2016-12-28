@@ -55,7 +55,6 @@ $(function(){
 	});
 	
 	$("#back_btn").click(function(){
-		alert("!@#");
 		var sid = $("#memid").val();
 		location.href="/beat/shoppingcart/cartList?sid="+sid;
 	});

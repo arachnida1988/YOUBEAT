@@ -1,5 +1,6 @@
 package com.you.member;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -21,6 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.you.album.AlbumDAO;
+import com.you.album.AlbumDTO;
+import com.you.mp3.Mp3DAO;
+import com.you.mp3.Mp3DTO;
+import com.you.music.MusicDAO;
+import com.you.music.MusicDTO;
 import com.you.payment.PaymentDAO;
 import com.you.payment.PaymentDTO;
 import com.you.util.PageMaker;
@@ -32,6 +39,12 @@ public class MemberService {
 	private MemberDAO memberDAO;
 	@Autowired
 	private PaymentDAO paymentDAO;
+	@Autowired
+	private MusicDAO musicDAO;
+	@Autowired
+	private AlbumDAO albumDAO;
+	@Autowired
+	private Mp3DAO mp3dao;
 	private int cfNumber = 0;	// 인증 번호를 위한 변수 처리
 	List<String> memids = null;	// 이메일로 보내줄 ID를 담고있는 List
 
@@ -371,8 +384,49 @@ public class MemberService {
 		// 앨범이면 -> 음악 DTO 접근
 		// 음악이면 -> 음악 DTO 접근
 		// 10개씩 뿌려줄것인지?? page 처리?? 아니면 그냥 다 뿌려줄것인지??
-		
-		
+		List<MusicDTO> musicList = null;
+		List<AlbumDTO> albumList = null;
+		List<Mp3DTO> mp3List = null;
+		try {
+			// 결제 내역 한개 가져오기
+			PaymentDTO payDTO = this.paymentDAO.paymentView(pnum);
+			// 음악
+			if(payDTO.getPcategory().equals("music")) {		
+				musicList = new ArrayList<>();
+				albumList = new ArrayList<>();
+				mp3List = new ArrayList<>();
+				MusicDTO music = this.musicDAO.musicView_cart(payDTO.getPcategorynum());
+				musicList.add(music);
+				AlbumDTO album = this.albumDAO.albumView(music.getAnum());
+				albumList.add(album);
+				Mp3DTO mp3 = new Mp3DTO();
+				mp3.setTitle(music.getMtitle());
+				mp3.setAlbumname(album.getAtitle());
+				mp3.setArtist(album.getAartist());
+				mp3 = this.mp3dao.mp3View(mp3);
+				mp3List.add(mp3);
+			// 앨범
+			} else if (payDTO.getPcategory().equals("album")) {
+				musicList = this.musicDAO.getMusicList_anum(payDTO.getPcategorynum());
+				albumList = new ArrayList<>();
+				mp3List = new ArrayList<>();
+				for(MusicDTO m : musicList) {
+					Mp3DTO mp3 = new Mp3DTO();
+					mp3.setTitle(m.getMtitle());
+					AlbumDTO album = this.albumDAO.albumView(m.getAnum());
+					mp3.setAlbumname(album.getAtitle());
+					mp3.setArtist(album.getAartist());
+					albumList.add(album);
+					mp3 = this.mp3dao.mp3View(mp3);
+					mp3List.add(mp3);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("musicList", musicList);
+		model.addAttribute("albumList", albumList);
+		model.addAttribute("mp3List", mp3List);
 		return "member/memberMp3list";
 	}
 }

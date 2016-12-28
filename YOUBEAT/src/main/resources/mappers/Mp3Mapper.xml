@@ -10,4 +10,8 @@
 	<select id="mp3List" resultType="com.you.mp3.Mp3DTO">
 		select * from mp3
 	</select>
+	
+	<select id="mp3View" parameterType="com.you.mp3.Mp3DTO" resultType="com.you.mp3.Mp3DTO">
+		select * from mp3 where albumname=#{albumname} and artist=#{artist} and title=#{title}
+	</select>
 </mapper>
