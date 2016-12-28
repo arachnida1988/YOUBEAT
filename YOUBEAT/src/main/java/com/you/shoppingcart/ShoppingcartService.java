@@ -156,7 +156,7 @@ public class ShoppingcartService {
 			if(nullCheck_1 == 1) {
 				// 1-1. 음악 번호로 장르 가져오기 - 코드 재사용( 음악 정보 가져오는 DAO를 호출 하겠다. )
 				// 원래는 그냥 MusicDTO인데 장르만 사용할것이기 때문에 mGenreList라고 변수 선언
-				mGenreList = new ArrayList<>();
+				mGenreList = new ArrayList<MusicDTO>();
 				// MusicDAO부분이 하나씩 꺼내오는 부분이라서 이렇게 해야하는점.
 				for(ShoppingcartDTO musics : cMusics) {
 					// 원래는 그냥 MusicDTO인데 장르만 사용할것이기 때문에 헷갈리지 않게 mGenre라고 선언
@@ -172,7 +172,7 @@ public class ShoppingcartService {
 			}
 			if(nullCheck_2 == 1) { 	
 				// 2-1. 앨범 번호로 장르 가져오기
-				aGenreList = new ArrayList<>();
+				aGenreList = new ArrayList<String>();
 				// MusicDAO부분이 하나씩 꺼내오는 부분이라서 이렇게 해야하는점.
 				for(ShoppingcartDTO albums : cAlbums) {
 					String aGenre = this.musicDAO.getGenreAndPriceOfMusic2(albums.getScategorynum());
@@ -219,8 +219,8 @@ public class ShoppingcartService {
 				rdMusics = this.musicDAO.musicList_map(maxGenre, pageMaker);
 				pageMaker.makePage(rdMusics.size());
 				// 5. 앨범 정보 가져오기
-				rdAlbums = new ArrayList<>();
-				substrMtitle = new ArrayList<>();
+				rdAlbums = new ArrayList<AlbumDTO>();
+				substrMtitle = new ArrayList<String>();
 				for(MusicDTO m : rdMusics) {
 					AlbumDTO album = this.AlbumDAO.albumView(m.getAnum());
 					// 음악 타이틀 자르기
@@ -268,15 +268,15 @@ public class ShoppingcartService {
 			// 갯수 가져오기
 			musicCount = cartMusics.size();
 			// 음악 정보 가져오기 (리스트 만들기)
-			musicList = new ArrayList<>();
+			musicList = new ArrayList<MusicDTO>();
 			for(ShoppingcartDTO sc : cartMusics) {
 				MusicDTO m = this.musicDAO.musicView_cart(sc.getScategorynum());
 				musicList.add(m);
 			}
 			// 앨범 정보 가져오기 (리스트 만들기)
-			albumList = new ArrayList<>();
-			substrAtitle = new ArrayList<>();
-			substrMtitle = new ArrayList<>();
+			albumList = new ArrayList<AlbumDTO>();
+			substrAtitle = new ArrayList<String>();
+			substrMtitle = new ArrayList<String>();
 			for(MusicDTO m : musicList) {
 				// 음악의 총 가격 구하기
 				subTotal += m.getMprice();
@@ -333,9 +333,9 @@ public class ShoppingcartService {
 			// 앨범 갯수 가져오기
 			albumCount = cartAlbums.size();
 			// 앨범 정보 가져오기 (리스트 만들기)
-			albumList = new ArrayList<>();
-			substrAtitle = new ArrayList<>();
-			substrAtitle2 = new ArrayList<>();
+			albumList = new ArrayList<AlbumDTO>();
+			substrAtitle = new ArrayList<String>();
+			substrAtitle2 = new ArrayList<String>();
 			for(ShoppingcartDTO sc : cartAlbums) {
 				AlbumDTO a = this.AlbumDAO.albumView(sc.getScategorynum());
 				// 앨범 타이틀 10줄로 줄이기
@@ -354,8 +354,8 @@ public class ShoppingcartService {
 			// 이미지 파일 가져오기 (리스트)
 			imgList = this.fileupDAO.fileupAlbumList(albumList);
 			// 음악 장르, 음악 가격 가져오기 - 앨범번호로
-			genreList = new ArrayList<>();
-			priceList = new ArrayList<>();
+			genreList = new ArrayList<String>();
+			priceList = new ArrayList<Integer>();
 			for(AlbumDTO a : albumList) {
 				String genre = this.musicDAO.getGenreAndPriceOfMusic2(a.getAnum());
 				int price = this.musicDAO.getGenreAndPriceOfMusic(a.getAnum());
@@ -399,7 +399,7 @@ public class ShoppingcartService {
 			// 음악 정보 가져오기 (리스트 만들기)
 			shoppingcartDTO.setScategory("music");
 			cartMusics = this.scDAO.shoppingcartList(shoppingcartDTO);
-			musicList = new ArrayList<>();
+			musicList = new ArrayList<MusicDTO>();
 			for(ShoppingcartDTO sc : cartMusics) {
 				MusicDTO m = this.musicDAO.musicView_cart(sc.getScategorynum());
 				musicList.add(m);
@@ -411,13 +411,13 @@ public class ShoppingcartService {
 			// 앨범 정보 가져오기 (리스트 만들기)
 			shoppingcartDTO.setScategory("album");
 			cartAlbums = this.scDAO.shoppingcartList(shoppingcartDTO);
-			albumList = new ArrayList<>();
+			albumList = new ArrayList<AlbumDTO>();
 			for(ShoppingcartDTO sc : cartAlbums) {
 				AlbumDTO a = this.AlbumDAO.albumView(sc.getScategorynum());
 				albumList.add(a);
 			}
 			// 앨범 총 가격 더하기
-			priceList = new ArrayList<>();
+			priceList = new ArrayList<Integer>();
 			for(AlbumDTO a : albumList) {
 				int price = this.musicDAO.getGenreAndPriceOfMusic(a.getAnum());
 				priceList.add(price);

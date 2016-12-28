@@ -82,7 +82,7 @@ public class AlbumDAO {
 	}
 	// Map으로 앨범 리스트 가져오기 -> page수가 1 ~ n 만큼 정해져 있다.
 	public List<AlbumDTO> getAlbumList_map(String aartist, PageMaker pageMaker) throws Exception {
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("aartist", aartist);
 		map.put("page", pageMaker);
 		return this.sqlSession.selectList(namespace+"getAlbumList_map", map);

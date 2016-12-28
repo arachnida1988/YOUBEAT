@@ -9,22 +9,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="/beat/resources/js/calendar/calendar_beans_v2.0.js" type="text/javascript" charset="utf-8"></script>
 
-<title>Insert title here</title>
+<title>YOUBEAT - Tracks</title>
 
 <style type="text/css">
-	body{
-		background-color: gray;
+	#tracks_main_wrap{
+		padding-top:80px;
+		background-color: #343434;
+		color: white;
+		border: 1px solid #343434;
+	}
+	.tracks_wrap{
+		margin: 0 auto;
 	}
 	#test_wrap{
-		border: 1px red solid;
-		width: 1000px;
-		height: 300px;	
+		border: 1px red gray;
+		width: 1px;
+		height: 1px;	
 	}
 	#tracks_search{
-		border: 1px red solid;
+		/* border: 1px red solid; */
 		width: 1100px;
 		height: 100px;
 		margin: 0 auto;
+	}
+	.perPageSelect{
+		padding-top: 25px;
+	}
+	#tracks_partner{
+		float: right;;
+		color: black;
+	}
+	#tracks_array_title{
+		color: white;
+	}
+	#chk_calinders{ 
+		margin: 0 auto;
+	}
+	#chk_calinders input{
+		color: black;
 	}
 	#tracks_wrap{
 		border-bottom: 1px solid gray;
@@ -213,6 +235,9 @@
 </script>
 </head>
 <body>
+<div>
+	<c:import url="../template/header.jsp"></c:import>
+</div>
 <div id="test_wrap"></div>
 	<div id="tracks_main_wrap">
 		
@@ -223,18 +248,23 @@
 			<img class="perPageSelect" data-src="3500px" src="/beat/resources/image/page/75.png" id="75">
 			<img class="perPageSelect" data-src="4600px" src="/beat/resources/image/page/100.png" id="100">
 			
-			<input type="checkbox" id="albumASC" value="0">앨범순
-			<input type="text" id="cal1">
-			<input type="text" id="cal2">
+			<div id="chk_calinders">
+				<input type="checkbox" id="albumASC" value="0">앨범순
+					<input type="text" id="cal1">
+				<input type="text" id="cal2">
+			</div>
 			
-			<select id="tracks_array">
-				<option value="dateup">Newest to Oldest</option>
-				<option value="datedown">Oldest to Newest</option>
-				<option value="titleup">Title A - Z</option>
-				<option value="titledown">Title Z - A</option>
-				<option value="genreup">Genre A - Z</option>
-				<option value="genredown">Genre Z - A</option>
-			</select>
+			<div id="tracks_partner">
+				<span id="tracks_array_title">Sort By:</span>
+				 <select id="tracks_array">
+					<option value="dateup">Newest to Oldest</option>
+					<option value="datedown">Oldest to Newest</option>
+					<option value="titleup">Title A - Z</option>
+					<option value="titledown">Title Z - A</option>
+					<option value="genreup">Genre A - Z</option>
+					<option value="genredown">Genre Z - A</option>
+				</select>
+			</div>
 		</div>
 		<div id="tracks_wrap">
 			<!-- 메인 미들wrap -->

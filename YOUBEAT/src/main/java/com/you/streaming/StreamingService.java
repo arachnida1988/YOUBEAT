@@ -96,7 +96,7 @@ public class StreamingService {
 		//해당 아티스트의 모든 앨범리스트
 		List<AlbumDTO> albumList = streamingDAO.getAlbumList_name(artist);//수정중
 		//해당앨범을 리스트로하여 파일매칭
-		List<AlbumDTO> albumChange =new ArrayList<>();
+		List<AlbumDTO> albumChange =new ArrayList<AlbumDTO>();
 		albumChange.add(thisAlbumInfo);
 		List<FileupDTO> file = streamingDAO.fileupAlbumList(albumChange);
 		FileupDTO fileupDTO = file.get(0);
@@ -228,7 +228,7 @@ public class StreamingService {
 		List<ArtistDTO> featuredArtists = new ArrayList<ArtistDTO>();
 		// 2. 매칭된 음악 정보 불러오기
 		List<Integer> aprices = new ArrayList<Integer>();
-		List<String> mgenres = new ArrayList<>();
+		List<String> mgenres = new ArrayList<String>();
 		for(AlbumDTO albumDTO : featuredAlbums) {
 			// 아티스트 정보 불러오기
 			ArtistDTO artistDTO = this.streamingDAO.artistView(albumDTO.getAartist());
@@ -268,7 +268,7 @@ public class StreamingService {
 		// 아티스트의 앨범 이미지 가져오기
 		List<FileupDTO> newAlbumFileList = this.streamingDAO.fileupAlbumList(newAlbumList);
 		// 앨범 가격, 장르 가져오기
-		List<Integer> newAlbumPrices = new ArrayList<>();
+		List<Integer> newAlbumPrices = new ArrayList<Integer>();
 		for(AlbumDTO albumDTO : newAlbumList) {
 			int aprice = this.streamingDAO.getGenreAndPriceOfMusic(albumDTO.getAnum());
 			newAlbumPrices.add(aprice);
@@ -280,7 +280,7 @@ public class StreamingService {
 		// 음악 DB에 존재하는 장르 가져오기 - 중복 제거된 List
 		List<String> genreList = this.streamingDAO.getTotalGenreList();
 		// 장르별로 존재하는 음악수 가져오기
-		List<Integer> genreCounts = new ArrayList<>();
+		List<Integer> genreCounts = new ArrayList<Integer>();
 		for(String s : genreList) {
 			genreCounts.add(this.streamingDAO.getGenreCount(s.toString()));
 		}
@@ -331,7 +331,7 @@ public class StreamingService {
 		// 아티스트의 앨범 이미지 가져오기
 		List<FileupDTO> newAlbumFileList = this.streamingDAO.fileupAlbumList(newAlbumList);
 		// 앨범 가격, 장르 가져오기
-		List<Integer> newAlbumPrices = new ArrayList<>();
+		List<Integer> newAlbumPrices = new ArrayList<Integer>();
 		for(AlbumDTO albumDTO : newAlbumList) {
 			int aprice = this.streamingDAO.getGenreAndPriceOfMusic(albumDTO.getAnum());
 			newAlbumPrices.add(aprice);
@@ -351,7 +351,7 @@ public class StreamingService {
 		// 1. 아티스트 정보 가져오기
 		ArtistDTO artistDTO = this.streamingDAO.artistView(arartist);
 		// 코드 재사용성을 위해
-		List<ArtistDTO> artist = new ArrayList<>();
+		List<ArtistDTO> artist = new ArrayList<ArtistDTO>();
 		artist.add(artistDTO);
 		// 2. 아티스트 이미지 가져오기 -> 1개의 이미지를 가져오지만 코드 재사용을 위해 List를 쓰겠음 
 		List<FileupDTO> artistImgs = this.streamingDAO.fileupArtistList(artist);
@@ -374,7 +374,7 @@ public class StreamingService {
 		List<AlbumDTO> albums = this.streamingDAO.getAlbumList_name(arartist);
 		// 5. 모든 음악 정보 가져오기
 		// 모든앨범의 모든 음악을 저장하기 위한 List
-		List<MusicDTO> allMusic = new ArrayList<>();
+		List<MusicDTO> allMusic = new ArrayList<MusicDTO>();
 		for(AlbumDTO a : albums) {
 			// 앨범 번호로 관련된 음악들 가져오기
 			List<MusicDTO> mList = this.streamingDAO.getMusicList_anum(a.getAnum());
@@ -403,7 +403,7 @@ public class StreamingService {
 			}
 		}
 		// top 10 음악
-		List<MusicDTO> tenMusic = new ArrayList<>();
+		List<MusicDTO> tenMusic = new ArrayList<MusicDTO>();
 		for(int i=0; i<tempArr.length; i++) {
 			// 모든 음악이 10개 미만일때 ex 사이즈가 5이고 배열길이도 5이면 break;
 			if(tenMusic.size() == tempArr.length) {
@@ -423,7 +423,7 @@ public class StreamingService {
 		}
 
 		// top 10 음악의 앨범 매칭 시켜주는 작업
-		List<AlbumDTO> tenAlbum = new ArrayList<>();
+		List<AlbumDTO> tenAlbum = new ArrayList<AlbumDTO>();
 		for(MusicDTO m : tenMusic) {			
 			AlbumDTO albumDTO = this.streamingDAO.albumView(m.getAnum());
 			tenAlbum.add(albumDTO);
@@ -453,7 +453,7 @@ public class StreamingService {
 		// 앨범 이미지 가져오기
 		List<FileupDTO> albumImgList = this.streamingDAO.fileupAlbumList(albumList);
 		// 앨범 가격 가져오기
-		List<Integer> albumPrices = new ArrayList<>();
+		List<Integer> albumPrices = new ArrayList<Integer>();
 		for(AlbumDTO albumDTO : albumList) {
 			int aprice = this.streamingDAO.getGenreAndPriceOfMusic(albumDTO.getAnum());
 			albumPrices.add(aprice);
@@ -470,7 +470,7 @@ public class StreamingService {
 		// 1. fsection='artist', subsection='아티스트 이름'으로 이미지 가져오기
 		ArtistDTO artistDTO = this.streamingDAO.artistView(arartist);
 		// 코드 재사용성을 위해
-		List<ArtistDTO> artist = new ArrayList<>();
+		List<ArtistDTO> artist = new ArrayList<ArtistDTO>();
 		artist.add(artistDTO);
 		// 아티스트 이미지 가져오기 -> 1개의 이미지를 가져오지만 코드 재사용을 위해 List를 쓰겠음 
 		List<FileupDTO> artistImg = this.streamingDAO.fileupArtistList(artist);
@@ -481,7 +481,7 @@ public class StreamingService {
 		List<AlbumDTO> albums = this.streamingDAO.getAlbumList_name(arartist);
 		// 3. 모든 음악 정보 가져오기
 		// 모든앨범의 모든 음악을 저장하기 위한 List
-		List<MusicDTO> allMusic = new ArrayList<>();
+		List<MusicDTO> allMusic = new ArrayList<MusicDTO>();
 		for(AlbumDTO a : albums) {
 			// 앨범 번호로 관련된 음악들 가져오기
 			List<MusicDTO> mList = this.streamingDAO.getMusicList_anum(a.getAnum());
@@ -492,7 +492,7 @@ public class StreamingService {
 		}
 		// 6개씩만 jsp 음악들을 뿌려주기 pageMaker를 하지않고 직접하기
 		// DB에서 가져오는부분들이 불편하기 때문에 직접하기
-		List<MusicDTO> sixMusic = new ArrayList<>();
+		List<MusicDTO> sixMusic = new ArrayList<MusicDTO>();
 		// 인덱스 범위 설정
 		int startIndex = (curPage-1)*6;
 		int lastIndex = curPage*6;
@@ -507,7 +507,7 @@ public class StreamingService {
 
 		// ************************************************************
 		// 6개의 음악리스트를 통해서 앨범, 앨범 이미지 매칭하기
-		List<AlbumDTO> sixAlbum = new ArrayList<>();
+		List<AlbumDTO> sixAlbum = new ArrayList<AlbumDTO>();
 		for(MusicDTO m : sixMusic) {			
 			AlbumDTO albumDTO = this.streamingDAO.albumView(m.getAnum());
 			sixAlbum.add(albumDTO);
