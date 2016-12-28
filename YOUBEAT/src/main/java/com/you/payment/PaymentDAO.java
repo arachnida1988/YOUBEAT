@@ -28,7 +28,7 @@ public class PaymentDAO {
 	// 페이지 처리된 결제 내역 리스트
 	public List<PaymentDTO> paymentPageList(PageMaker pageMaker, 
 			String pid) throws Exception {
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pid", pid);
 		map.put("page", pageMaker);
 		return this.sqlSession.selectList(namespace+"paymentPageList", map);

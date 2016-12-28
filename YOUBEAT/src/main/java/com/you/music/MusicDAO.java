@@ -87,7 +87,7 @@ public class MusicDAO {
 	// 장르로 음악 리스트 20개만 가져오기 최근 날짜 
 	public List<MusicDTO> musicList_map(String mgenre, PageMaker pageMaker) 
 			throws Exception {
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("page", pageMaker);
 		map.put("mgenre", mgenre);
 		return this.sqlSession.selectList(namespace+"musicList_map", map);

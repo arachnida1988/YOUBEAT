@@ -37,7 +37,7 @@ public class StreamingDAO {
 
 	//메인서치 검색조건에 맞는 뮤직리스트
 	public List<MusicDTO> musicSearch(String q){
-		List<MusicDTO> ar = new ArrayList<>();
+		List<MusicDTO> ar = new ArrayList<MusicDTO>();
 		try {
 			ar = musicDAO.musicSearch(q);
 		} catch (Exception e) {
@@ -50,7 +50,7 @@ public class StreamingDAO {
 	
 	//메인서치 앨범 검색조건 리스트 뽑기
 	public List<AlbumDTO> albumSearch(String q){
-		List<AlbumDTO> ar = new ArrayList<>();
+		List<AlbumDTO> ar = new ArrayList<AlbumDTO>();
 		try {
 			ar = albumDAO.albumSearch(q);
 		} catch (Exception e) {

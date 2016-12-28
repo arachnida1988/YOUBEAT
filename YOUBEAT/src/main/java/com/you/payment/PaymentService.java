@@ -40,7 +40,7 @@ public class PaymentService {
 			sDTO.setScategory("music");
 			sDTO.setSid(paymentDTO.getPid());
 			List<ShoppingcartDTO> cartMusic = this.shoppingcartDAO.shoppingcartList(sDTO);
-			musicList = new ArrayList<>();
+			musicList = new ArrayList<MusicDTO>();
 			for(ShoppingcartDTO sc : cartMusic) {
 				MusicDTO m = this.musicDAO.musicView_cart(sc.getScategorynum());
 				musicList.add(m);
@@ -50,8 +50,8 @@ public class PaymentService {
 			sDTO.setScategory("album");
 			sDTO.setSid(paymentDTO.getPid());
 			List<ShoppingcartDTO> cartAlbum = this.shoppingcartDAO.shoppingcartList(sDTO);
-			albumList = new ArrayList<>();
-			albumPrice = new ArrayList<>();
+			albumList = new ArrayList<AlbumDTO>();
+			albumPrice = new ArrayList<Integer>();
 			for(ShoppingcartDTO sc : cartAlbum) {
 				AlbumDTO a = this.AlbumDAO.albumView(sc.getScategorynum());
 				int price = this.musicDAO.getGenreAndPriceOfMusic(sc.getScategorynum());
