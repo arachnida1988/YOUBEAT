@@ -108,4 +108,43 @@
 			where r between #{page.startRowNum} and #{page.lastRowNum}
 		]]>
 	</select>
+	<!-- 서치된 뮤직 리스트 -->
+	<select id="searchMusicList" parameterType="com.you.util.Searching" resultType="com.you.music.MusicDTO">
+			select * from (select rownum r, t.* from (select * from music where mdate between #{startDate} and #{lastDate})t) 
+			where r between #{startRowNum} and #{lastRowNum} order by 
+ 			<if test="albumASC == 1">
+				anum asc, 
+			</if> 
+			<if test="arraytype eq 'dateup'">
+				mdate desc
+			</if>
+			<if test="arraytype eq 'datedown'">
+				mdate asc
+			</if>
+			<if test="arraytype eq 'titleup'">
+				mtitle asc
+			</if>
+			<if test="arraytype eq 'titledown'">
+				mtitle desc
+			</if>
+			<if test="arraytype eq 'genreup'">
+				mgenre asc
+			</if>
+			<if test="arraytype eq 'genredown'">
+				mgenre desc
+			</if>
+	</select>
+
+	<select id="searchMusicTotalCount" resultType="int" parameterType="com.you.util.Searching">
+		<![CDATA[
+			select count(mnum) from music where mdate between #{startDate} and #{lastDate}
+		]]>		
+	</select>
+
+	<!-- 뮤직 검색으로뽑기 -->
+	<select id="musicSearch" parameterType="String" resultType="com.you.music.MusicDTO">
+		<![CDATA[
+			select * from music where mtitle like #{q}
+		]]>
+	</select>	
 </mapper>

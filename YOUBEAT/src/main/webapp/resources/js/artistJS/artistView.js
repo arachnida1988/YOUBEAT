@@ -2,6 +2,16 @@
  * 
  */
 $(function(){
+	//추가 부분~~~~~~~앨범 클릭시 앨범 상세 뷰 이동.
+	$("#album_img_div").on("click", ".img_add", function() {
+		alert($(this).attr("data-src"));
+		alert($(this).parent().find(".p_tag_2").text());
+
+		var albumNum = $(this).attr("data-src");
+		var artist = $(this).parent().find(".p_tag_2").text();
+		location.href="albumView?albumNum="+albumNum+"&artist="+artist;
+	});	
+	
 	// 페이지 버튼 -> 1 페이지인 상태 체크 css 적용
 	if($("#curPage1").val() == 1) {		
 		// 페이지 버튼 아이디가 1, 2, 3, 4로 되있음

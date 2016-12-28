@@ -7,8 +7,8 @@
 	<insert id="paymentAdd" parameterType="com.you.payment.PaymentDTO">
 		<![CDATA[
 			insert into payment values
-			(payment_seq.nextval, #{pid}, #{pprice}, sysdate,
-			#{pcategory}, #{pcategorynum}, #{pcardtype}, #{pname})
+			(payment_seq.nextval, #{pid}, sysdate, #{pcategory}, 
+			#{pcategorynum}, #{pcardtype}, #{pname})
 		]]>	
 	</insert>
 	
@@ -29,6 +29,13 @@
 			(select rownum r, t.* from 
 			(select * from payment where pid=#{pid} order by pdate desc)t) 
 			where r between #{page.startRowNum} and #{page.lastRowNum}
+		]]>	
+	</select>
+	
+	<select id="paymentTotalCount" parameterType="String"
+		resultType="int">
+		<![CDATA[
+			select count(pnum) from payment where pid=#{pid}
 		]]>	
 	</select>
 </mapper>

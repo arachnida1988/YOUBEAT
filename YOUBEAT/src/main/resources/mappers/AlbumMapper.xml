@@ -121,4 +121,10 @@
 			select * from album where aartist=#{aartist}
 		]]>
 	</select>
+	<!-- 앨범 검색으로뽑기 -->
+	<select id="albumSearch" parameterType="String" resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from album where atitle like #{q}
+		]]>
+	</select>
 </mapper>

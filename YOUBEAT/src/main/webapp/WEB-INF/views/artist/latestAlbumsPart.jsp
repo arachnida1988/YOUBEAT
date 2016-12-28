@@ -7,7 +7,7 @@
 			<td class="album_td">
 				<!-- 나중에 hover 처리를 위한 클래스 -->
 				<div class="album_wrap_div" id="${ albumPrices[a.index] }/${ albumList[a.index].anum }">
-					<div class="img_add">
+					<div class="img_add" data-src="${ albumList[a.index].anum }">
 						<img src="/beat/resources/upload/${ imgs.ffilename }">
 					</div>
 					<div class="info_add_div">

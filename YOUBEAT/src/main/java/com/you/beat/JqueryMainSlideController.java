@@ -1,5 +1,7 @@
 package com.you.beat;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,10 +32,11 @@ public class JqueryMainSlideController {
 	public void tracks(){}
 
 	@RequestMapping(value= "/tracks", method=RequestMethod.POST)
-	public String tracks(@RequestParam(defaultValue="1") int curPage, @RequestParam(defaultValue="25") int perPage, Model model, @RequestParam(defaultValue="dateup") String arraytype){
-		streamingService.tracksList(curPage, perPage, model, arraytype);
-		return "/header/tracksResult";
+	public String tracks(@RequestParam(defaultValue="1") int curPage, @RequestParam(defaultValue="25") int perPage, Model model, @RequestParam String arraytype, @RequestParam(defaultValue="0") int albumASC, @RequestParam(defaultValue="1970-01-01") Date startDate, @RequestParam Date lastDate){
+		streamingService.tracksList(curPage, perPage, model, arraytype,albumASC, startDate, lastDate);
+		return "header/tracksResult";
 	}
+
 
 	//mp3playerLoading
 	@RequestMapping(value="/audio")
@@ -92,4 +95,17 @@ public class JqueryMainSlideController {
 		return this.streamingService.artistMusicCharts(arartist, curPage, model);
 	}
 
+	//아티스트 페이지에서 특정앨범의 상세 뷰로 넘어가기
+	@RequestMapping(value="/albumView")
+	public String albumView(@RequestParam int albumNum,@RequestParam String artist, Model model){
+		streamingService.albumView(albumNum,artist,model);
+		return "album/albumView";
+	}
+	
+	//헤더의 서치기능
+	@RequestMapping(value = "/search")
+	public String mainSearch(@RequestParam String q, Model model){
+		streamingService.mainSearch(q,model);
+		return "/header/mainSearch";
+	}	
 }

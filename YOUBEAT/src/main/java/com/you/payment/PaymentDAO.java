@@ -33,4 +33,8 @@ public class PaymentDAO {
 		map.put("page", pageMaker);
 		return this.sqlSession.selectList(namespace+"paymentPageList", map);
 	}
+	
+	public int paymentTotalCount(String pid) throws Exception {
+		return this.sqlSession.selectOne(namespace+"paymentTotalCount", pid);
+	}
 }

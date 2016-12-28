@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.you.util.PageMaker;
+import com.you.util.Searching;
 
 @Repository
 public class MusicDAO {
@@ -90,5 +91,18 @@ public class MusicDAO {
 		map.put("page", pageMaker);
 		map.put("mgenre", mgenre);
 		return this.sqlSession.selectList(namespace+"musicList_map", map);
+	}
+	
+	//
+	public List<MusicDTO> searchMusicList(Searching searching) throws Exception {
+		return sqlSession.selectList(namespace+"searchMusicList", searching);
+	}
+	
+	public int searchMusicTotalCount(Searching searching) throws Exception {
+		return sqlSession.selectOne(namespace+"searchMusicTotalCount", searching);
+	}
+	
+	public List<MusicDTO> musicSearch(String q) throws Exception {
+		return sqlSession.selectList(namespace+"musicSearch",q);
 	}
 }

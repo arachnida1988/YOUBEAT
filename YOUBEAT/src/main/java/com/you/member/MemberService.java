@@ -1,6 +1,5 @@
 package com.you.member;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -353,8 +352,8 @@ public class MemberService {
 		pMaker.makeRow();
 		
 		try {
+			pMaker.makePage(this.paymentDAO.paymentTotalCount(memberDTO.getMemid()));
 			paymentList = this.paymentDAO.paymentPageList(pMaker, memberDTO.getMemid());
-			pMaker.makePage(paymentList.size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -364,7 +363,16 @@ public class MemberService {
 		return "member/memberBuylist";
 	}
 	
-	public String memberMp3list(MemberDTO memberDTO, Model model) {
+	
+	// VIEW - AJAX( MP3 LIST )
+	public String memberMp3list(MemberDTO memberDTO, int pnum, Model model) {
+		// PNUM의 값으로.. MP3 파일 가져오기 .. 페이지 처리
+		// 1. PNUM으로 정보 가져오기 - PCATEGORYNUM으로 음악 검색
+		// 앨범이면 -> 음악 DTO 접근
+		// 음악이면 -> 음악 DTO 접근
+		// 10개씩 뿌려줄것인지?? page 처리?? 아니면 그냥 다 뿌려줄것인지??
+		
+		
 		return "member/memberMp3list";
 	}
 }

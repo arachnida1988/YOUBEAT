@@ -1,5 +1,6 @@
 package com.you.streaming;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +22,114 @@ public class StreamingService {
 	@Autowired
 	private StreamingDAO streamingDAO;
 
+	//메인서칭
+	public void mainSearch(String q, Model model){
+		q="%"+q+"%";
+		List<ArtistDTO> artistList = streamingDAO.artistSearch(q);
+		model.addAttribute("artistList", artistList);//아티스트 검색
+		model.addAttribute("artistfiles", this.streamingDAO.fileupArtistList(artistList));//아티스트사진
+		System.out.println("artist files size: "+this.streamingDAO.fileupArtistList(artistList).get(0).getFfilename());
+		List<AlbumDTO> albumList = streamingDAO.albumSearch(q);
+		model.addAttribute("albumList", albumList);//앨범 검색
+		model.addAttribute("albumfiles", streamingDAO.fileupAlbumList(albumList));
+
+		List<MusicDTO> music = streamingDAO.musicSearch(q);//밑으로 뮤직 검색
+		List<Mp3DTO> mp3 = streamingDAO.mp3List();
+		List<ArtistDTO> artist = streamingDAO.artistList();
+		List<AlbumDTO> album = streamingDAO.albumList();
+		List<FileupDTO> files = streamingDAO.fileupAlbumList(album);
+		System.out.println("music size : "+music.size());
+		//music == 나머지 모든 리스트 매칭 작업
+		List<Mp3DTO> mp3Complete = new ArrayList<Mp3DTO>();
+		List<ArtistDTO> artistComplete = new ArrayList<ArtistDTO>();
+		List<AlbumDTO> albumComplete = new ArrayList<AlbumDTO>();
+		List<FileupDTO> filesComplete = new ArrayList<FileupDTO>();
+		System.out.println("나온아티스트 사이즈"+artist.size());
+
+		for(int i=0;i<music.size();i++){
+
+			for(int j=0;j<mp3.size();j++){
+				if(music.get(i).getMtitle().equals(mp3.get(j).getTitle())){
+					mp3Complete.add(mp3.get(j));
+				}
+			}
+
+			for(int k=0;k<album.size();k++){
+				if(music.get(i).getAnum() == album.get(k).getAnum()){
+					albumComplete.add(album.get(k));
+					filesComplete.add(files.get(k));
+				}
+			}
+		}
+		for(int m=0;m<albumComplete.size();m++){
+			for(int n=0;n<artist.size();n++){
+				if(albumComplete.get(m).getAartist().equals(artist.get(n).getArartist())){
+					artistComplete.add(artist.get(n));
+				}
+			}
+		}
+
+		System.out.println("음악리스트 사이즈 : "+music.size());
+		/*		for(int i=0;i<music.size();i++){
+			System.out.println(i+"   "+music.get(i).getMtitle());
+		}
+		System.out.println("--------------------------------------------------------");
+		for(int i=0;i<music.size();i++){
+			System.out.println(i+"   "+mp3Complete.get(i).getTitle());
+		}*/
+		System.out.println("매칭된 mp3 파일리스트 사이즈 : "+mp3Complete.size());
+		System.out.println("album size : "+ albumComplete.size());
+		System.out.println("artist size : "+ artistComplete.size());
+		System.out.println("files size : "+ filesComplete.size());
+		model.addAttribute("album", albumComplete);
+		model.addAttribute("mp3", mp3Complete);
+		model.addAttribute("artist", artistComplete);
+		model.addAttribute("files", filesComplete);
+		model.addAttribute("music", music);
+	}
+
+	//앨범 상세 뷰 로드
+	public void albumView(int anum,String artist, Model model){
+		//해당앨범의 뮤직리스트
+		List<MusicDTO> musicList = streamingDAO.getMusicList_anum(anum);
+		//해당앨범의 상세정보
+		AlbumDTO thisAlbumInfo = streamingDAO.albumView(anum);
+		//해당 아티스트의 모든 앨범리스트
+		List<AlbumDTO> albumList = streamingDAO.getAlbumList_name(artist);//수정중
+		//해당앨범을 리스트로하여 파일매칭
+		List<AlbumDTO> albumChange =new ArrayList<>();
+		albumChange.add(thisAlbumInfo);
+		List<FileupDTO> file = streamingDAO.fileupAlbumList(albumChange);
+		FileupDTO fileupDTO = file.get(0);
+
+		List<Mp3DTO> mp3Complete = new ArrayList<Mp3DTO>();
+		List<Mp3DTO> mp3 = streamingDAO.mp3List();
+		for(int i=0;i<musicList.size();i++){
+			for(int j=0;j<mp3.size();j++){
+				if(musicList.get(i).getMtitle().equals(mp3.get(j).getTitle())){
+					mp3Complete.add(mp3.get(j));
+				}
+			}
+		}
+
+		//그가수의 모든리스트에서 뿌려줄 앨범 제외 하기
+		for(int i=0;i<albumList.size();i++){
+			if(thisAlbumInfo.getAtitle().equals(albumList.get(i).getAtitle())){
+				albumList.remove(i);
+				break;
+			}
+		}
+		model.addAttribute("albumInfo", thisAlbumInfo);
+		model.addAttribute("musicList", musicList);
+		model.addAttribute("albumImg", fileupDTO);
+		model.addAttribute("mp3", mp3Complete);
+		model.addAttribute("albumList", albumList);//수정중
+	}
+
 	//tracks part list 불러오기
-	public void tracksList(int curPage, int perPage, Model model, String arraytype){
-		List<MusicDTO> music = streamingDAO.musicList(curPage, perPage, model);
+	public void tracksList(int curPage, int perPage, Model model, String arraytype, int albumASC, Date startDate, Date lastDate){
+		System.out.println(startDate+"----"+lastDate);
+		List<MusicDTO> music = streamingDAO.musicList(curPage, perPage, model, arraytype, albumASC, startDate, lastDate);
 		List<Mp3DTO> mp3 = streamingDAO.mp3List();
 		List<ArtistDTO> artist = streamingDAO.artistList();
 		List<AlbumDTO> album = streamingDAO.albumList();
@@ -34,12 +140,16 @@ public class StreamingService {
 		List<ArtistDTO> artistComplete = new ArrayList<ArtistDTO>();
 		List<AlbumDTO> albumComplete = new ArrayList<AlbumDTO>();
 		List<FileupDTO> filesComplete = new ArrayList<FileupDTO>();
-		for(int i=0;i<music.size();i++){	
+		System.out.println("나온아티스트 사이즈"+artist.size());
+
+		for(int i=0;i<music.size();i++){
+
 			for(int j=0;j<mp3.size();j++){
 				if(music.get(i).getMtitle().equals(mp3.get(j).getTitle())){
 					mp3Complete.add(mp3.get(j));
 				}
 			}
+
 			for(int k=0;k<album.size();k++){
 				if(music.get(i).getAnum() == album.get(k).getAnum()){
 					albumComplete.add(album.get(k));
@@ -49,14 +159,31 @@ public class StreamingService {
 		}
 		for(int m=0;m<albumComplete.size();m++){
 			for(int n=0;n<artist.size();n++){
-				if(albumComplete.get(m).getAtitle().equals(artist.get(n).getArartist())){
+				if(albumComplete.get(m).getAartist().equals(artist.get(n).getArartist())){
 					artistComplete.add(artist.get(n));
 				}
 			}
 		}
+
 		System.out.println("음악리스트 사이즈 : "+music.size());
-		System.out.println("매칭된 mp3 파일리스트 사이즈 : "+mp3Complete.size());	
+		/*		for(int i=0;i<music.size();i++){
+				System.out.println(i+"   "+music.get(i).getMtitle());
+			}
+			System.out.println("--------------------------------------------------------");
+			for(int i=0;i<music.size();i++){
+				System.out.println(i+"   "+mp3Complete.get(i).getTitle());
+			}*/
+		System.out.println("매칭된 mp3 파일리스트 사이즈 : "+mp3Complete.size());
+		System.out.println("album size : "+ albumComplete.size());
+		System.out.println("artist size : "+ artistComplete.size());
+		System.out.println("files size : "+ filesComplete.size());
+		model.addAttribute("album", albumComplete);
+		model.addAttribute("mp3", mp3Complete);
+		model.addAttribute("artist", artistComplete);
+		model.addAttribute("files", filesComplete);
+		model.addAttribute("music", music);
 	}
+
 
 	// *****************************************************
 	// Artist List - 아티스트 페이지 - 추천 페이지

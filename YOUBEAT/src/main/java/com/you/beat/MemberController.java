@@ -70,15 +70,18 @@ public class MemberController {
 	}
 	
 	// VIEW - AJAX ( memberBuylist ) 
-	@RequestMapping(value="/memberBuylist", method=RequestMethod.POST)
+	@RequestMapping(value="/memberBuylist", method={RequestMethod.GET, RequestMethod.POST})
 	public String memberBuylist(@RequestParam(defaultValue="1") int curPage, 
 			@RequestParam(defaultValue="10") int perPage , MemberDTO memberDTO, 
 			Model model) {
 		return this.mService.memberBuylist(curPage, perPage, memberDTO, model);
 	}
+	
+	// VIEW = AJAX (MP3 LIST)
 	@RequestMapping(value="/memberMp3list", method=RequestMethod.POST)
-	public String memberMp3list(MemberDTO memberDTO, Model model) {
-		return this.mService.memberMp3list(memberDTO, model);
+	public String memberMp3list(MemberDTO memberDTO, @RequestParam int pnum, 
+			Model model) {
+		return this.mService.memberMp3list(memberDTO, pnum, model);
 	}
 	
 	// Delete 처리

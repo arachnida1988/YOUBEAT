@@ -292,7 +292,7 @@ table {
 
 #member_download_info_div {
 	width: 50%;
-	height: 550px;
+	height: auto;
 	float: left;
 }
 
