@@ -11,6 +11,13 @@
 <link rel="stylesheet" href="/beat/resources/css/artist/artistList.css" type="text/css">
 <link rel="stylesheet" href="/beat/resources/css/artist/featuredPage.css" type="text/css">
 <link rel="stylesheet" href="/beat/resources/css/artist/allArtistPage.css" type="text/css">
+	<style type="text/css">
+	#footer{
+		position: fixed;
+		bottom: 1px;
+		z-index: 9999;
+	}
+	</style>
 </head>
 <body>
 	<!-- header -->
@@ -32,6 +39,9 @@
 	<!-- footer -->
 	<div>	
 		<c:import url="../template/futer.jsp"></c:import>
+	</div>
+	<div id="footer">
+		<c:import url="/header/audio"></c:import>
 	</div>
 <script src="/beat/resources/js/artistJS/artistList.js"></script>
 <script src="/beat/resources/js/sliderJS/jquery.bxslider.js"></script>		

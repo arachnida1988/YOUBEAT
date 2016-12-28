@@ -108,4 +108,12 @@ public class JqueryMainSlideController {
 		streamingService.mainSearch(q,model);
 		return "/header/mainSearch";
 	}	
+	
+	//아티스트 페이지에서 특정앨범의 상세 뷰로 넘어가기
+	@RequestMapping(value="/albumView")
+	public String album_addList(@RequestParam int title,@RequestParam String artist, Model model){
+		streamingService.albumView(title,artist,model);
+		return "album/albumView";
+	}
+	
 }

@@ -4,6 +4,11 @@
 
 // Window OnLoad가 되면
 $(function(){
+	//플레이 버튼 클릭 시 앨범이나 노래재생
+	
+	
+	
+	
 	// 페이지 버튼 -> 1 페이지인 상태 체크 css 적용
 	if($("#curPage").val() == 1) {		
 		// 페이지 버튼 아이디가 1, 2, 3, 4로 되있음
@@ -19,7 +24,7 @@ $(function(){
 			var result="<div class='cart_add_sub_div'><div class='cart_add_sub_contents_div'>";
 			result = result + "<div class='cart_contents_div_1'>";
 			result = result + "<div class='contents_1_play_div'>";
-			result = result + '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
+			result = result + '<input type="image" class="album_add2" onfocus="this.blur()" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
 			result = result + "</div>";
 			result = result + "<div class='contents_1_add_list_div'>";
 			result = result + '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/list_add_btn.PNG">';
@@ -123,3 +128,4 @@ $(document).on("click", ".price_cart_add2", function(){
 		location.href="/beat/member/memberLogin";
 	}
 });
+
