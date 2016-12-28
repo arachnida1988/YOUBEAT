@@ -196,14 +196,19 @@ function setAudio(data) {
 }
 
 // auto next play
-$(audio).on("ended", function() { 
-	audio.pause(); 
-	var next = $("#playlist li.active").next(); 
-	if (next.length == 0) { 
-		next = $("#playlist li:first-child");
+$(function() {
+	if(audio!=null){
+		$(audio).on("ended", function() { 
+			audio.pause(); 
+			var next = $("#playlist li.active").next(); 
+			if (next.length == 0) { 
+				next = $("#playlist li:first-child");
+			}
+			setAudio(next);
+		});
 	}
-	setAudio(next);
 });
+	
 
 
 // 플레이리스트 우클릭시 리스트에서 해당곡삭제

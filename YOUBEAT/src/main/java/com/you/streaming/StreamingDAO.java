@@ -1,5 +1,6 @@
 package com.you.streaming;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import com.you.mp3.Mp3DTO;
 import com.you.music.MusicDAO;
 import com.you.music.MusicDTO;
 import com.you.util.PageMaker;
+import com.you.util.Searching;
 
 @Repository
 public class StreamingDAO {
@@ -33,6 +35,43 @@ public class StreamingDAO {
 	@Autowired
 	private Mp3DAO mp3dao;
 
+	//메인서치 검색조건에 맞는 뮤직리스트
+	public List<MusicDTO> musicSearch(String q){
+		List<MusicDTO> ar = new ArrayList<>();
+		try {
+			ar = musicDAO.musicSearch(q);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ar;
+	}
+	
+	
+	//메인서치 앨범 검색조건 리스트 뽑기
+	public List<AlbumDTO> albumSearch(String q){
+		List<AlbumDTO> ar = new ArrayList<>();
+		try {
+			ar = albumDAO.albumSearch(q);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ar;
+	}
+	
+	//메인서치 아티스트 검색조건 리스트뽑기
+	public List<ArtistDTO> artistSearch(String q){
+		List<ArtistDTO> ar = new ArrayList<ArtistDTO>();
+		try {
+			ar = artistDAO.artistSearch(q);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ar;
+	}
+
 	//아티스트 리스트 기본형 모두뽑기
 	public List<ArtistDTO> artistList(){
 		List<ArtistDTO> ar = new ArrayList<ArtistDTO>();
@@ -46,27 +85,56 @@ public class StreamingDAO {
 	}
 
 	//tracks 뮤직리스트  뽑기
-	public List<MusicDTO> musicList(int curPage, int perPage,Model model){
+	public List<MusicDTO> musicList(int curPage, int perPage,Model model, String arraytype, int albumASC, Date startDate, Date lastDate){
 		List<MusicDTO> ar = new ArrayList<MusicDTO>();
+
+		//검색조건추가
+		switch (arraytype) {
+		case "dateup":
+			break;
+		case "datedown":
+			break;
+		case "titleup":
+			break;
+		case "titledown":
+			break;
+		case "genreup":
+			break;
+		case "genredown":
+		break;
+		default :
+			arraytype="dateup";
+		break;
+		}
 		int totalCount=0;
+		Searching searching = new Searching();
+		System.out.println("정렬되는 타입"+arraytype);
+		searching.setArraytype(arraytype);
+		searching.setAlbumASC(albumASC);
+		searching.setStartDate(startDate);
+		searching.setLastDate(lastDate);
 		try {
-			totalCount = musicDAO.musicTotalCount();
+			totalCount = musicDAO.searchMusicTotalCount(searching);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCurPage(curPage);
-		pageMaker.setPerPage(perPage);
-		pageMaker.makeRow();
-		pageMaker.makePage(totalCount);
+		
+		
+		
+		
+		//페이징 셋팅
+		searching.setCurPage(curPage);
+		searching.setPerPage(perPage);
+		searching.makeRow();
+		searching.makePage(totalCount);
 		try {
-			ar = musicDAO.musicList(pageMaker);
+			ar = musicDAO.searchMusicList(searching);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("pageMaker", searching);
 		return ar;
 	}
 

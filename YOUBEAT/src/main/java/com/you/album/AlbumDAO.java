@@ -92,4 +92,9 @@ public class AlbumDAO {
 	public List<AlbumDTO> getAlbumList_name(String aartist) throws Exception {
 		return this.sqlSession.selectList(namespace+"getAlbumList_name", aartist);
 	}
+	
+	//메인서치 앨범리스트
+	public List<AlbumDTO> albumSearch(String q) throws Exception{
+		return this.sqlSession.selectList(namespace+"albumSearch", q);
+	}	
 }

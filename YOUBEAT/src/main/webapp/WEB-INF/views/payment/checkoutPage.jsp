@@ -120,8 +120,6 @@
 								</td>
 							</tr>
 						</table>
-						<!-- 금액,아이디도 넘어가기 위한 hidden 처리 -->
-						<input type="hidden" name="pprice" value="${ totalPrice }">
 						<!-- 나중에 지워줘야 하는 부분 -> member Session을 이용할거라서 -->
 						<input type="hidden" name="pid" value="${ member.memid }">
 						<!-- --------------------------------------------- -->

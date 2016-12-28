@@ -5,7 +5,6 @@ import java.sql.Date;
 public class PaymentDTO {
 	private int pnum;
 	private String pid;
-	private int pprice;
 	private Date pdate;
 	private String pcategory;
 	private int pcategorynum;
@@ -23,12 +22,6 @@ public class PaymentDTO {
 	}
 	public void setPid(String pid) {
 		this.pid = pid;
-	}
-	public int getPprice() {
-		return pprice;
-	}
-	public void setPprice(int pprice) {
-		this.pprice = pprice;
 	}
 	public Date getPdate() {
 		return pdate;

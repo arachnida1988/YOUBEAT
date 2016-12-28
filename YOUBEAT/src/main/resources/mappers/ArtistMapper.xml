@@ -43,4 +43,11 @@
 		]]>
 	</select>
 	<!-- 복사 붙여넣기 -->
+	
+	<!-- 아티스트 검색으로뽑기 -->
+	<select id="artistSearch" parameterType="String" resultType="com.you.artist.ArtistDTO">
+		<![CDATA[
+			select * from artist where arartist like #{q}
+		]]>
+	</select>	
 </mapper>

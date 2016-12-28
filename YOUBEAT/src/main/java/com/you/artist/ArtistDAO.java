@@ -43,4 +43,9 @@ public class ArtistDAO {
 	public int artistTotalCount() throws Exception {
 		return this.sqlSession.selectOne(namespace+"artistTotalCount");
 	}
+	
+	//메인서치의 아티스트 검색
+	public List<ArtistDTO> artistSearch(String q) throws Exception{
+		return this.sqlSession.selectList(namespace+"artistSearch", q);
+	}	
 }
