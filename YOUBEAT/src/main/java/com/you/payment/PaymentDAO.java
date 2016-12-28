@@ -37,4 +37,8 @@ public class PaymentDAO {
 	public int paymentTotalCount(String pid) throws Exception {
 		return this.sqlSession.selectOne(namespace+"paymentTotalCount", pid);
 	}
+	
+	public PaymentDTO paymentView(int pnum) throws Exception {
+		return this.sqlSession.selectOne(namespace+"paymentView", pnum);
+	}
 }

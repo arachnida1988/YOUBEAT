@@ -24,4 +24,8 @@ public class Mp3DAO {
 	public List<Mp3DTO> mp3List() throws Exception{
 		return sqlSession.selectList(namespace+"mp3List");
 	}
+	
+	public Mp3DTO mp3View(Mp3DTO mp3DTO) throws Exception {
+		return sqlSession.selectOne(namespace+"mp3View", mp3DTO);
+	}
 }

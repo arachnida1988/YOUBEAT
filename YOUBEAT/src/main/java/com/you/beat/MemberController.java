@@ -61,7 +61,11 @@ public class MemberController {
 	
 	// View 경로 이동
 	@RequestMapping(value="/memberView", method=RequestMethod.GET)
-	public void memberView() {}
+	public void memberView(@RequestParam(defaultValue="0") int pageType, 
+			@RequestParam(defaultValue="1") int curPage, Model model) {
+		model.addAttribute("pageType", pageType);
+		model.addAttribute("curPage", curPage);
+	}
 	
 	// VIEW - AJAX ( memberAccount )
 	@RequestMapping(value="/memberAccount", method=RequestMethod.POST)

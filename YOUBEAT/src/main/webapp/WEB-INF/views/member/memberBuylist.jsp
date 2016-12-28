@@ -23,7 +23,7 @@
 						<td class="buy_td_4">${ list.pcardtype }</td>
 						<td class="buy_td_4">
 							<input type="button" class="mp3_view_btn" 
-								id="pnum_${ list.pnum }" value="MP3 파일 보기">
+								id="pnum_${ list.pnum }" value="MP3 파일">
 						</td>
 					</tr>
 				</c:forEach>
@@ -33,20 +33,17 @@
 			<div id="buy_page_wrap_div">
 							<!-- 페이징 처리 -->
 			<c:if test="${ page.curBlock > 1 }">
-				<a class="page_a_tag" href="memberBuylist?memid=${ member.memid }
-					&curPage=${ page.startNum - 1 }">
+				<a class="page_a_tag" href="memberView?pageType=1&curPage=${ page.startNum - 1 }">
 					[이전]&nbsp;&nbsp;
 				</a>
 			</c:if>
 			<c:forEach begin="${ page.startNum }" end="${ page.lastNum }" varStatus="status">
-				<a class="page_a_tag" href="memberBuylist?memid=${ member.memid }
-					&curPage=${ status.count }">
+				<a class="page_a_tag" href="memberView?pageType=1&curPage=${ status.count }">
 					${ status.count }&nbsp;&nbsp;
 				</a>	
 			</c:forEach>
 			<c:if test="${ page.curBlock < page.totalBlock }">
-				<a class="page_a_tag" href="memberBuylist?memid=${ member.memid }
-					&curPage=${ page.lastNum + 1 }">
+				<a class="page_a_tag" href="memberView?pageType=1&curPage=${ page.lastNum + 1 }">
 					[다음]&nbsp;&nbsp;
 				</a>
 			</c:if>	
@@ -70,8 +67,8 @@
 					pnum : pnum
 				},
 				success : function(result) {
-					$(".member_download_info_div").css("background-color", "#666666");
-					$(".member_download_info_div").html(result);
+					$("#member_download_info_div").css("background-color", "#666666");
+					$("#member_download_info_div").html(result);
 				}
 			});
 		});
