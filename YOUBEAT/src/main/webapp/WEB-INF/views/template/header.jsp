@@ -31,10 +31,10 @@
 
 <script>
 $(document).ready(function(){
-    $("#genre").mouseover(function(){
+    $("beat#genre").mouseover(function(){
         $("#panel").show();
     });
-    $("#genre").mouseout(function(){
+    $("#beatgenre").mouseout(function(){
     	$("#panel").hide();
     });
     $("#panel").mouseover(function(){
@@ -62,11 +62,11 @@ $(document).ready(function(){
 </head>
 
 <div id="header2">
-	<div id="logo"><a href="/beat/header/mainSlideTest">LOGO</a></div>
-	<div id="genre"><a href="">GENRES</a></div>
-	<div id="track"><a href="/beat/header/tracks">TRACKS</a></div>
-	<div id="album"><a href="/beat/header/album">ALBUMS</a></div>
-	<div id="artist"><a href="/beat/header/artist">ARTISTS</a></div>
+	<div id="beatlogo"><a href="/beat/header/mainSlideTest">LOGO</a></div>
+	<div id="beatgenre"><a href="">GENRES</a></div>
+	<div id="beattrack"><a href="/beat/header/tracks">TRACKS</a></div>
+	<div id="beatalbum"><a href="/beat/header/album">ALBUMS</a></div>
+	<div id="beatartist"><a href="/beat/header/artist">ARTISTS</a></div>
 	<div id="scform">
 		<button id="scbtn">search</button>
 		<input type="text" id="sc_input_123" name="sc">

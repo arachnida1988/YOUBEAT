@@ -133,7 +133,7 @@
 							</table>
 						</td>
 						<td rowspan="2" class="side">
-							<table class="maint_s">
+							<table class="maint_s" id="stable1">
 								<tr>
 									<td class="tname" colspan="2">
 										<h2>TOP TEN</h2>
@@ -258,7 +258,7 @@
 							</table>
 						</td>
 						<td rowspan="3" class="side">
-							<table class="maint_s">
+							<table class="maint_s" id="stable2">
 								<tr>
 									<td class="tname" colspan="2">
 										<h2>TOP TEN</h2>

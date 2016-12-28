@@ -30,25 +30,25 @@
  text-decoration: none;
  font-size: 150%;
  }
- #logo{
+ #beatlogo{
   width: 10%;
   float: left;
  }
- #genre{
+ #beatgenre{
   width: 8%;
   float: left;
  }
- #track{
+ #beattrack{
   width: 8%;
   float: left;
   
  } 
- #album{
+ #beatalbum{
   width: 8%;
   float: left;
   
  }
- #artist{
+ #beatartist{
   width: 8%;
   float: left;
   
