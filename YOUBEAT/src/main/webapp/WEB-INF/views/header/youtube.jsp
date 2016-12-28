@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +80,6 @@ function fnGetList(sGetToken){
 		height: 1901px;
 	}
 	#get_view{
-		border: 1px red solid;
 		width: 1000px;
 		height: 1900px;
 		background-color: #262626;
@@ -88,7 +88,12 @@ function fnGetList(sGetToken){
 		color: white;
 	}
 	#nav_view{
-		border: 1px red solid;
+		text-align: center;
+	}
+	.page{
+		color: white;
+		text-decoration: none;
+		font-size: 130%;
 	}
 	#player{
 		float: left;
@@ -99,12 +104,45 @@ function fnGetList(sGetToken){
 	.clear{
 		clear: both;
 	}
+	#you_body{
+		background-color: #262626;
+		height: 2200px;
+	}
+	#search_box{
+	  width: 70%;
+	  Height: 30px;
+	  line-height: 10%;
+	  background-color: #262626;
+	  color: white;
+	  margin-top: 50px;
+	}
+	.list{
+		margin-top: 30px;
+	}
+	.player{
+		margin-top: 50px;
+	}
+	
+	#btbt{
+	  width: 20%;
+	  height: 30px;
+	  background-color: black;
+	  color: white;
+	  overflow: hidden;
+  }
 </style>
 </head>
 	<body>
+	<div>
+		<c:import url="../template/header.jsp"></c:import>
+	</div>
+	<div id="you_body">
+	<br>
+	<br>
+	<br>
 	<div id="youtube_search_engine">
 		<form name="form1" method="post" onsubmit="return false;">
-		    <input type="text" id="search_box"><button onclick="fnGetList()">가져오기</button>
+		    <input type="text" id="search_box" placeholder="검색어를 입력해주세요."><button id="btbt" onclick="fnGetList()">가져오기</button>
 		</form>
 		<div id="get_view"></div>
 		<div id="nav_view"></div>
@@ -113,6 +151,10 @@ function fnGetList(sGetToken){
 <!-- 	    <div class="player">
 	    	<iframe id="player" type="text/html" width="150" height="120" src="http://www.youtube.com/embed/?enablejsapi=1&origin=http://example.com" frameborder="0"></iframe>
 	    </div>  -->
+	</div>
+	 <div>
+		<c:import url="../template/futer.jsp"></c:import>
+	 </div>
     <script>
 	// 2. This code loads the IFrame Player API code asynchronously.
 /* 		var tag = document.createElement('script');
@@ -126,18 +168,17 @@ function fnGetList(sGetToken){
 			player1 = new YT.Player('player1', {
 				height : '120',
 				width : '150',
-				videoId : 'JTDK2k1OAzk'
+				videoId : 'JTDK2k1OAzk',
 			});
 		} */
 		/* function onYouTubeIframeAPIReady() {
 			player = new YT.Player('player', {
 				height : '120',
 				width : '150',
-				videoId : 'JTDK2k1OAzk'
+				videoId : 'JTDK2k1OAzk',
 			});
 		} */
     </script>
-
 
   </body>
 </html>

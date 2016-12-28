@@ -68,7 +68,7 @@ $(document).ready(function(){
 	<div id="beatlogo"><a href="/beat/header/mainSlideTest">LOGO</a></div>
 	<div id="beatgenre"><a href="">GENRES</a></div>
 	<div id="beattrack"><a href="/beat/header/tracks">TRACKS</a></div>
-	<div id="beatalbum"><a href="/beat/header/album">ALBUMS</a></div>
+	<div id="beatalbum"><a href="/beat/header/youtube">YOUTUBE</a></div>
 	<div id="beatartist"><a href="/beat/header/artist">ARTISTS</a></div>
 	<div id="scform">
 		<button id="scbtn">search</button>
