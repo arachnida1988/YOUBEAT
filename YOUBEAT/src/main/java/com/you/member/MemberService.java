@@ -392,7 +392,7 @@ public class MemberService {
 			PaymentDTO payDTO = this.paymentDAO.paymentView(pnum);
 			// 음악
 			if(payDTO.getPcategory().equals("music")) {		
-				musicList = new ArrayList<>();
+				musicList = new ArrayList<MusicDTO>();
 				albumList = new ArrayList<>();
 				mp3List = new ArrayList<>();
 				MusicDTO music = this.musicDAO.musicView_cart(payDTO.getPcategorynum());

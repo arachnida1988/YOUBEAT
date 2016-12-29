@@ -12,56 +12,61 @@
 <title>YOUBEAT - Tracks</title>
 
 <style type="text/css">
+	body {
+	background: #ababab;
+	}
 	#tracks_main_wrap{
 		padding-top:80px;
-		background-color: #343434;
+		background-color: #212121;
 		color: white;
 		border: 1px solid #343434;
 	}
-	.tracks_wrap{
+	/* .tracks_wrap{
 		margin: 0 auto;
-	}
+	} */
 	#test_wrap{
 		border: 1px red gray;
 		width: 1px;
 		height: 1px;	
 	}
+	#high_container{
+		width: 1100px;
+		margin: 0 auto;
+	}
+	.main_title_name1{
+	font-size: 60px;
+	margin: 0;
+	}
 	#tracks_search{
 		/* border: 1px red solid; */
 		width: 1100px;
-		height: 100px;
 		margin: 0 auto;
+		position: inherit;
 	}
-	.perPageSelect{
-		padding-top: 25px;
-	}
-	#tracks_partner{
-		float: right;;
-		color: black;
+	#block_list_image{
+		position: absolute;
 	}
 	#tracks_array_title{
 		color: white;
-	}
-	#chk_calinders{ 
-		margin: 0 auto;
 	}
 	#chk_calinders input{
 		color: black;
 	}
 	#tracks_wrap{
-		border-bottom: 1px solid gray;
+		/* border-bottom: 1px solid gray; */
 		width: 1100px;
 		height: 1300px;
 		margin: 0 auto;
 	}
 	.tracks_detail{
-		border-bottom: 1px solid gray;
+		/* border-bottom: 1px solid gray; */
 		width: 100%;
 		height: 40px;
+		background-color: #343434;
 	}
 	.album{
 		float: left;
-		border-bottom: 1px solid gray;
+		/* border-bottom: 1px solid gray; */
 		width: 50px;
 		height: 40px;
 	}
@@ -80,7 +85,7 @@
 	}
 	._title{
 		float: left;
-		border-bottom: 1px solid gray;
+		/* border-bottom: 1px solid gray; */
 		width: 378px;
 		height: 40px;
 		line-height: 35px;
@@ -88,7 +93,7 @@
 	}
 	._artist{
 		float: left;
-		border-bottom: 1px solid gray;
+		/* border-bottom: 1px solid gray; */
 		width: 200px;
 		height: 40px;
 		line-height: 35px;
@@ -96,7 +101,7 @@
 	}
 	.genre{
 		float: left;
-		border-bottom: 1px solid gray;
+		/* border-bottom: 1px solid gray; */
 		width: 200px;
 		height: 40px;
 		line-height: 35px;
@@ -104,7 +109,7 @@
 	}
 	.date{
 		float: left;
-		border-bottom: 1px solid gray;
+	/* 	border-bottom: 1px solid gray; */
 		width: 150px;
 		height: 40px;
 		line-height: 35px;
@@ -113,7 +118,7 @@
 	
 	.price{
 		float: left;
-		border-bottom: 1px solid gray;
+		/* border-bottom: 1px solid gray; */
 		width: 50px;
 		height: 40px;
 		line-height: 35px;
@@ -240,14 +245,8 @@
 </div>
 <div id="test_wrap"></div>
 	<div id="tracks_main_wrap">
-		
-		<div id="tracks_search">
-
-			<img class="perPageSelect" data-src="1400px" src="/beat/resources/image/page/25.png" id="25">
-			<img class="perPageSelect" data-src="2500px" src="/beat/resources/image/page/50.png" id="50">
-			<img class="perPageSelect" data-src="3500px" src="/beat/resources/image/page/75.png" id="75">
-			<img class="perPageSelect" data-src="4600px" src="/beat/resources/image/page/100.png" id="100">
-			
+		<div id="high_container">
+			<span class="main_title_name1">Tracks</span>
 			<div id="chk_calinders">
 				<input type="checkbox" id="albumASC" value="0">앨범순
 					<input type="text" id="cal1">
@@ -266,12 +265,21 @@
 				</select>
 			</div>
 		</div>
+			<div id="tracks_search">
+				<div id="block_list_image">
+					<span>Result Per Page</span>
+						<img class="perPageSelect" data-src="1400px" src="/beat/resources/image/page/25.png" id="25">
+								<img class="perPageSelect" data-src="2500px" src="/beat/resources/image/page/50.png" id="50">
+									<img class="perPageSelect" data-src="3500px" src="/beat/resources/image/page/75.png" id="75">
+								<img class="perPageSelect" data-src="4600px" src="/beat/resources/image/page/100.png" id="100">
+							</div>
+				</div>
 		<div id="tracks_wrap">
-			<!-- 메인 미들wrap -->
-			<!-- ajax list get, paging-->
-
-		</div>
-	</div>
+					<!-- 메인 미들wrap -->
+					<!-- ajax list get, paging--></div>
+					
+			
+				</div>
 	<div id="footer">
 		<c:import url="/header/audio"></c:import>
 	</div>

@@ -40,7 +40,7 @@ function fnGetList(sGetToken){
 					var text = "<iframe id='player' type='text/html' width='480' height='320' src='http://www.youtube.com/embed/"+this.id.videoId+"?enablejsapi=1&origin=http://example.com' frameborder='0'></iframe>";
 					text=text+'<p class="box"><span>'+this.snippet.title+'</span></p>';
 					text=text+'<p class="box">'+this.snippet.publishedAt+'</p>';
-					text=text+'<p class="box"><a href="//www.youtube.com/watch?v='+this.id.videoId+' target="_blank">유투브로</a></p>';
+					text=text+'<p class="box"><a href="//www.youtube.com/watch?v='+this.id.videoId+' target="_blank">Go To Youtube</a></p>';
 	           		text=text+'<p class="box">'+this.snippet.description+'</p>';
 					create.innerHTML=text;
 					$("#get_view").append(create);

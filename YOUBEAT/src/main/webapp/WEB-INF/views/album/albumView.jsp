@@ -162,7 +162,7 @@ function myFunction() {
 		<c:forEach items="${musicList }" varStatus="m" var="a">
 			<tr class="tracks_detail"><!-- 상세 행 -->
 				<td class="album"><img src="/beat/resources/upload/${albumImg.ffilename}"></td>
-				<td id="get_playlist"><img src="/beat/resources/image/playlist_button.jpg"></td>
+				<td id="get_playlist"><img src="/beat/resources/image/playlist_button.png"></td>
 				<td class="_title" data-src="${mp3[m.index].mfilename}">${a.mtitle}</td>
 				<td class="_artist">${albumInfo.aartist}</td>
 				<td class="genre">${a.mgenre}</td>
