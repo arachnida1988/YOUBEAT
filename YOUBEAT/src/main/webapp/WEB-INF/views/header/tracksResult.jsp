@@ -5,10 +5,14 @@
 			 a {
 				text-decoration: #ababab;
 				color: #ababab;
-				}
+			}
 			 .pageMaker{
 			 	margin-left: 50%;
 			 }
+			 .tracks_detail{
+			 	border-top: 1px solid #343434;
+			 }
+			 
 	</style>
 
 	<div class="pageMaker">
@@ -24,7 +28,7 @@
 			<a class="blockClick" data-src="${pageMaker.lastNum+1 }"><img src="/beat/resources/image/circle_right1.png"></a>
 		</c:if>
 	</div>
-	<div class="tracks_detail"><!-- 상세 행 -->
+	<div class="tracks_detail" style="background-color: #212121;"><!-- 상세 행 -->
 		<div class="album"></div>
 		<div id="get_playlist"></div>
 		<div class="_title">title</div>

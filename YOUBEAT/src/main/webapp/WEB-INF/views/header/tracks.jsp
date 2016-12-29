@@ -17,13 +17,10 @@
 	}
 	#tracks_main_wrap{
 		padding-top:80px;
-		background-color: #212121;
+		background-color: #212121; /* 메인페이지 색 */
 		color: white;
 		border: 1px solid #343434;
 	}
-	/* .tracks_wrap{
-		margin: 0 auto;
-	} */
 	#test_wrap{
 		border: 1px red gray;
 		width: 1px;
@@ -34,17 +31,15 @@
 		margin: 0 auto;
 	}
 	.main_title_name1{
-	font-size: 60px;
-	margin: 0;
+		font-size: 60px;
 	}
 	#tracks_search{
-		/* border: 1px red solid; */
 		width: 1100px;
 		margin: 0 auto;
 		position: inherit;
 	}
 	#block_list_image{
-		position: absolute;
+		position: absolute; /* block page list와 num pagelist 합침 */
 	}
 	#tracks_array_title{
 		color: white;
@@ -53,20 +48,19 @@
 		color: black;
 	}
 	#tracks_wrap{
-		/* border-bottom: 1px solid gray; */
 		width: 1100px;
 		height: 1300px;
 		margin: 0 auto;
+		line-height: 50px; /* Title 윗단 / page 번호 간격 */
 	}
 	.tracks_detail{
-		/* border-bottom: 1px solid gray; */
 		width: 100%;
 		height: 40px;
-		background-color: #343434;
+		background-color: #343434; /* 게시글 라인 색 */
+		margin-bottom: 0.5em; /* 게시글 간격 */
 	}
 	.album{
 		float: left;
-		/* border-bottom: 1px solid gray; */
 		width: 50px;
 		height: 40px;
 	}
@@ -85,7 +79,6 @@
 	}
 	._title{
 		float: left;
-		/* border-bottom: 1px solid gray; */
 		width: 378px;
 		height: 40px;
 		line-height: 35px;
@@ -93,7 +86,6 @@
 	}
 	._artist{
 		float: left;
-		/* border-bottom: 1px solid gray; */
 		width: 200px;
 		height: 40px;
 		line-height: 35px;
@@ -101,7 +93,6 @@
 	}
 	.genre{
 		float: left;
-		/* border-bottom: 1px solid gray; */
 		width: 200px;
 		height: 40px;
 		line-height: 35px;
@@ -109,7 +100,6 @@
 	}
 	.date{
 		float: left;
-	/* 	border-bottom: 1px solid gray; */
 		width: 150px;
 		height: 40px;
 		line-height: 35px;
@@ -118,7 +108,6 @@
 	
 	.price{
 		float: left;
-		/* border-bottom: 1px solid gray; */
 		width: 50px;
 		height: 40px;
 		line-height: 35px;
@@ -246,7 +235,9 @@
 <div id="test_wrap"></div>
 	<div id="tracks_main_wrap">
 		<div id="high_container">
-			<span class="main_title_name1">Tracks</span>
+				<div class="main_title_name1">
+					<h1>Track</h1>
+				</div>
 			<div id="chk_calinders">
 				<input type="checkbox" id="albumASC" value="0">앨범순
 					<input type="text" id="cal1">
