@@ -11,7 +11,7 @@
 .slider_wrap{
 
 	width:660px;
-	height:660px;
+	height:500px;
 	margin:0 auto; 
 	position:relative;
 	

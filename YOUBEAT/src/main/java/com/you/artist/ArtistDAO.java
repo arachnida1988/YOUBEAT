@@ -47,5 +47,10 @@ public class ArtistDAO {
 	//메인서치의 아티스트 검색
 	public List<ArtistDTO> artistSearch(String q) throws Exception{
 		return this.sqlSession.selectList(namespace+"artistSearch", q);
-	}	
+	}
+	
+	// 최근 데뷔날짜의 아티스트 뽑아오기
+	public List<ArtistDTO> artistRecentInfo() throws Exception {
+		return this.sqlSession.selectList(namespace+"artistRecentInfo");
+	}
 }

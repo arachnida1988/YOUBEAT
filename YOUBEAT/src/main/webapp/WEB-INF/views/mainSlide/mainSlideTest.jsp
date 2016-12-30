@@ -104,7 +104,6 @@
 					<button id="page_move_youbeat">GO YOUBEAT</button>
 				</div>
 			</div>
-
 		</section>
 		<!-- /img-dragger-->
 		<!-- Content section -->
@@ -127,8 +126,9 @@
 									<td class="tname"><h2>NEW ON BEATPORT</h2></td>
 								</tr>
 								<tr>
-									<td rowspan="3" id="t1_s"><c:import
-											url="../slider/sliderTest.jsp"></c:import></td>
+									<td rowspan="3" id="t1_s">
+										<c:import url="../slider/sliderTest.jsp"></c:import>
+									</td>
 								</tr>
 							</table>
 						</td>

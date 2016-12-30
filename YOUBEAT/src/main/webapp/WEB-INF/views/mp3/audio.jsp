@@ -8,6 +8,7 @@
 	padding: 0px;
 	border: 0px;
 	outline: none;
+	z-index: 9999;
 } 
 
 .clearfix{

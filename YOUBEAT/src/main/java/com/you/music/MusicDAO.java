@@ -105,4 +105,9 @@ public class MusicDAO {
 	public List<MusicDTO> musicSearch(String q) throws Exception {
 		return sqlSession.selectList(namespace+"musicSearch",q);
 	}
+	
+	// 판매순위가 높은 음악 10개만 가져오기
+	public List<MusicDTO> musicMaxMcountInfo() throws Exception {
+		return sqlSession.selectList(namespace+"musicMaxMcountInfo");
+	}
 }
