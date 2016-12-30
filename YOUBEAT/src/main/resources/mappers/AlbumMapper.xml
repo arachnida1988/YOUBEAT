@@ -127,4 +127,22 @@
 			select * from album where atitle like #{q}
 		]]>
 	</select>
+	
+	<!-- 가장 최근 날짜의 앨범 10개만 가져오기 -->
+	<select id="albumRecentlyInfo" resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from (select rownum r, t.* 
+			from (select * from album order by adate desc)t)
+			where r between 1 and 10
+		]]>
+	</select>
+	
+	<!-- 가장 높은 판매율인 앨범 10개만 가져오기 -->
+	<select id="albumMaxAcountInfo" resultType="com.you.album.AlbumDTO">
+		<![CDATA[
+			select * from (select rownum r, t.* 
+			from (select * from album order by acounts desc)t) 
+			where r between 1 and 10
+		]]>
+	</select>
 </mapper>

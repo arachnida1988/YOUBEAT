@@ -146,5 +146,14 @@
 		<![CDATA[
 			select * from music where mtitle like #{q}
 		]]>
-	</select>	
+	</select>
+	
+	<!-- 가장 높은 판매율인 음악 10개만 가져오기 -->
+	<select id="musicMaxMcountInfo" resultType="com.you.music.MusicDTO">
+		<![CDATA[
+			select * from (select rownum r, t.* 
+			from (select * from music order by mcounts desc)t) 
+			where r between 1 and 10
+		]]>
+	</select>		
 </mapper>

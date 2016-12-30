@@ -96,5 +96,14 @@ public class AlbumDAO {
 	//메인서치 앨범리스트
 	public List<AlbumDTO> albumSearch(String q) throws Exception{
 		return this.sqlSession.selectList(namespace+"albumSearch", q);
-	}	
+	}
+	
+	// 가장 최근날짜의 앨범 10개만 가져오기
+	public List<AlbumDTO> albumRecentlyInfo() throws Exception {
+		return this.sqlSession.selectList(namespace+"albumRecentlyInfo");
+	}
+	
+	public List<AlbumDTO> albumMaxAcountInfo() throws Exception {
+		return this.sqlSession.selectList(namespace+"albumMaxAcountInfo");
+	}
 }

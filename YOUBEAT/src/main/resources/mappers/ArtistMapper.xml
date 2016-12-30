@@ -49,5 +49,14 @@
 		<![CDATA[
 			select * from artist where arartist like #{q}
 		]]>
-	</select>	
+	</select>
+	
+	<!-- 아티스트 검색으로뽑기 -->
+	<select id="artistRecentInfo" resultType="com.you.artist.ArtistDTO">
+		<![CDATA[
+			select * from (select rownum r, t.* 
+			from (select * from artist order by ardate desc)t)
+			where r between 1 and 10
+		]]>
+	</select>		
 </mapper>

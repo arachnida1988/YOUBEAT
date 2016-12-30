@@ -10,7 +10,7 @@
 <script src="/beat/resources/js/artistJS/artistView.js"></script>
 <link rel="stylesheet" href="/beat/resources/css/artist/artistView.css" type="text/css">
 <style type="text/css">
-		#footer{
+	#footer{
 		position: fixed;
 		bottom: 1px;
 	}

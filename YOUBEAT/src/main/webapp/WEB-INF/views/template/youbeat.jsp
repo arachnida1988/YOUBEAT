@@ -5,48 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>YouBeat</title>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link href="/beat/resources/css/template/main.css" rel="stylesheet"
-	type="text/css">
-
-<script type="text/javascript">
-$(document).ready(function(){
-    $(".s_t2").mouseover(function(){
-        $(".price").show();
-    });
-    $(".s_t2").mouseout(function(){
-    	$(".price").hide();
-    });
-    $(".price").mouseover(function(){
-        $(".price").show();
-    });
-    $(".price").mouseout(function(){
-    	$(".price").hide();
-    });
-    $(".objectT_1").mouseover(function(){
-        $(".object_price").show();
-    });
-    $(".objectT_1").mouseout(function(){
-    	$(".object_price").hide();
-    });
-    $(".objectT_2").mouseover(function(){
-        $(".object_price").show();
-    });
-    $(".objectT_2").mouseout(function(){
-    	$(".object_price").hide();
-    });
-    $(".object_price").mouseover(function(){
-        $(".object_price").show();
-    });
-    $(".object_price").mouseout(function(){
-    	$(".object_price").hide();
-    });
-});
-</script>
+<title>Main :: YouBeat</title>
+<link href="/beat/resources/css/template/main.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="/beat/resources/js/youbeat.js"></script>
 </head>
 <body>
 	<div>
@@ -64,78 +26,34 @@ $(document).ready(function(){
 							<td class="tname"><h2>NEW ON BEATPORT</h2></td>
 						</tr>
 						<tr>
-							<td rowspan="3" id="t1_s"><c:import
-									url="../slider/sliderTest.jsp"></c:import></td>
+							<td rowspan="3" id="t1_s">
+								<c:import url="../slider/sliderTest.jsp"></c:import>
+							</td>
 						</tr>
 					</table>
 				</td>
 				<td rowspan="2" class="side">
 					<table class="maint_s">
 						<tr>
-							<td class="tname" colspan="2">
-								<h2>TOP TEN</h2>
+							<td class="tname_2" colspan="2">
+								<h2>YOUBEAT TOP TEN</h2>
 							</td>
 						</tr>
-						<tr>
-							<td class="s_t1">1</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">2</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">3</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">4</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">5</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">6</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">7</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">8</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">9</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">10</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
+						<c:forEach items="${ featuredMusics }" var="topMusic" varStatus="st">						
+							<tr>
+								<td class="s_t1">
+									<div class="top10_list" id="mnum1_${ topMusic.mnum }">
+										<div class="ranking_list_div" id="tm1_${ st.index+1 }">
+											<h1 class="h1_ranking">${ st.index+1 }</h1>
+										</div>									
+										<div class="top10_info_list_div" id="pr1_${  topMusic.mprice }">
+											<p class="top10_music">${ topMusic.mtitle }</p>
+											<p class="top10_album">${ featuredMusicAlbums[st.index].atitle }</p>
+										</div>
+									</div>											
+								</td>
+							</tr>
+						</c:forEach>
 						<tr>
 							<td colspan="2"><a href="">그외 등수</a></td>
 						</tr>
@@ -148,132 +66,38 @@ $(document).ready(function(){
 						<tr>
 							<td colspan="5" class="tname"><h2>NEW RELEASES</h2></td>
 						</tr>
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">>곡정보1</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보2</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보3</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보4</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보5</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보6</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보7</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보8</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보9</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보10</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
+						<c:forEach begin="0" end="1" varStatus="ft">
+							<tr>
+								<c:forEach items="${ newAlbumImgs }" var="aimgs" varStatus="sc" 
+									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
+									<td>
+										<table class="objectT" id="${ newAlbumPrices[sc.index] }/${ newAlbums[sc.index].anum }">
+											<tr>
+												<td class="objectT_1">
+													<div class="objectT_1_div">
+														<img class="object_img" src="/beat/resources/upload/${ aimgs.ffilename }">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="objectT_2">
+													<div class="objectT_2_div">
+														<div class="objectT_2_sub_div">
+															<p><a class="aa_tag_1" href="#">
+																${ newAlbums[sc.index].atitle }
+															</a></p>
+															<p><a class="aa_tag_2" href="/beat/header/artistView?arartist=${ newAlbums[sc.index].aartist }">
+																${ newAlbums[sc.index].aartist }
+															</a></p>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</table>									
+									</td>
+								</c:forEach>
+							</tr>						
+						</c:forEach>	
 					</table>
 				</td>
 			</tr>
@@ -283,201 +107,62 @@ $(document).ready(function(){
 						<tr>
 							<td colspan="5" class="tname"><h2>FEATURED CHARTS</h2></td>
 						</tr>
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">>곡정보1</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보2</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보3</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보4</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보5</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보6</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보7</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보8</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보9</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보10</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
+						<c:forEach begin="0" end="1" varStatus="ft">
+							<tr>
+								<c:forEach items="${ featuredAlbumImgs }" var="fimgs" varStatus="sc" 
+									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
+									<td>
+										<table class="objectT" id="${ featuredAlbumPrices[sc.index] }/${ featuredAlbums[sc.index].anum }">
+											<tr>
+												<td class="objectT_1">
+													<div class="objectT_1_div">
+														<img class="object_img" src="/beat/resources/upload/${ fimgs.ffilename }">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="objectT_2">
+													<div class="objectT_2_div">
+														<div class="objectT_2_sub_div">
+															<p><a class="aa_tag_1" href="#">
+																${ featuredAlbums[sc.index].atitle }
+															</a></p>
+															<p><a class="aa_tag_2" href="/beat/header/artistView?arartist=${ featuredAlbums[sc.index].aartist }">
+																${ featuredAlbums[sc.index].aartist }
+															</a></p>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</table>									
+									</td>
+								</c:forEach>
+							</tr>						
+						</c:forEach>
 					</table>
 				</td>
 				<td rowspan="3" class="side">
 					<table class="maint_s">
 						<tr>
-							<td class="tname" colspan="2">
-								<h2>TOP TEN</h2>
+							<td class="tname_2" colspan="2">
+								<h2>RELEASES TOP TEN</h2>
 							</td>
 						</tr>
-						<tr>
-							<td class="s_t1">1</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">2</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">3</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">4</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">5</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">6</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">7</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">8</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">9</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="s_t1">10</td>
-							<td class="s_t2">글정보
-								<div class="price">가격</div>
-							</td>
-						</tr>
+						<c:forEach items="${ featuredAlbums }" var="topAlbum" varStatus="st">						
+							<tr>
+								<td class="s_t1">
+									<div class="top10_list" id="anum1_${ topAlbum.anum }">
+										<div class="ranking_list_div" id="tm2_${ st.index+1 }">
+											<h1 class="h1_ranking">${ st.index+1 }</h1>
+										</div>									
+										<div class="top10_info_list_div" id="pr2_${ featuredAlbumPrices[st.index] }">
+											<p class="top10_music">${ topAlbum.atitle }</p>
+											<p class="top10_album">${ topAlbum.aartist }</p>
+										</div>
+									</div>										
+								</td>
+							</tr>
+						</c:forEach>
 						<tr>
 							<td colspan="2"><a href="">그외 등수</a></td>
 						</tr>
@@ -486,271 +171,83 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<td>
-					<table class="mainT_l">
+					<table class="mainT_l2">
 						<tr>
 							<td colspan="5" class="tname"><h2>FEATURED STEMS</h2></td>
 						</tr>
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">>곡정보1</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보2</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보3</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보4</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보5</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보6</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보7</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보8</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보9</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보10</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
+						<c:forEach begin="0" end="1" varStatus="ft">
+							<tr>
+								<c:forEach items="${ artistImgList }" var="arimgs" varStatus="sc" 
+									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
+									<td>
+										<table class="objectT">
+											<tr>
+												<td class="objectT_1">
+													<div class="objectT_1_div">
+														<img class="object_img" src="/beat/resources/upload/${ arimgs.ffilename }">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="objectT_2">
+													<div class="objectT_2_div">
+														<div class="objectT_2_sub_div">
+															<p><a class="aa_tag_1" href="/beat/header/artistView?arartist=${ artistList[sc.index].arartist }">
+																${ artistList[sc.index].arartist }
+															</a></p>
+															<p><a class="aa_tag_2" href="#">
+																${ artistList[sc.index].argenre }
+															</a></p>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</table>									
+									</td>
+								</c:forEach>
+							</tr>						
+						</c:forEach>
 					</table>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<table class="mainT_l">
+					<table class="mainT_l2">
 						<tr>
 							<td colspan="5" class="tname"><h2>FEATURED SOUNDS</h2></td>
 						</tr>
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">>곡정보1</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보2</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보3</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보4</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보5</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진1
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보6</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진2
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보7</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진3
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보8</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진4
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보9</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table class="objectT">
-									<tr>
-										<td class="objectT_1">곡사진5
-											<div class="object_price">가격</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="objectT_2">곡정보10</td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-
+						<c:forEach begin="0" end="1" varStatus="ft">
+							<tr>
+								<c:forEach items="${ featuredMusicImgs }" var="mimgs" varStatus="sc" 
+									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
+									<td>
+										<table class="objectT" id="${ featuredMusics[sc.index].mprice }/${ featuredMusics[sc.index].mnum }">
+											<tr>
+												<td class="objectT_1">
+													<div class="objectT_1_div">
+														<img class="object_img" src="/beat/resources/upload/${ mimgs.ffilename }">
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="objectT_2">
+													<div class="objectT_2_div">
+														<div class="objectT_2_sub_div">
+															<p><a class="aa_tag_1" href="#">
+																${ featuredMusics[sc.index].mtitle }
+															</a></p>
+															<p><a class="aa_tag_2" href="/beat/header/artistView?arartist=${ featuredMusicAlbums[sc.index].aartist }">
+																${ featuredMusicAlbums[sc.index].aartist }
+															</a></p>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</table>									
+									</td>
+								</c:forEach>
+							</tr>						
+						</c:forEach>
 					</table>
 				</td>
 			</tr>
