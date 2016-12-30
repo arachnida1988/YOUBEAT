@@ -57,7 +57,7 @@
 		width: 100%;
 		height: 40px;
 		background-color: #343434; /* 게시글 라인 색 */
-		margin-bottom: 0.5em; /* 게시글 간격 */
+		margin-bottom: 0.4em; /* 게시글 간격 */
 	}
 	.album{
 		float: left;
@@ -179,7 +179,7 @@
 		}, success:function(data){
 			$("#tracks_wrap").html(data);
 		}});
-		//페이지 클릭시 해당페이지 이동
+		//페이지 클릭시 해당페이지 이동1
 	    $("#tracks_wrap").on("click", "#pageClick", function(){
 	    	var curPage = $(this).text();
 			var perPage = per;
@@ -235,9 +235,10 @@
 <div id="test_wrap"></div>
 	<div id="tracks_main_wrap">
 		<div id="high_container">
-				<div class="main_title_name1">
-					<h1>Track</h1>
-				</div>
+			<div class="main_title_name1">
+				<h1>Track</h1>
+			</div>
+			
 			<div id="chk_calinders">
 				<input type="checkbox" id="albumASC" value="0">앨범순
 					<input type="text" id="cal1">
@@ -256,6 +257,7 @@
 				</select>
 			</div>
 		</div>
+		
 			<div id="tracks_search">
 				<div id="block_list_image">
 					<span>Result Per Page</span>
