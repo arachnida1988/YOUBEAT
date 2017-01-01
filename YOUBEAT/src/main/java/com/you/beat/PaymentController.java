@@ -25,7 +25,7 @@ public class PaymentController {
 	
 	// 결제 완료
 	@RequestMapping(value="/paymentAdd", method=RequestMethod.POST)
-	public String paymentAdd(PaymentDTO paymentDTO, RedirectAttributes rd) {
-		return this.pService.paymentAdd(paymentDTO, rd);
+	public String paymentAdd(PaymentDTO paymentDTO, Model model, RedirectAttributes rd) {
+		return this.pService.paymentAdd(paymentDTO, model, rd);
 	}
 }

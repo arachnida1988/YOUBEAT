@@ -2,7 +2,7 @@ var audio;
 var check = false;
 var audioloading = false;
 var body = document.body.clientWidth;
-$("#footer").css("left",parseInt(body/5));
+$("#footer").css("left",parseInt(body/20));
 if(getCookie("playlist") != "") {// 플레이리스트 쿠키 유무확인 있을시 불러와서 저장된 재생시간에 맞게 셋팅
 	$("#playlist").html(getCookie("playlist"));
 	/* alert(getCookie("playlist")); */
