@@ -294,14 +294,14 @@ $(function() {
 				create_li.append(title);
 				$("#playlist").append(create_li);
 			});
+			if (audio != null) {
+				audio.pause();
+			}
+			setAudio($("#playlist li:last-child"));
+			$("#play").hide();
+			$("#pause").show();
+			setCookie("playlist", $("#playlist").html(), "1");
 		}});
-		if (audio != null) {
-			audio.pause();
-		}
-		setAudio($("#playlist li:last-child"));
-		$("#play").hide();
-		$("#pause").show();
-		setCookie("playlist", $("#playlist").html(), "1");
 	});
 });
 

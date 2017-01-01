@@ -7,10 +7,10 @@
 			<td class="album_td">
 				<!-- 나중에 hover 처리를 위한 클래스 -->
 				<div class="album_wrap_div" id="${ albumPrices[a.index] }/${ albumList[a.index].anum }">
-					<div class="img_add" data-src="${ albumList[a.index].anum }">
+					<div class="img_add" data-src="${ albumList[a.index].anum }" >
 						<img src="/beat/resources/upload/${ imgs.ffilename }">
 					</div>
-					<div class="info_add_div">
+					<div class="info_add_div" album_title="${ albumList[a.index].anum }" album_artist="${ albumList[a.index].aartist }">
 						<div class="info_wrap_div">						
 							<h5 class="htag_2">${ albumList[a.index].atitle }</h5>
 							<p class="p_tag_2">${ albumList[a.index].aartist }</p>
@@ -28,10 +28,12 @@
 			"mouseenter" : function() {
 				var data = $(this).prop("id");
 				var splitData = data.split("/");
+				var title = $(this).find(".info_add_div").attr("album_title");
+				var artist = $(this).find(".info_add_div").attr("album_artist");
 				var result='<div class="img_cover">';
 				result += "<div class='playlist_wrap_div'>";
 				result += "<div class='play_btn_div_1'>";
-				result += '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
+				result += '<input type="image" class="album_add" album_artist="'+artist+'" album_title="'+title+'" onfocus="this.blur()" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
 				result += "</div><div class='list_btn_div_1'>";
 				result += '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/list_add_btn.PNG">';
 				result += "</div></div><div class='cart_wrap_div'>";
