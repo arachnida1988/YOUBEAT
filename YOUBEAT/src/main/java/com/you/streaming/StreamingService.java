@@ -21,8 +21,46 @@ public class StreamingService {
 
 	@Autowired
 	private StreamingDAO streamingDAO;
+	
+	//음악한개 스트링 타입
+	public String music_addList(String music, int album){
+		List<MusicDTO> musicList = streamingDAO.getMusicList_anum(album);
+		List<MusicDTO> musicComplete = new ArrayList<>();
+		for(int i=0;i<musicList.size();i++){
+			if(musicList.get(i).getMtitle().equals(music)){
+				musicComplete.add(musicList.get(i));
+			}
+		}
+		// 해당앨범의 상세정보
+		AlbumDTO thisAlbumInfo = streamingDAO.albumView(album);
+		// 해당앨범을 리스트로하여 파일매칭
+		List<AlbumDTO> albumChange = new ArrayList<AlbumDTO>();
+		albumChange.add(thisAlbumInfo);
+		List<FileupDTO> file = streamingDAO.fileupAlbumList(albumChange);
+		FileupDTO fileupDTO = file.get(0);
 
-	// 앨범 상세 뷰 로드
+		List<Mp3DTO> mp3Complete = new ArrayList<Mp3DTO>();
+		List<Mp3DTO> mp3 = streamingDAO.mp3List();
+		for (int i = 0; i < musicList.size(); i++) {
+			for (int j = 0; j < mp3.size(); j++) {
+				if (musicList.get(i).getMtitle().equals(mp3.get(j).getTitle())) {
+					mp3Complete.add(mp3.get(j));
+				}
+			}
+		}
+		String result="";
+		for(int index=0; index<musicComplete.size();index++){
+			String div = "<div class='music_addList' song='"+
+					mp3Complete.get(index).getMfilename()+"' artist='"+
+					mp3Complete.get(index).getArtist()+"' cover='/beat/resources/upload/"+fileupDTO.getFfilename()+
+					"' title='"+musicList.get(index).getMtitle()+"'></div>";
+			result=result+div;
+		}
+		System.out.println(result);
+		return result;
+	}
+
+	//앨범내용 스트링 타입.
 	public String album_addList(int anum, String artist, Model model) {
 		// 해당앨범의 뮤직리스트
 		List<MusicDTO> musicList = streamingDAO.getMusicList_anum(anum);

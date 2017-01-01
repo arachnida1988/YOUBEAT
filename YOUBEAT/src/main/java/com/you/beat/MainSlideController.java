@@ -139,4 +139,11 @@ public class MainSlideController {
 	public String slideTest() {
 		return "slider/sliderTest";
 	}
+	//음악한개가져오기
+	@RequestMapping(value="/music_add")
+	@ResponseBody
+	public String music_addList(@RequestParam String title,@RequestParam int album){
+		return streamingService.music_addList(title,album);
+	}
+	
 }

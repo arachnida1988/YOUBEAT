@@ -276,24 +276,41 @@ $(function() {
 			title: $(this).attr("album_title"),
 			artist:$(this).attr("album_artist")
 		}, success:function(data){
-			var create = document.createElement("div");
-			create.className = "album_set";
-			parent.append(create);
-			parent.find(".album_set").html(data);
-			var albums = parent.find(".album_set").find(".album_addList");
-			albums.each(function(i) {
-				var create_li = document.createElement("li");
-				var title = $(this).attr("title");
-				var song = $(this).attr("song");
-				var artist = $(this).attr("artist");
-				var cover = $(this).attr("cover");
-				create_li.setAttribute("song", song);
-				create_li.setAttribute("cover", cover);
-				create_li.setAttribute("artist", artist);
-				create_li.setAttribute("class", "listClick");
-				create_li.append(title);
-				$("#playlist").append(create_li);
-			});
+			if(parent.find(".album_set").find(".album_addList").html() !=""){
+				var albums = parent.find(".album_set").find(".album_addList");
+				albums.each(function(i) {
+					var create_li = document.createElement("li");
+					var title = $(this).attr("title");
+					var song = $(this).attr("song");
+					var artist = $(this).attr("artist");
+					var cover = $(this).attr("cover");
+					create_li.setAttribute("song", song);
+					create_li.setAttribute("cover", cover);
+					create_li.setAttribute("artist", artist);
+					create_li.setAttribute("class", "listClick");
+					create_li.append(title);
+					$("#playlist").append(create_li);
+				});
+			}else{
+				var create = document.createElement("div");
+				create.className = "album_set";
+				parent.append(create);
+				parent.find(".album_set").html(data);
+				var albums = parent.find(".album_set").find(".album_addList");
+				albums.each(function(i) {
+					var create_li = document.createElement("li");
+					var title = $(this).attr("title");
+					var song = $(this).attr("song");
+					var artist = $(this).attr("artist");
+					var cover = $(this).attr("cover");
+					create_li.setAttribute("song", song);
+					create_li.setAttribute("cover", cover);
+					create_li.setAttribute("artist", artist);
+					create_li.setAttribute("class", "listClick");
+					create_li.append(title);
+					$("#playlist").append(create_li);
+				});
+			}
 			if (audio != null) {
 				audio.pause();
 			}
@@ -304,5 +321,41 @@ $(function() {
 		}});
 	});
 });
-
+$(function() {
+	//메인페이지 뮤직한개
+	$(document).on("click", ".music_add", function() {
+		console.log("music_click");
+		var parent=$(this).parent();
+		$.ajax({url : "music_add", type : "post", data : {
+				title : $(this).attr("musictitle"),
+				album : $(this).attr("albumnum")
+			},
+			success : function(data) {
+				var create = document.createElement("div");
+				create.className = "music_set";
+				parent.append(create);
+				parent.find(".music_set").html(data);
+				var create_li = document.createElement("li");
+				var title = parent.find(".music_set").find(".music_addList").attr("title");
+				var song = parent.find(".music_set").find(".music_addList").attr("song");
+				var artist = parent.find(".music_set").find(".music_addList").attr("artist");
+				var cover = parent.find(".music_set").find(".music_addList").attr("cover");
+				create_li.setAttribute("song", song);
+				create_li.setAttribute("cover", cover);
+				create_li.setAttribute("artist", artist);
+				create_li.setAttribute("class", "listClick");
+				create_li.append(title);
+				$("#playlist").append(create_li);
+				if (audio != null) {
+					audio.pause();
+				}
+				setAudio($("#playlist li:last-child"));
+				$("#play").hide();
+				$("#pause").show();
+				setCookie("playlist", $("#playlist").html(), "1");
+			}
+		});
+	});
+	
+});
 

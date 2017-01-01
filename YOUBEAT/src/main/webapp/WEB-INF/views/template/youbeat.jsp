@@ -48,7 +48,7 @@
 											<h1 class="h1_ranking">${ st.index+1 }</h1>
 										</div>									
 										<div class="top10_info_list_div" id="pr1_${  topMusic.mprice }">
-											<p class="top10_music">${ topMusic.mtitle }</p>
+											<p class="top10_music" albumnum="${ topMusic.anum }">${ topMusic.mtitle }</p>
 											<p class="top10_album">${ featuredMusicAlbums[st.index].atitle }</p>
 										</div>
 									</div>											

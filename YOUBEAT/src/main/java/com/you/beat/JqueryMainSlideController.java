@@ -116,4 +116,5 @@ public class JqueryMainSlideController {
 	public String album_addList(@RequestParam int title,@RequestParam String artist, Model model){
 		return streamingService.album_addList(title,artist,model);
 	}	
+	
 }
