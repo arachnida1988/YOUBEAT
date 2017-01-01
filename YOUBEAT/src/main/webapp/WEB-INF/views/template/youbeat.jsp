@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/beat/resources/css/slider/jquery.bxslider.css" />
 </head>
 <body>
+	<input type="hidden" value="${ message }" id="message">
 	<div>
 		<c:import url="header.jsp"></c:import>
 	</div>

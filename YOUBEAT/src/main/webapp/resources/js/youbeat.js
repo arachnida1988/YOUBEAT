@@ -3,6 +3,12 @@
  */
 
 $(document).ready(function(){
+	// 메시지 처리
+	var message = $("#message").val();
+	if(message != "") {
+		alert(message);
+	}	
+	
 	$.ajax({
 		url : "../template/sliderTest",
 		data : "GET",

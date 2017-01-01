@@ -71,7 +71,7 @@ public class PaymentService {
 	
 	// 결제 완료 부분
 	@Transactional
-	public String paymentAdd(PaymentDTO paymentDTO, RedirectAttributes rd) {
+	public String paymentAdd(PaymentDTO paymentDTO, Model model, RedirectAttributes rd) {
 		// 장바구니 불러오기
 		ShoppingcartDTO sDTO = new ShoppingcartDTO();
 		String message = "";
@@ -108,6 +108,7 @@ public class PaymentService {
 		if(result > 0) {
 			message = "결제 완료.. 회원 정보에서 구매 내역을 확인하세요!";
 			path = "template/youbeat";
+			model.addAttribute("message", message);
 		} else {
 			message = "결제 실패..다시 시도해주세요";
 			path = "redirect:/payment/checkoutPage";

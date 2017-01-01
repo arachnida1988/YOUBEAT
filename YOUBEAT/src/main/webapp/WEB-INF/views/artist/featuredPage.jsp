@@ -27,7 +27,12 @@
 					<div id="slide_div_sub_info">
 						<div id="title_and_info_div">
 							<!-- title -->
-							<h2><a class="atag_1" href="#">${ featuredAlbums[status.index].atitle }</a></h2>
+							<h2>
+								<a class="atag_1" href="albumView?albumNum=${ featuredAlbums[status.index].anum }
+									&artist=${ featuredAlbums[status.index].aartist }">
+									${ featuredAlbums[status.index].atitle }
+								</a>
+							</h2>
 							<!-- 정보 처리 해줘야함 -->
 							<span class="span_1">
 								<a class="atag_2" href="artistView?arartist=${ featuredAlbums[status.index].aartist }">
@@ -96,7 +101,10 @@
 									</div>
 									<!-- 정보 등록 해야하는 부분 -->							
 									<div class="newchart_td_div_sub">								
-										<a class="atag_3" href="#">${ newAlbumList[second.index].atitle }</a>
+										<a class="atag_3" href="albumView?albumNum=${ newAlbumList[second.index].anum }
+											&artist=${ newAlbumList[second.index].aartist }">
+											${ newAlbumList[second.index].atitle }
+										</a>
 										<p class="p_artist">
 											<a class="atag_4" href="artistView?arartist=${ newArtistList[second.index].arartist }">
 												${ newArtistList[second.index].arartist }
