@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Main :: YouBeat</title>
-<link href="/beat/resources/css/template/main.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="/beat/resources/js/youbeat.js"></script>
+<link href="/beat/resources/css/template/main.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/beat/resources/css/slider/jquery.bxslider.css" />
 </head>
 <body>
 	<div>
@@ -27,7 +27,8 @@
 						</tr>
 						<tr>
 							<td rowspan="3" id="t1_s">
-								<c:import url="../slider/sliderTest.jsp"></c:import>
+								<!-- AJAX 처리 부분 -->
+								<!-- 슬라이드가 들어온다. -->
 							</td>
 						</tr>
 					</table>
@@ -256,8 +257,10 @@
 	<div>
 		<c:import url="futer.jsp"></c:import>
 	</div>
-	<div id="footer">
+ 	<div id="footer">
 		<c:import url="/header/audio"></c:import>
-	</div>	
+	</div>
+<script src="/beat/resources/js/youbeat.js"></script>	
+<script src="/beat/resources/js/sliderJS/jquery.bxslider.js"></script>		
 </body>
 </html>

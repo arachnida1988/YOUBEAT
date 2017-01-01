@@ -3,6 +3,14 @@
  */
 
 $(document).ready(function(){
+	$.ajax({
+		url : "../template/sliderTest",
+		data : "GET",
+		success : function(result) {
+			$("#t1_s").html(result);
+		}
+	});
+	
 	// HOVER 처리 1
 	$(".objectT").on({
 		"mouseenter" : function() {

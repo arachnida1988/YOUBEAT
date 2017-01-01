@@ -12,25 +12,6 @@
 	height: 3100px;
 }
 
-.slider_wrap{
-	width:660px;
-	height:500px;
-	margin:0 auto; 
-	position:relative;
-}
-.slider{
-	width: 100%;
-	height: 100%;
-}
-.slider_side{
-	width: 100%;
-	height: 100%;
-}
-li img{
-	width: 100%;
-	height: 100%;
-}
-
 .hhh_tag {
 	text-align: center;
 }

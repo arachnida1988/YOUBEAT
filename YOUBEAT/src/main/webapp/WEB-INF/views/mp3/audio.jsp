@@ -191,8 +191,6 @@ button #list{
 	 border-radius:5px;
 	 color: white;
 }
-
-
 </style>
 	<div id="container">
 		<div id="audio-player">

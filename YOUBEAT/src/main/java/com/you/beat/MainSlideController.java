@@ -50,7 +50,7 @@ public class MainSlideController {
 		List<Integer> featuredAlbumPrices = null;	
 		List<ArtistDTO> artistList = null;
 		List<FileupDTO> artistImgList = null;
-		List<AlbumDTO> artistAlbumList= null;
+		
 		try {
 			// 1. 판매량 높은 음악 가져오기
 			featuredMusics = this.musicDAO.musicMaxMcountInfo();
@@ -133,5 +133,10 @@ public class MainSlideController {
 	@ResponseBody
 	public String album_addList(@RequestParam int title,@RequestParam String artist, Model model){
 		return streamingService.album_addList(title,artist,model);
-	}	
+	}
+	
+	@RequestMapping(value="/sliderTest")
+	public String slideTest() {
+		return "slider/sliderTest";
+	}
 }
