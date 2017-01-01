@@ -42,7 +42,7 @@
 						<c:forEach items="${ featuredMusics }" var="topMusic" varStatus="st">						
 							<tr>
 								<td class="s_t1">
-									<div class="top10_list" id="mnum1_${ topMusic.mnum }">
+									<div class="top10_list" id="mnum_${ topMusic.mnum }/music">
 										<div class="ranking_list_div" id="tm1_${ st.index+1 }">
 											<h1 class="h1_ranking">${ st.index+1 }</h1>
 										</div>									
@@ -71,9 +71,9 @@
 								<c:forEach items="${ newAlbumImgs }" var="aimgs" varStatus="sc" 
 									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
 									<td>
-										<table class="objectT" id="${ newAlbumPrices[sc.index] }/${ newAlbums[sc.index].anum }">
+										<table class="objectT" id="a1_${ newAlbumPrices[sc.index] }/${ newAlbums[sc.index].anum }/album">
 											<tr>
-												<td class="objectT_1">
+												<td class="objectT_1" album_title="${ newAlbums[sc.index].anum }" album_artist="${ newAlbums[sc.index].aartist }">
 													<div class="objectT_1_div">
 														<img class="object_img" src="/beat/resources/upload/${ aimgs.ffilename }">
 													</div>
@@ -112,7 +112,7 @@
 								<c:forEach items="${ featuredAlbumImgs }" var="fimgs" varStatus="sc" 
 									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
 									<td>
-										<table class="objectT" id="${ featuredAlbumPrices[sc.index] }/${ featuredAlbums[sc.index].anum }">
+										<table class="objectT" id="a2_${ featuredAlbumPrices[sc.index] }/${ featuredAlbums[sc.index].anum }/album">
 											<tr>
 												<td class="objectT_1">
 													<div class="objectT_1_div">
@@ -151,7 +151,7 @@
 						<c:forEach items="${ featuredAlbums }" var="topAlbum" varStatus="st">						
 							<tr>
 								<td class="s_t1">
-									<div class="top10_list" id="anum1_${ topAlbum.anum }">
+									<div class="top10_list" id="anum_${ topAlbum.anum }/album">
 										<div class="ranking_list_div" id="tm2_${ st.index+1 }">
 											<h1 class="h1_ranking">${ st.index+1 }</h1>
 										</div>									
@@ -180,16 +180,16 @@
 								<c:forEach items="${ artistImgList }" var="arimgs" varStatus="sc" 
 									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
 									<td>
-										<table class="objectT">
+										<table class="objectT2">
 											<tr>
-												<td class="objectT_1">
+												<td class="objectT2_1">
 													<div class="objectT_1_div">
 														<img class="object_img" src="/beat/resources/upload/${ arimgs.ffilename }">
 													</div>
 												</td>
 											</tr>
 											<tr>
-												<td class="objectT_2">
+												<td class="objectT2_2">
 													<div class="objectT_2_div">
 														<div class="objectT_2_sub_div">
 															<p><a class="aa_tag_1" href="/beat/header/artistView?arartist=${ artistList[sc.index].arartist }">
@@ -221,7 +221,7 @@
 								<c:forEach items="${ featuredMusicImgs }" var="mimgs" varStatus="sc" 
 									begin="${ (ft.index*5) }" end="${ (ft.index*5)+4 }">
 									<td>
-										<table class="objectT" id="${ featuredMusics[sc.index].mprice }/${ featuredMusics[sc.index].mnum }">
+										<table class="objectT" id="m1_${ featuredMusics[sc.index].mprice }/${ featuredMusics[sc.index].mnum }/music">
 											<tr>
 												<td class="objectT_1">
 													<div class="objectT_1_div">
@@ -256,5 +256,8 @@
 	<div>
 		<c:import url="futer.jsp"></c:import>
 	</div>
+	<div id="footer">
+		<c:import url="/header/audio"></c:import>
+	</div>	
 </body>
 </html>

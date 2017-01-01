@@ -22,6 +22,40 @@ public class StreamingService {
 	@Autowired
 	private StreamingDAO streamingDAO;
 
+	// 앨범 상세 뷰 로드
+	public String album_addList(int anum, String artist, Model model) {
+		// 해당앨범의 뮤직리스트
+		List<MusicDTO> musicList = streamingDAO.getMusicList_anum(anum);
+		System.out.println("music size : " + musicList.size());
+		// 해당앨범의 상세정보
+		AlbumDTO thisAlbumInfo = streamingDAO.albumView(anum);
+		// 해당앨범을 리스트로하여 파일매칭
+		List<AlbumDTO> albumChange = new ArrayList<AlbumDTO>();
+		albumChange.add(thisAlbumInfo);
+		List<FileupDTO> file = streamingDAO.fileupAlbumList(albumChange);
+		FileupDTO fileupDTO = file.get(0);
+
+		List<Mp3DTO> mp3Complete = new ArrayList<Mp3DTO>();
+		List<Mp3DTO> mp3 = streamingDAO.mp3List();
+		for (int i = 0; i < musicList.size(); i++) {
+			for (int j = 0; j < mp3.size(); j++) {
+				if (musicList.get(i).getMtitle().equals(mp3.get(j).getTitle())) {
+					mp3Complete.add(mp3.get(j));
+				}
+			}
+		}
+		String result="";
+		for(int index=0; index<musicList.size();index++){
+			String div = "<div class='album_addList' song='"+
+					mp3Complete.get(index).getMfilename()+"' artist='"+
+					mp3Complete.get(index).getArtist()+"' cover='/beat/resources/upload/"+fileupDTO.getFfilename()+
+					"' title='"+musicList.get(index).getMtitle()+"'></div>";
+			result=result+div;
+		}
+		System.out.println(result);
+		return result;
+	}	
+	
 	//메인서칭
 	public void mainSearch(String q, Model model){
 		q="%"+q+"%";

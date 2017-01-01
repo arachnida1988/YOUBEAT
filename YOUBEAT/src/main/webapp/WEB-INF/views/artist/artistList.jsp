@@ -11,13 +11,6 @@
 <link rel="stylesheet" href="/beat/resources/css/artist/artistList.css" type="text/css">
 <link rel="stylesheet" href="/beat/resources/css/artist/featuredPage.css" type="text/css">
 <link rel="stylesheet" href="/beat/resources/css/artist/allArtistPage.css" type="text/css">
-	<style type="text/css">
-	#footer{
-		position: fixed;
-		bottom: 1px;
-		z-index: 9999;
-	}
-	</style>
 </head>
 <body>
 	<!-- header -->

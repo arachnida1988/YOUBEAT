@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.you.album.AlbumDAO;
 import com.you.album.AlbumDTO;
@@ -17,6 +19,7 @@ import com.you.fileup.FileupDAO;
 import com.you.fileup.FileupDTO;
 import com.you.music.MusicDAO;
 import com.you.music.MusicDTO;
+import com.you.streaming.StreamingService;
 
 @Controller
 @RequestMapping(value="/template")
@@ -30,6 +33,9 @@ public class MainSlideController {
 	private ArtistDAO ArtistDAO;
 	@Autowired
 	private FileupDAO fileupDAO;
+	@Autowired
+	private StreamingService streamingService;
+	
 	
 	@RequestMapping(value="/youbeat", method=RequestMethod.GET)
 	public String slider(Model model){
@@ -120,5 +126,12 @@ public class MainSlideController {
 		model.addAttribute("artistList", artistList);
 		model.addAttribute("artistImgList", artistImgList);
 		return "template/youbeat";
+	}
+	
+	//앨범가져오기
+	@RequestMapping(value="/album_addAlbum")
+	@ResponseBody
+	public String album_addList(@RequestParam int title,@RequestParam String artist, Model model){
+		return streamingService.album_addList(title,artist,model);
 	}	
 }

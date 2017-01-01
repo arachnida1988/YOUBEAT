@@ -86,7 +86,7 @@
 								<!-- background 흐림 처리 부분 -->						
 								<div class="newchart_td_div" id="${ newAlbumPrices[second.index] }">
 									<!-- 장바구니 버튼 div 부분 -->
-									<div class="newchart_td_div_sub" id="newAnum_${ newAlbumList[second.index].anum }">
+									<div class="newchart_td_div_sub" id="newAnum_${ newAlbumList[second.index].anum }" album_artist="${ newAlbumList[second.index].aartist }" album_title="${ newAlbumList[second.index].anum }">
 										<!-- 실제로 장바구니 등록하는 부분 hover처리 필요-->
 										<!-- jQuery로 처리 -->
 										<div class="cart_add_div" id="${ newAlbumFileList[second.index].ffilename }">

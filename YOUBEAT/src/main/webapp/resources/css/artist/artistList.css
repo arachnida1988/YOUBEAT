@@ -1,5 +1,11 @@
 @CHARSET "UTF-8";
 
+#footer {
+	position: fixed;
+	bottom: 1px;
+	z-index: 9999;
+}
+
 h1 {
 	color: white;
 }

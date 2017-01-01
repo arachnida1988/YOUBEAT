@@ -259,38 +259,51 @@ function deleteCookie(cookieName) {
 
 $(function() {
 	//auto next play
-	if(audio!=null){
-		$(audio).on("ended", function() { 
-			audio.pause(); 
-			var next = $("#playlist li.active").next(); 
-			if (next.length == 0) { 
-				next = $("#playlist li:first-child");
-			}
-			setAudio(next);
-		});
-	}
-	//앨범 통째로 재생리스트 만들고 재생
-	$("#featured_slide_div").on("click", function() {
-		alert("click");
+	$(audio).on("ended", function() { 
+		audio.pause(); 
+		var next = $("#playlist li.active").next(); 
+		if (next.length == 0) { 
+			next = $("#playlist li:first-child");
+		}
+		setAudio(next);
 	});
-	$(".album_add").click(function () {
-		alert("click");
-	});
-	$(".bxslider").on("click", function() {
-		alert("click");
+	
+	
+	//앨범 통쨰로 플레이리스트 넣기
+	$(document).on("click",".album_add",function(){
+		var parent=$(this).parent();
+		$.ajax({url:"album_addAlbum", type:"post", data:{
+			title: $(this).attr("album_title"),
+			artist:$(this).attr("album_artist")
+		}, success:function(data){
+			var create = document.createElement("div");
+			create.className = "album_set";
+			parent.append(create);
+			parent.find(".album_set").html(data);
+			var albums = parent.find(".album_set").find(".album_addList");
+			albums.each(function(i) {
+				var create_li = document.createElement("li");
+				var title = $(this).attr("title");
+				var song = $(this).attr("song");
+				var artist = $(this).attr("artist");
+				var cover = $(this).attr("cover");
+				create_li.setAttribute("song", song);
+				create_li.setAttribute("cover", cover);
+				create_li.setAttribute("artist", artist);
+				create_li.setAttribute("class", "listClick");
+				create_li.append(title);
+				$("#playlist").append(create_li);
+			});
+		}});
+		if (audio != null) {
+			audio.pause();
+		}
+		setAudio($("#playlist li:last-child"));
+		$("#play").hide();
+		$("#pause").show();
+		setCookie("playlist", $("#playlist").html(), "1");
 	});
 });
 
-$(document).on("click",".album_add",function(){
-	alert($(this).parent().parent().parent().parent().find(".atag_1").text());
-	$.ajax({url: "header/album_addList",type:"post", data : {
-		title : $(this).attr("album_title"),
-		artist : $(this).attr("album_artist")
-		}, success: function(data){
-			var create = document.createElement("div");
-			create.className = "album_set";
-			$(this).parent().find("album_set").html(data);
-    }});
-});
 
 

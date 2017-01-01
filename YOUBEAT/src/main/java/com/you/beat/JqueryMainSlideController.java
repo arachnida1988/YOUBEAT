@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.you.streaming.StreamingService;
 
@@ -107,5 +108,12 @@ public class JqueryMainSlideController {
 	public String mainSearch(@RequestParam String q, Model model){
 		streamingService.mainSearch(q,model);
 		return "/header/mainSearch";
-	}		
+	}
+	
+	//앨범가져오기
+	@RequestMapping(value="/album_addAlbum")
+	@ResponseBody
+	public String album_addList(@RequestParam int title,@RequestParam String artist, Model model){
+		return streamingService.album_addList(title,artist,model);
+	}	
 }
