@@ -94,7 +94,7 @@ public class MemberService {
 		}
 		if(memberDTO != null) {
 			message = "로그인 완료!";
-			path = "template/youbeat";
+			path = "";
 		} else {
 			message = "ID나 PassWord가 일치하지 않습니다.";
 			path = "member/memberLogin";
@@ -106,7 +106,7 @@ public class MemberService {
 	
 	// Delete
 	public String memberDelete(MemberDTO memberDTO, 
-			RedirectAttributes rd, HttpSession session) {
+			RedirectAttributes rd, Model model, HttpSession session) {
 		int result = 0;
 		String message = "";
 		String path = "";
@@ -119,13 +119,14 @@ public class MemberService {
 		}
 		if(result > 0) {
 			message = "회원 탈퇴 완료";
-			path = "template/youbeat";
+			path = "";
+			model.addAttribute("message", message);
 			session.invalidate();
 		} else {
 			message = "회원 탈퇴 실패";
 			path = "redirect:/member/memberView";
+			rd.addFlashAttribute("message", message);
 		}
-		rd.addFlashAttribute("message", message);
 		return path;
 	}
 	

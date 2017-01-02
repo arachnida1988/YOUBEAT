@@ -19,6 +19,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+	@Autowired
+	private MainSlideController mainController;
 	
 	// Join - 페이지 이동
 	@RequestMapping(value="/memberJoin", method=RequestMethod.GET)
@@ -48,15 +50,20 @@ public class MemberController {
 	// Login 처리
 	@RequestMapping(value="/memberLogin", method=RequestMethod.POST)
 	public String memberLogin(MemberDTO memberDTO, Model model) {
-		// mService의 경로값을 리턴받아 이동
-		return this.mService.memberLogin(memberDTO, model);
+		String path = "";
+		if(this.mService.memberLogin(memberDTO, model).equals("")) {
+			path = this.mainController.slider(model);
+		} else {
+			path = this.mService.memberLogin(memberDTO, model);
+		}
+		return path;
 	}
 	
 	// Logout
 	@RequestMapping(value="/memberLogout")
-	public String memberLogout(HttpSession session) {
+	public String memberLogout(HttpSession session, Model model) {
 		session.invalidate();
-		return "template/youbeat";
+		return this.mainController.slider(model);
 	}
 	
 	// View 경로 이동
@@ -91,8 +98,14 @@ public class MemberController {
 	// Delete 처리
 	@RequestMapping(value="/memberDelete", method=RequestMethod.POST)
 	public String memberDelete(MemberDTO memberDTO, 
-			RedirectAttributes rd ,HttpSession session) {
-		return this.mService.memberDelete(memberDTO, rd, session);
+			RedirectAttributes rd, Model model, HttpSession session) {
+		String path = "";
+		if(this.mService.memberDelete(memberDTO, rd, model, session).equals("")) {
+			path = this.mainController.slider(model);
+		} else {
+			path = this.mService.memberDelete(memberDTO, rd, model, session);
+		}
+		return path;
 	}
 	
 	// Update 처리를 위한 인증 팝업창으로 이동
