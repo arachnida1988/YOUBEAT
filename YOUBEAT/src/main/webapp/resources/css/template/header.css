@@ -135,3 +135,8 @@
 .main_title{
 	width: 500px;
 }
+
+#footer{
+	position: fixed;
+	bottom: 1px;
+}

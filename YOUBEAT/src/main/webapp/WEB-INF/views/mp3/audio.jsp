@@ -26,9 +26,9 @@
 	 border-radius:10px;
 }
 
-audio-img{
+#audio-img{
 	overflow: hidden;
-	height: 200px;
+	height: 100px;
 	margin-bottom: 15px;
 	float: left;
 }
@@ -36,7 +36,6 @@ audio-img{
 .cover{
 	width: 100px;
 	height: 100px;
-	float: left;
 }
 
 #audio-info{
@@ -48,6 +47,10 @@ audio-img{
 
 #audio-info .artist{
 	font-weight: bold;
+}
+input[type=range]{
+	width: 15%;
+	display: inline;
 }
 
 input #volume{
