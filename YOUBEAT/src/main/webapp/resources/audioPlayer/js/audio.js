@@ -272,45 +272,29 @@ $(function() {
 	//앨범 통쨰로 플레이리스트 넣기
 	$(document).on("click",".album_add",function(){
 		var parent=$(this).parent();
+		console.log(parent.html());
 		$.ajax({url:"album_addAlbum", type:"post", data:{
 			title: $(this).attr("album_title"),
 			artist:$(this).attr("album_artist")
 		}, success:function(data){
-			if(parent.find(".album_set").find(".album_addList").html() !=""){
-				var albums = parent.find(".album_set").find(".album_addList");
-				albums.each(function(i) {
-					var create_li = document.createElement("li");
-					var title = $(this).attr("title");
-					var song = $(this).attr("song");
-					var artist = $(this).attr("artist");
-					var cover = $(this).attr("cover");
-					create_li.setAttribute("song", song);
-					create_li.setAttribute("cover", cover);
-					create_li.setAttribute("artist", artist);
-					create_li.setAttribute("class", "listClick");
-					create_li.append(title);
-					$("#playlist").append(create_li);
-				});
-			}else{
-				var create = document.createElement("div");
-				create.className = "album_set";
-				parent.append(create);
-				parent.find(".album_set").html(data);
-				var albums = parent.find(".album_set").find(".album_addList");
-				albums.each(function(i) {
-					var create_li = document.createElement("li");
-					var title = $(this).attr("title");
-					var song = $(this).attr("song");
-					var artist = $(this).attr("artist");
-					var cover = $(this).attr("cover");
-					create_li.setAttribute("song", song);
-					create_li.setAttribute("cover", cover);
-					create_li.setAttribute("artist", artist);
-					create_li.setAttribute("class", "listClick");
-					create_li.append(title);
-					$("#playlist").append(create_li);
-				});
-			}
+			var create = document.createElement("div");
+			create.className = "album_set";
+			parent.append(create);
+			parent.find(".album_set").html(data);
+			var albums = parent.find(".album_set").find(".album_addList");
+			albums.each(function(i) {
+				var create_li = document.createElement("li");
+				var title = $(this).attr("title");
+				var song = $(this).attr("song");
+				var artist = $(this).attr("artist");
+				var cover = $(this).attr("cover");
+				create_li.setAttribute("song", song);
+				create_li.setAttribute("cover", cover);
+				create_li.setAttribute("artist", artist);
+				create_li.setAttribute("class", "listClick");
+				create_li.append(title);
+				$("#playlist").append(create_li);
+			});
 			if (audio != null) {
 				audio.pause();
 			}
