@@ -137,18 +137,13 @@
 		$("#cal2").val(curday);
 		var per=25;
 		var height="1300px";
-		alert($("#tracks_array").val());
 		
 		//앨범정렬 체크 박스 누르기
 		$("#albumASC").on("click", function() {
 			if($("#albumASC").val()==0){
-				alert($("#albumASC").val());
 				$("#albumASC").val("1");
-				alert($("#albumASC").val());
 			}else{
-				alert($("#albumASC").val());
 				$("#albumASC").val("0");
-				alert($("#albumASC").val());
 			}
 		});
 		
