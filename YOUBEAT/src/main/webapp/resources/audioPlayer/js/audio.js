@@ -308,7 +308,7 @@ $(function() {
 $(function() {
 	//메인페이지 뮤직한개
 	$(document).on("click", ".music_add", function() {
-		console.log("music_click");
+		console.log("music_click"+"--"+$(this).attr("musictitle")+"--"+$(this).attr("albumnum"));
 		var parent=$(this).parent();
 		$.ajax({url : "music_add", type : "post", data : {
 				title : $(this).attr("musictitle"),

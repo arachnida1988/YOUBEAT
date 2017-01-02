@@ -116,5 +116,11 @@ public class JqueryMainSlideController {
 	public String album_addList(@RequestParam int title,@RequestParam String artist, Model model){
 		return streamingService.album_addList(title,artist,model);
 	}	
+	//음악한개가져오기
+	@RequestMapping(value="/music_add")
+	@ResponseBody
+	public String music_addList(@RequestParam String title,@RequestParam int album){
+		return streamingService.music_addList(title,album);
+	}
 	
 }

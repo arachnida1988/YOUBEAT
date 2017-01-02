@@ -37,7 +37,7 @@
 							<h1 class="h1_ranking">${ status.index+1 }</h1>
 						</div>
 						<div class="top10_info_list_div" id="pr_${ ten.mprice }">
-							<p class="top10_music">${ ten.mtitle }</p>
+							<p class="top10_music" albumnum="${ ten.anum }">${ ten.mtitle }</p>
 							<p class="top10_album">${ tenAlbum[status.index].atitle }</p>
 						</div>
 					</div>

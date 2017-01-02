@@ -98,9 +98,11 @@ $(function(){
 			var mPrice = $(this).find(".top10_info_list_div").prop("id");
 			mPrice = mPrice.substring(3,mPrice.length);
 			var mnum = $(this).prop("id");
+			var title = $(this).find(".top10_info_list_div").find(".top10_music").text();
+			var albumnum = $(this).find(".top10_info_list_div").find(".top10_music").attr("albumnum");
 			mnum = mnum.substring(6,mnum.length);
 			var result1 = "<div class='top10_play_btn_div'>";
-			result1 += '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
+			result1 += '<input type="image" onfocus="this.blur()" class="music_add" musictitle="'+title+'" albumnum="'+albumnum+'" src="/beat/resources/image/artist_page/play_btn_2.PNG">';
 			result1 += "</div><div class='top10_cart_btn_div'>";
 			result1 += '<input type="image" onfocus="this.blur()" src="/beat/resources/image/artist_page/list_add_btn.PNG"></div>';
 			var result2 = "<div class='button_cover_div'><div>";
