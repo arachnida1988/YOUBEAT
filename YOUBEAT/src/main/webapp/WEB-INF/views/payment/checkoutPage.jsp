@@ -27,7 +27,7 @@
 			</div>
 			<div id="payment_contents_div">
 				<span id="span_1">CREDIT / DEBIT CARD</span>
-				<img id="cardimg" src="/beat/resources/image/payment/cardimgs.PNG">
+				<img id="cardimg" src="/beat/resources/image/payment/cardimgss.PNG">
 			</div>
 			<div id="payment_info_div">
 				<div id="info_title_div">
