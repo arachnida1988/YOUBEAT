@@ -28,6 +28,7 @@ public class StreamingService {
 		List<MusicDTO> musicComplete = new ArrayList<>();
 		for(int i=0;i<musicList.size();i++){
 			if(musicList.get(i).getMtitle().equals(music)){
+				System.out.println(musicList.get(i).getMtitle());
 				musicComplete.add(musicList.get(i));
 			}
 		}
@@ -41,9 +42,9 @@ public class StreamingService {
 
 		List<Mp3DTO> mp3Complete = new ArrayList<Mp3DTO>();
 		List<Mp3DTO> mp3 = streamingDAO.mp3List();
-		for (int i = 0; i < musicList.size(); i++) {
+		for (int i = 0; i < musicComplete.size(); i++) {
 			for (int j = 0; j < mp3.size(); j++) {
-				if (musicList.get(i).getMtitle().equals(mp3.get(j).getTitle())) {
+				if (musicComplete.get(i).getMtitle().equals(mp3.get(j).getTitle())) {
 					mp3Complete.add(mp3.get(j));
 				}
 			}
@@ -53,7 +54,7 @@ public class StreamingService {
 			String div = "<div class='music_addList' song='"+
 					mp3Complete.get(index).getMfilename()+"' artist='"+
 					mp3Complete.get(index).getArtist()+"' cover='/beat/resources/upload/"+fileupDTO.getFfilename()+
-					"' title='"+musicList.get(index).getMtitle()+"'></div>";
+					"' title='"+musicComplete.get(index).getMtitle()+"'></div>";
 			result=result+div;
 		}
 		System.out.println(result);
