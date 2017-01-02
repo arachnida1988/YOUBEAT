@@ -98,8 +98,7 @@
 						<img src="/beat/resources/image/mainSlide/1.jpg" alt="img1" />
 					</div>
 					<h2>
-						YOUBEAT<span><br>Final Project FirstTeam<br>
-							Music Striming Site : YOUBEAT</span>
+						YOUBEAT<span>Music Striming Site : YOUBEAT</span>
 					</h2>
 					<button id="page_move_youbeat">GO YOUBEAT</button>
 				</div>
