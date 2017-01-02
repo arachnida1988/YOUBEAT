@@ -30,6 +30,9 @@
 	width: 70%;
 	height: 70%;
 }
+#beatlogo{
+	width: 170px;
+}
 </style>
 
 <script>
@@ -65,10 +68,11 @@ $(document).ready(function(){
 </head>
 
 <div id="header2">
-	<div id="beatlogo"><a href="/beat/header/mainSlideTest">LOGO</a></div>
-	<div id="beatgenre"><a href="">--</a></div>
-	<div id="beatlogo"><a href="/beat/header/mainSlideTest"><img src="/beat/resources/image/main_logo.png"></a></div>
-	<div id="beatgenre"><a href="">GENRES</a></div>
+	<div id="beatlogo"><a href="/beat/header/mainSlideTest"><img id="main_logo_image" src="/beat/resources/image/main_logo2.png"></a></div>&nbsp;&nbsp;&nbsp;
+	
+	<!-- <div id="beatgenre"><a href="">--</a></div>
+		 <div id="beatgenre"><a href="">GENRES</a></div> -->
+		 
 	<div id="beattrack"><a href="/beat/header/tracks">TRACKS</a></div>
 	<div id="beatalbum"><a href="/beat/header/youtube">YOUTUBE</a></div>
 	<div id="beatartist"><a href="/beat/header/artist">ARTISTS</a></div>
